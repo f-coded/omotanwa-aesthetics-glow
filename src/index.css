@@ -1,5 +1,6 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/quincy');
 
 @tailwind base;
 @tailwind components;
@@ -36,6 +37,12 @@
     --ring: 30 40% 80%;
 
     --radius: 0.75rem;
+    
+    /* Gold color scheme from the image */
+    --gold-light: 54 80% 95%;
+    --gold-medium-light: 47 70% 86%;
+    --gold-medium: 47 60% 76%;
+    --gold-dark: 44 56% 61%;
   }
 }
 
@@ -45,11 +52,11 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-raleway;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+    @apply font-quincy;
   }
 }
 
@@ -59,7 +66,7 @@
   }
   
   .btn-primary {
-    @apply bg-brand hover:bg-brand-200 text-foreground font-medium px-6 py-3 rounded-2xl transition-all shadow-soft;
+    @apply bg-gold-medium hover:bg-gold-dark text-foreground font-medium px-6 py-3 rounded-2xl transition-all shadow-soft;
   }
   
   .btn-secondary {
@@ -67,7 +74,7 @@
   }
   
   .input-field {
-    @apply w-full px-4 py-3 rounded-2xl border-border focus:ring-2 focus:ring-brand focus:border-transparent;
+    @apply w-full px-4 py-3 rounded-2xl border-border focus:ring-2 focus:ring-gold-medium focus:border-transparent;
   }
   
   .card-hover {
@@ -79,7 +86,7 @@
   }
   
   .section-title {
-    @apply text-3xl md:text-4xl font-serif font-medium mb-6 md:mb-10;
+    @apply text-3xl md:text-4xl font-quincy font-medium mb-6 md:mb-10;
   }
   
   .section-subtitle {

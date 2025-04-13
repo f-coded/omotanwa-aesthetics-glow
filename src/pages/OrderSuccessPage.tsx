@@ -74,14 +74,14 @@ const OrderSuccessPage: React.FC = () => {
       >
         {/* Success Icon */}
         <motion.div 
-          className="inline-flex items-center justify-center w-24 h-24 bg-brand-100 rounded-full mb-8"
+          className="inline-flex items-center justify-center w-24 h-24 bg-gold-light rounded-full mb-8"
           variants={checkmarkVariants}
         >
-          <CheckCircle size={48} className="text-brand-500" />
+          <CheckCircle size={48} className="text-gold-dark" />
         </motion.div>
         
         <motion.h1 
-          className="text-3xl md:text-4xl font-serif mb-4"
+          className="text-3xl md:text-4xl font-quincy mb-4"
           variants={itemVariants}
         >
           Thank you for your order!
@@ -121,7 +121,7 @@ const OrderSuccessPage: React.FC = () => {
         </motion.div>
         
         <motion.div 
-          className="bg-brand-100 rounded-2xl p-8 mb-12 relative overflow-hidden"
+          className="bg-gold-light rounded-2xl p-8 mb-12 relative overflow-hidden"
           variants={itemVariants}
         >
           <div className="relative z-10">
@@ -135,7 +135,7 @@ const OrderSuccessPage: React.FC = () => {
             className="absolute top-1/2 right-8 transform -translate-y-1/2"
             variants={packageVariants}
           >
-            <Package size={48} className="text-brand-500" />
+            <Package size={48} className="text-gold-dark" />
           </motion.div>
         </motion.div>
         
@@ -143,7 +143,7 @@ const OrderSuccessPage: React.FC = () => {
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
           variants={itemVariants}
         >
-          <Link to="/shop" className="btn-primary flex items-center">
+          <Link to="/shop" className="btn-primary bg-gold-medium text-black hover:bg-gold-dark flex items-center">
             Continue Shopping <ArrowRight size={16} className="ml-2" />
           </Link>
           

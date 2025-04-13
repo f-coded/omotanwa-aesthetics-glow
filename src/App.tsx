@@ -20,6 +20,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import NotFound from "./pages/NotFound";
+import AboutPage from "./pages/AboutPage";
 
 const App = () => {
   // Create a new QueryClient instance inside the component
@@ -44,6 +45,7 @@ const App = () => {
                   <Route path="/account" element={<AccountPage />} />
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/register" element={<RegisterPage />} />
+                  <Route path="/about" element={<AboutPage />} />
                 </Route>
                 <Route path="/admin/*" element={<AdminDashboard />} />
                 <Route path="*" element={<NotFound />} />

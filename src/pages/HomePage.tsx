@@ -5,6 +5,8 @@ import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { featuredProducts } from '../data/products';
 import ProductCard from '@/components/ProductCard';
+import HeroCarousel from '@/components/HeroCarousel';
+import CouponPopup from '@/components/CouponPopup';
 
 const HomePage: React.FC = () => {
   const testimonials = [
@@ -49,45 +51,19 @@ const HomePage: React.FC = () => {
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="relative h-[90vh] min-h-[600px] flex items-center overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/hero.jpg')" }}>
-          <div className="absolute inset-0 bg-black opacity-10"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div 
-            className="max-w-2xl"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-white mb-6">
-              An Experience, a Lifestyle
-            </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-8 max-w-lg">
-              Premium skincare crafted with love, science, and a deep understanding of what your skin truly needs.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link 
-                to="/shop" 
-                className="btn-primary bg-white text-foreground hover:bg-white/90"
-              >
-                Shop Now
-              </Link>
-              <Link 
-                to="/about" 
-                className="btn-secondary bg-transparent border-white text-white hover:bg-white/10"
-              >
-                Our Story
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* Hero Carousel */}
+      <HeroCarousel />
+      
+      {/* Coupon Popup */}
+      <CouponPopup 
+        discount="15" 
+        code="WELCOME15" 
+        expiry="May 31, 2025" 
+        delay={3000}
+      />
 
       {/* Featured Products Section */}
-      <section className="section bg-cream">
+      <section className="section bg-gold-light">
         <div className="container">
           <motion.div 
             className="text-center mb-12"
@@ -119,7 +95,7 @@ const HomePage: React.FC = () => {
           <div className="mt-12 text-center">
             <Link 
               to="/shop" 
-              className="inline-flex items-center text-brand-600 hover:text-brand-700 font-medium"
+              className="inline-flex items-center text-gold-dark hover:text-gold-dark/80 font-medium"
             >
               View All Products <ArrowRight size={16} className="ml-2" />
             </Link>
@@ -158,7 +134,7 @@ const HomePage: React.FC = () => {
               <p className="text-muted-foreground mb-6">
                 Each formula is thoughtfully crafted to deliver not just results, but an experience that transforms your skincare routine into a moment of self-care and connection.
               </p>
-              <Link to="/about" className="btn-primary inline-block">
+              <Link to="/about" className="btn-primary inline-block bg-gold-medium text-black hover:bg-gold-dark">
                 Learn More
               </Link>
             </motion.div>
@@ -167,7 +143,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="section bg-peach">
+      <section className="section bg-gold-medium-light">
         <div className="container">
           <motion.div 
             className="text-center mb-12"
@@ -214,9 +190,9 @@ const HomePage: React.FC = () => {
       {/* Newsletter Section */}
       <section className="section">
         <div className="container">
-          <div className="bg-brand-200 rounded-2xl p-8 md:p-12">
+          <div className="bg-gold-medium-light rounded-2xl p-8 md:p-12">
             <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-2xl md:text-3xl font-serif mb-4">Join Our Community</h2>
+              <h2 className="text-2xl md:text-3xl font-quincy mb-4">Join Our Community</h2>
               <p className="text-muted-foreground mb-8">
                 Sign up for our newsletter to receive exclusive offers, skincare tips, and early access to new product launches.
               </p>
@@ -228,7 +204,7 @@ const HomePage: React.FC = () => {
                 />
                 <button
                   type="submit"
-                  className="btn-primary mt-3 sm:mt-0 sm:rounded-l-none"
+                  className="btn-primary mt-3 sm:mt-0 sm:rounded-l-none bg-gold-medium hover:bg-gold-dark text-black"
                 >
                   Subscribe
                 </button>
