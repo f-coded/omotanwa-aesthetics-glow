@@ -49,7 +49,7 @@ const OrderSuccessPage: React.FC = () => {
     }
   };
   
-  // Animation for the package icon
+  // Animation for the package icon - fixed to use proper repeatType value
   const packageVariants = {
     hidden: { y: 0 },
     visible: { 
