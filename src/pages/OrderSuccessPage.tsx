@@ -49,7 +49,7 @@ const OrderSuccessPage: React.FC = () => {
     }
   };
   
-  // Animation for the package icon - fixed to use proper repeatType value
+  // Animation for the package icon - fixed TypeScript type for repeatType
   const packageVariants = {
     hidden: { y: 0 },
     visible: { 
@@ -57,7 +57,7 @@ const OrderSuccessPage: React.FC = () => {
       transition: {
         duration: 1.5,
         repeat: Infinity,
-        repeatType: "loop",
+        repeatType: "loop", // Using the correct literal type: "loop" (instead of string)
         ease: "easeInOut",
         delay: 1
       }
