@@ -1,29 +1,29 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Twitter, Mail } from 'lucide-react';
+import { Facebook, Instagram, Twitter } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-brand-100 pt-16 pb-8">
+    <footer className="bg-gray-100 pt-16 pb-8">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {/* Logo and About */}
           <div>
             <Link to="/" className="inline-block mb-4">
-              <h2 className="text-xl font-serif font-medium">Omotanwa MI</h2>
+              <h2 className="text-xl font-quincy font-medium">Omotanwa MI</h2>
             </Link>
             <p className="text-sm text-muted-foreground mb-4">
               An Experience, a Lifestyle. Premium skincare products crafted with love and science.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="hover:text-brand-600 transition-colors">
+              <a href="#" className="hover:text-gold-dark transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href="#" className="hover:text-brand-600 transition-colors">
+              <a href="#" className="hover:text-gold-dark transition-colors">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="hover:text-brand-600 transition-colors">
+              <a href="#" className="hover:text-gold-dark transition-colors">
                 <Twitter size={20} />
               </a>
             </div>
@@ -87,31 +87,10 @@ const Footer: React.FC = () => {
               </li>
             </ul>
           </div>
-
-          {/* Newsletter */}
-          <div>
-            <h3 className="text-sm font-semibold mb-4 uppercase tracking-wider">Stay in Touch</h3>
-            <p className="text-sm text-muted-foreground mb-4">
-              Subscribe to our newsletter for exclusive offers and skincare tips.
-            </p>
-            <form className="flex">
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="input-field text-sm rounded-l-2xl rounded-r-none"
-              />
-              <button
-                type="submit"
-                className="bg-brand-500 hover:bg-brand-600 text-white px-4 py-2 rounded-r-2xl"
-              >
-                <Mail size={16} />
-              </button>
-            </form>
-          </div>
         </div>
 
         {/* Bottom Footer */}
-        <div className="border-t border-brand-200 pt-8">
+        <div className="border-t border-gray-200 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <p className="text-xs text-muted-foreground">
               &copy; {new Date().getFullYear()} Omotanwa MI Aesthetics. All rights reserved.

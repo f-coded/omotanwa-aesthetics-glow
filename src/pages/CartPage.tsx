@@ -49,7 +49,7 @@ const CartPage: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-3xl md:text-4xl font-serif mb-4">Your Cart</h1>
+        <h1 className="text-3xl md:text-4xl font-goudy mb-4">Your Cart</h1>
         {cartItems.length > 0 && (
           <p className="text-muted-foreground">
             You have {cartItems.length} {cartItems.length === 1 ? 'item' : 'items'} in your cart
@@ -76,7 +76,7 @@ const CartPage: React.FC = () => {
           </Link>
         </motion.div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-12">
           {/* Cart Items */}
           <motion.div 
             className="lg:col-span-2"
@@ -84,7 +84,7 @@ const CartPage: React.FC = () => {
             initial="hidden"
             animate="visible"
           >
-            <div className="bg-white rounded-2xl shadow-soft p-6">
+            <div className="bg-white rounded-2xl shadow-soft p-4 md:p-6">
               <div className="flex justify-between items-center pb-6 border-b border-border mb-6">
                 <h2 className="font-medium">Cart Items</h2>
                 <button 
@@ -100,7 +100,7 @@ const CartPage: React.FC = () => {
                   <motion.div 
                     key={item.product.id}
                     variants={fadeIn}
-                    className="flex items-center gap-4"
+                    className="flex flex-col sm:flex-row sm:items-center gap-4 pb-4 border-b border-gray-100 last:border-0 last:pb-0"
                   >
                     <div className="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
                       <img 
@@ -113,40 +113,44 @@ const CartPage: React.FC = () => {
                     <div className="flex-grow">
                       <Link 
                         to={`/product/${item.product.id}`}
-                        className="font-medium hover:text-brand-600 transition-colors"
+                        className="font-medium hover:text-gold-dark transition-colors"
                       >
                         {item.product.name}
                       </Link>
                       <div className="text-sm text-muted-foreground">{formatPrice(item.product.price)}</div>
                     </div>
                     
-                    <div className="flex items-center border border-border rounded-lg">
+                    <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-4">
+                      <div className="flex items-center border border-border rounded-lg">
+                        <button 
+                          onClick={() => handleQuantityChange(item.product.id, item.quantity, -1)}
+                          className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground"
+                          aria-label="Decrease quantity"
+                        >
+                          <Minus size={14} />
+                        </button>
+                        <span className="w-8 text-center">{item.quantity}</span>
+                        <button 
+                          onClick={() => handleQuantityChange(item.product.id, item.quantity, 1)}
+                          className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground"
+                          aria-label="Increase quantity"
+                        >
+                          <Plus size={14} />
+                        </button>
+                      </div>
+                      
+                      <div className="font-medium whitespace-nowrap">
+                        {formatPrice(item.product.price * item.quantity)}
+                      </div>
+                      
                       <button 
-                        onClick={() => handleQuantityChange(item.product.id, item.quantity, -1)}
-                        className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground"
+                        onClick={() => removeFromCart(item.product.id)}
+                        className="text-muted-foreground hover:text-destructive ml-2"
+                        aria-label={`Remove ${item.product.name} from cart`}
                       >
-                        <Minus size={14} />
-                      </button>
-                      <span className="w-8 text-center">{item.quantity}</span>
-                      <button 
-                        onClick={() => handleQuantityChange(item.product.id, item.quantity, 1)}
-                        className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground"
-                      >
-                        <Plus size={14} />
+                        <X size={18} />
                       </button>
                     </div>
-                    
-                    <div className="font-medium">
-                      {formatPrice(item.product.price * item.quantity)}
-                    </div>
-                    
-                    <button 
-                      onClick={() => removeFromCart(item.product.id)}
-                      className="text-muted-foreground hover:text-destructive"
-                      aria-label={`Remove ${item.product.name} from cart`}
-                    >
-                      <X size={18} />
-                    </button>
                   </motion.div>
                 ))}
               </div>
@@ -159,7 +163,7 @@ const CartPage: React.FC = () => {
             animate="visible"
             variants={fadeIn}
           >
-            <div className="bg-white rounded-2xl shadow-soft p-6">
+            <div className="bg-white rounded-2xl shadow-soft p-6 sticky top-24">
               <h2 className="font-medium border-b border-border pb-4 mb-6">Order Summary</h2>
               
               <div className="space-y-4">

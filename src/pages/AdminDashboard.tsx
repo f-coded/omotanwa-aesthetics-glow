@@ -10,9 +10,13 @@ import {
   Settings, 
   LogOut, 
   Menu, 
-  X 
+  X,
+  Plus,
+  Search
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import ProductUpload from '@/components/admin/ProductUpload';
+import { toast } from 'sonner';
 
 const AdminDashboard: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -63,7 +67,7 @@ const AdminDashboard: React.FC = () => {
       >
         <div className="p-6">
           <Link to="/" className="flex items-center">
-            <h1 className="text-xl font-serif font-medium">Omotanwa Admin</h1>
+            <h1 className="text-xl font-goudy font-medium">Omotanwa Admin</h1>
           </Link>
         </div>
         
@@ -111,7 +115,7 @@ const AdminDashboard: React.FC = () => {
       )}
       
       {/* Main Content */}
-      <main className="md:ml-64 min-h-screen p-6">
+      <main className="md:ml-64 min-h-screen p-4 md:p-6">
         <Routes>
           <Route path="/dashboard" element={<AdminDashboardContent />} />
           <Route path="/products" element={<AdminProducts />} />
@@ -132,7 +136,7 @@ const AdminDashboardContent: React.FC = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
-      <h1 className="text-2xl font-medium mb-6">Dashboard</h1>
+      <h1 className="text-2xl font-goudy mb-6">Dashboard</h1>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {[
@@ -158,14 +162,57 @@ const AdminDashboardContent: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white rounded-lg p-6 shadow-sm">
           <h2 className="text-lg font-medium mb-4">Recent Orders</h2>
-          {/* Order content would go here */}
-          <p className="text-muted-foreground">No orders to display</p>
+          <table className="w-full">
+            <thead>
+              <tr className="text-left text-sm text-gray-500">
+                <th className="pb-3">Order ID</th>
+                <th className="pb-3">Customer</th>
+                <th className="pb-3">Status</th>
+                <th className="pb-3">Total</th>
+              </tr>
+            </thead>
+            <tbody className="text-sm">
+              {[
+                { id: 'OMA-123456', customer: 'John Doe', status: 'Completed', total: '$129.99' },
+                { id: 'OMA-123457', customer: 'Jane Smith', status: 'Processing', total: '$79.50' },
+                { id: 'OMA-123458', customer: 'Robert Johnson', status: 'Shipped', total: '$245.00' },
+              ].map((order, index) => (
+                <tr key={index} className="border-t border-gray-100">
+                  <td className="py-3">{order.id}</td>
+                  <td className="py-3">{order.customer}</td>
+                  <td className="py-3">
+                    <span className={`px-2 py-1 rounded-full text-xs ${
+                      order.status === 'Completed' ? 'bg-green-100 text-green-800' :
+                      order.status === 'Processing' ? 'bg-blue-100 text-blue-800' :
+                      'bg-yellow-100 text-yellow-800'
+                    }`}>
+                      {order.status}
+                    </span>
+                  </td>
+                  <td className="py-3">{order.total}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
         
         <div className="bg-white rounded-lg p-6 shadow-sm">
           <h2 className="text-lg font-medium mb-4">Top Products</h2>
-          {/* Products content would go here */}
-          <p className="text-muted-foreground">No products to display</p>
+          {[
+            { name: 'Hydrating Facial Cleanser', sold: 42, revenue: '$2,520' },
+            { name: 'Vitamin C Serum', sold: 38, revenue: '$3,420' },
+            { name: 'Anti-Aging Night Cream', sold: 29, revenue: '$2,030' },
+          ].map((product, index) => (
+            <div key={index} className="flex justify-between items-center border-b border-gray-100 py-3 last:border-0">
+              <div>
+                <h3 className="font-medium">{product.name}</h3>
+                <p className="text-sm text-gray-500">{product.sold} units sold</p>
+              </div>
+              <div className="text-right">
+                <span className="font-medium">{product.revenue}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </motion.div>
@@ -174,16 +221,171 @@ const AdminDashboardContent: React.FC = () => {
 
 // Admin Products Page
 const AdminProducts: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<'all' | 'add'>('all');
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const sampleProducts = [
+    {
+      id: '1',
+      name: 'Hydrating Facial Cleanser',
+      category: 'cleansers',
+      price: 39.99,
+      stock: 32,
+      status: 'Active'
+    },
+    {
+      id: '2',
+      name: 'Vitamin C Serum',
+      category: 'serums',
+      price: 89.99,
+      stock: 18,
+      status: 'Active'
+    },
+    {
+      id: '3',
+      name: 'Anti-Aging Night Cream',
+      category: 'moisturizers',
+      price: 69.99,
+      stock: 24,
+      status: 'Active'
+    },
+    {
+      id: '4',
+      name: 'Rejuvenating Eye Cream',
+      category: 'moisturizers',
+      price: 49.99,
+      stock: 0,
+      status: 'Out of Stock'
+    }
+  ];
+
+  const handleProductAdded = () => {
+    setActiveTab('all');
+    toast.success("Product added and will appear in the shop!");
+  };
+
   return (
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
-      <h1 className="text-2xl font-medium mb-6">Products</h1>
-      <div className="bg-white rounded-lg p-6 shadow-sm">
-        <p className="text-muted-foreground">Product management functionality will be implemented here.</p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+        <h1 className="text-2xl font-goudy">Products</h1>
+        
+        <div className="flex gap-3">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search products..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-9 pr-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-medium"
+            />
+            <Search size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          </div>
+          
+          <button
+            onClick={() => setActiveTab('add')}
+            className="btn-primary bg-gold-medium hover:bg-gold-dark py-2 flex items-center"
+          >
+            <Plus size={18} className="mr-1" />
+            New Product
+          </button>
+        </div>
       </div>
+      
+      <div className="mb-6 border-b border-gray-200">
+        <div className="flex space-x-6">
+          <button
+            onClick={() => setActiveTab('all')}
+            className={`py-3 border-b-2 ${
+              activeTab === 'all' 
+                ? 'border-gold-dark text-foreground font-medium' 
+                : 'border-transparent text-muted-foreground'
+            }`}
+          >
+            All Products
+          </button>
+          <button
+            onClick={() => setActiveTab('add')}
+            className={`py-3 border-b-2 ${
+              activeTab === 'add' 
+                ? 'border-gold-dark text-foreground font-medium' 
+                : 'border-transparent text-muted-foreground'
+            }`}
+          >
+            Add New Product
+          </button>
+        </div>
+      </div>
+      
+      {activeTab === 'all' ? (
+        <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="min-w-full">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Product
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Category
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Price
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Stock
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Status
+                  </th>
+                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {sampleProducts.map((product) => (
+                  <tr key={product.id}>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="font-medium text-gray-900">{product.name}</div>
+                      <div className="text-xs text-gray-500">ID: {product.id}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap capitalize">
+                      {product.category}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      ${product.price.toFixed(2)}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      {product.stock}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                        product.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                      }`}>
+                        {product.status}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <button className="text-blue-600 hover:text-blue-900 mr-3">
+                        Edit
+                      </button>
+                      <button className="text-red-600 hover:text-red-900">
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      ) : (
+        <ProductUpload onProductAdded={handleProductAdded} />
+      )}
     </motion.div>
   );
 };
@@ -196,7 +398,7 @@ const AdminOrders: React.FC = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
-      <h1 className="text-2xl font-medium mb-6">Orders</h1>
+      <h1 className="text-2xl font-goudy mb-6">Orders</h1>
       <div className="bg-white rounded-lg p-6 shadow-sm">
         <p className="text-muted-foreground">Order management functionality will be implemented here.</p>
       </div>
@@ -212,7 +414,7 @@ const AdminCustomers: React.FC = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
-      <h1 className="text-2xl font-medium mb-6">Customers</h1>
+      <h1 className="text-2xl font-goudy mb-6">Customers</h1>
       <div className="bg-white rounded-lg p-6 shadow-sm">
         <p className="text-muted-foreground">Customer management functionality will be implemented here.</p>
       </div>
@@ -228,7 +430,7 @@ const AdminSettings: React.FC = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
-      <h1 className="text-2xl font-medium mb-6">Settings</h1>
+      <h1 className="text-2xl font-goudy mb-6">Settings</h1>
       <div className="bg-white rounded-lg p-6 shadow-sm">
         <p className="text-muted-foreground">Settings functionality will be implemented here.</p>
       </div>

@@ -125,7 +125,7 @@ export default {
 			},
 			fontFamily: {
 				raleway: ['Raleway', 'sans-serif'],
-				quincy: ['Quincy', 'serif'],
+				goudy: ['Goudy Bookletter 1911', 'serif'],
 			},
 			boxShadow: {
 				'soft': '0 4px 20px rgba(0, 0, 0, 0.05)',

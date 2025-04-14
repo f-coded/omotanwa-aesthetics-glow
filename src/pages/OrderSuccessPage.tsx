@@ -81,7 +81,7 @@ const OrderSuccessPage: React.FC = () => {
         </motion.div>
         
         <motion.h1 
-          className="text-3xl md:text-4xl font-quincy mb-4"
+          className="text-3xl md:text-4xl font-goudy mb-4"
           variants={itemVariants}
         >
           Thank you for your order!
