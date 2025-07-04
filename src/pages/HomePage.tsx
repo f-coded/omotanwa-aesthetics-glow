@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { featuredProducts } from '../data/products';
 import ProductCard from '@/components/ProductCard';
 import HeroCarousel from '@/components/HeroCarousel';
+import CollageSection from '@/components/CollageSection';
 import CouponPopup from '@/components/CouponPopup';
 
 const HomePage: React.FC = () => {
@@ -61,6 +62,9 @@ const HomePage: React.FC = () => {
         expiry="May 31, 2025" 
         delay={3000}
       />
+
+      {/* Collage Section */}
+      <CollageSection />
 
       {/* Featured Products Section */}
       <section className="section bg-gold-light">

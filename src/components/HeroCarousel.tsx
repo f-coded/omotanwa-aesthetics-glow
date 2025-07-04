@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface HeroSlide {
@@ -65,20 +64,6 @@ const HeroCarousel: React.FC = () => {
     }
   };
   
-  const goToNext = () => {
-    if (!isAnimating) {
-      setIsAnimating(true);
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }
-  };
-  
-  const goToPrev = () => {
-    if (!isAnimating) {
-      setIsAnimating(true);
-      setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-    }
-  };
-  
   const slideVariants = {
     hidden: { opacity: 0 },
     visible: { 
@@ -128,7 +113,7 @@ const HeroCarousel: React.FC = () => {
               animate="visible"
               className="max-w-2xl"
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-quincy font-medium text-white mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-clash font-medium text-white mb-6">
                 {slides[currentSlide].title}
               </h1>
               <p className="text-lg md:text-xl text-white/90 mb-8 max-w-lg">
@@ -168,22 +153,6 @@ const HeroCarousel: React.FC = () => {
           />
         ))}
       </div>
-      
-      {/* Navigation arrows */}
-      <button 
-        onClick={goToPrev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white p-3 rounded-full z-20 transition-all duration-300"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft size={24} />
-      </button>
-      <button 
-        onClick={goToNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white p-3 rounded-full z-20 transition-all duration-300"
-        aria-label="Next slide"
-      >
-        <ChevronRight size={24} />
-      </button>
     </div>
   );
 };
