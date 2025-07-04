@@ -19,7 +19,7 @@ const slides: HeroSlide[] = [
     id: 1,
     title: "An Experience, a Lifestyle",
     subtitle: "Premium skincare crafted with love, science, and a deep understanding of what your skin truly needs.",
-    image: "/images/hero1.jpg",
+    image: "/lovable-uploads/558f8583-bf2d-4fb1-8f88-8318a64dff98.png",
     ctaText: "Shop Now",
     ctaLink: "/shop",
     secondaryCtaText: "Our Story",
@@ -29,7 +29,7 @@ const slides: HeroSlide[] = [
     id: 2,
     title: "Embrace Natural Beauty",
     subtitle: "Ethically sourced ingredients that nourish your skin and respect the earth.",
-    image: "/images/hero2.jpg",
+    image: "/lovable-uploads/73eadfa4-5f8e-4ed4-9ec4-6f948291103e.png",
     ctaText: "Explore Products",
     ctaLink: "/shop"
   },
