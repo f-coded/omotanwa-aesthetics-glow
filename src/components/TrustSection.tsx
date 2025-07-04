@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Shipping } from 'lucide-react';
+import { Shield, Truck } from 'lucide-react';
 
 const TrustSection: React.FC = () => {
   const fadeInUp = {
@@ -38,7 +38,7 @@ const TrustSection: React.FC = () => {
     },
     {
       id: 3,
-      icon: <Shipping size={24} className="text-gold-medium" />,
+      icon: <Truck size={24} className="text-gold-medium" />,
       title: "Shipping",
       subtitle: "Free, fast, and reliable worldwide"
     },
