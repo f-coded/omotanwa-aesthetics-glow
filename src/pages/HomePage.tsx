@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
@@ -8,6 +7,7 @@ import ProductCard from '@/components/ProductCard';
 import HeroCarousel from '@/components/HeroCarousel';
 import CollageSection from '@/components/CollageSection';
 import CouponPopup from '@/components/CouponPopup';
+import TrustSection from '@/components/TrustSection';
 
 const HomePage: React.FC = () => {
   const testimonials = [
@@ -65,6 +65,9 @@ const HomePage: React.FC = () => {
 
       {/* Collage Section */}
       <CollageSection />
+
+      {/* Trust Section */}
+      <TrustSection />
 
       {/* Featured Products Section */}
       <section className="section bg-gold-light">
