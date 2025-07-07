@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ShoppingBag, User, ChevronDown } from 'lucide-react';
@@ -120,7 +119,7 @@ const Navbar: React.FC = () => {
               className="relative"
             >
               <img 
-                src="/lovable-uploads/9648dddb-d917-436c-bb90-90b78f3a83f6.png" 
+                src="/omotanwami logoblack.png" 
                 alt="Omotanwa MI Logo" 
                 className="h-12 w-12 object-contain"
               />
@@ -130,7 +129,7 @@ const Navbar: React.FC = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4, duration: 0.5 }}
-              className="ml-4"
+              className="ml-4 hidden sm:block"
             >
               <h1 className="text-xl md:text-2xl font-clash font-medium bg-gradient-to-r from-gold-dark via-foreground to-gold-dark bg-clip-text text-transparent">
                 Omotanwa MI
