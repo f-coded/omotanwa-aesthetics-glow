@@ -1,113 +1,75 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Twitter } from 'lucide-react';
+import { Instagram, Twitter, Heart } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-100 pt-16 pb-8">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {/* Logo and About */}
-          <div>
-            <Link to="/" className="inline-block mb-4">
-              <h2 className="text-xl font-quincy font-medium">Omotanwa MI</h2>
+    <footer className="bg-gradient-to-br from-gold-light/20 via-white to-gold-medium-light/30 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-10 left-1/4 w-40 h-40 bg-gold-medium rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 right-1/4 w-32 h-32 bg-gold-dark rounded-full blur-2xl"></div>
+      </div>
+      
+      <div className="container relative z-10 py-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center"
+        >
+          <Link to="/" className="inline-block mb-6">
+            <img 
+              src="/lovable-uploads/9648dddb-d917-436c-bb90-90b78f3a83f6.png" 
+              alt="Omotanwa MI" 
+              className="h-12 w-auto mx-auto"
+            />
+          </Link>
+          
+          <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto">
+            Crafting premium skincare experiences with love and science.
+          </p>
+          
+          <div className="flex justify-center space-x-6 mb-8">
+            <motion.a 
+              href="#" 
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
+              className="w-12 h-12 rounded-full bg-gradient-to-br from-gold-light to-gold-medium flex items-center justify-center hover:shadow-lg transition-all"
+            >
+              <Instagram size={20} className="text-gold-dark" />
+            </motion.a>
+            <motion.a 
+              href="#" 
+              whileHover={{ scale: 1.1, rotate: -5 }}
+              whileTap={{ scale: 0.9 }}
+              className="w-12 h-12 rounded-full bg-gradient-to-br from-gold-light to-gold-medium flex items-center justify-center hover:shadow-lg transition-all"
+            >
+              <Twitter size={20} className="text-gold-dark" />
+            </motion.a>
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-6 mb-8 text-sm">
+            <Link to="/about" className="text-muted-foreground hover:text-gold-dark transition-colors">
+              Our Story
             </Link>
-            <p className="text-sm text-muted-foreground mb-4">
-              An Experience, a Lifestyle. Premium skincare products crafted with love and science.
+            <Link to="/shop" className="text-muted-foreground hover:text-gold-dark transition-colors">
+              Shop
+            </Link>
+            <Link to="/contact" className="text-muted-foreground hover:text-gold-dark transition-colors">
+              Contact
+            </Link>
+          </div>
+          
+          <div className="border-t border-gold-medium/20 pt-6">
+            <p className="text-xs text-muted-foreground flex items-center justify-center gap-1">
+              Made with <Heart size={12} className="text-red-400" /> by Omotanwa MI Aesthetics 
+              &copy; {new Date().getFullYear()}
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="hover:text-gold-dark transition-colors">
-                <Instagram size={20} />
-              </a>
-              <a href="#" className="hover:text-gold-dark transition-colors">
-                <Facebook size={20} />
-              </a>
-              <a href="#" className="hover:text-gold-dark transition-colors">
-                <Twitter size={20} />
-              </a>
-            </div>
           </div>
-
-          {/* Shop Links */}
-          <div>
-            <h3 className="text-sm font-semibold mb-4 uppercase tracking-wider">Shop</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/shop?category=cleansers" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Cleansers
-                </Link>
-              </li>
-              <li>
-                <Link to="/shop?category=serums" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Serums
-                </Link>
-              </li>
-              <li>
-                <Link to="/shop?category=moisturizers" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Moisturizers
-                </Link>
-              </li>
-              <li>
-                <Link to="/shop?category=masks" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Masks
-                </Link>
-              </li>
-              <li>
-                <Link to="/shop?category=bundles" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Bundles
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Company Links */}
-          <div>
-            <h3 className="text-sm font-semibold mb-4 uppercase tracking-wider">Company</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Our Story
-                </Link>
-              </li>
-              <li>
-                <Link to="/ingredients" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Ingredients
-                </Link>
-              </li>
-              <li>
-                <Link to="/sustainability" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Sustainability
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Contact Us
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Bottom Footer */}
-        <div className="border-t border-gray-200 pt-8">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <p className="text-xs text-muted-foreground">
-              &copy; {new Date().getFullYear()} Omotanwa MI Aesthetics. All rights reserved.
-            </p>
-            <div className="flex space-x-4 mt-4 md:mt-0">
-              <Link to="/privacy-policy" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
-                Privacy Policy
-              </Link>
-              <Link to="/terms-of-service" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
-                Terms of Service
-              </Link>
-              <Link to="/shipping-policy" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
-                Shipping Policy
-              </Link>
-            </div>
-          </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

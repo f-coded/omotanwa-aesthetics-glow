@@ -77,7 +77,7 @@ const TrustSection: React.FC = () => {
       
       <div className="container relative z-10">
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
@@ -87,41 +87,44 @@ const TrustSection: React.FC = () => {
             <motion.div
               key={feature.id}
               variants={fadeInUp}
-              className="text-center group relative"
+              className="flex items-start space-x-4 group relative"
             >
               {/* Grid line separator - only show between items on desktop */}
               {index < trustFeatures.length - 1 && (
                 <div className="hidden lg:block absolute right-0 top-1/2 transform -translate-y-1/2 w-px h-16 bg-gradient-to-b from-transparent via-gold-medium/30 to-transparent"></div>
               )}
               
-              {/* Icon container with hover effects */}
+              {/* Icon container on the left */}
               <motion.div 
                 variants={iconFloat}
-                className="flex justify-center mb-6"
+                className="flex-shrink-0"
                 whileHover={{ 
                   scale: 1.1, 
                   rotateY: 15,
                   transition: { duration: 0.3 }
                 }}
               >
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-gold-light to-gold-medium/50 flex items-center justify-center shadow-soft group-hover:shadow-lg transition-all duration-300 border border-gold-medium/20">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-light to-gold-medium/50 flex items-center justify-center shadow-soft group-hover:shadow-lg transition-all duration-300 border border-gold-medium/20">
                   {feature.icon}
                 </div>
               </motion.div>
               
-              <motion.h3 
-                className="text-xl font-clash font-semibold mb-3 text-foreground group-hover:text-gold-dark transition-colors duration-300"
-                variants={fadeInUp}
-              >
-                {feature.title}
-              </motion.h3>
-              
-              <motion.p 
-                className="text-muted-foreground text-sm leading-relaxed"
-                variants={fadeInUp}
-              >
-                {feature.subtitle}
-              </motion.p>
+              {/* Content on the right */}
+              <div className="flex-1">
+                <motion.h3 
+                  className="text-lg font-clash font-semibold mb-2 text-foreground group-hover:text-gold-dark transition-colors duration-300"
+                  variants={fadeInUp}
+                >
+                  {feature.title}
+                </motion.h3>
+                
+                <motion.p 
+                  className="text-muted-foreground text-sm leading-relaxed"
+                  variants={fadeInUp}
+                >
+                  {feature.subtitle}
+                </motion.p>
+              </div>
             </motion.div>
           ))}
         </motion.div>

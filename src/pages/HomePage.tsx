@@ -29,6 +29,24 @@ const HomePage: React.FC = () => {
       quote: "The attention to ingredient quality is evident in every product. My skin feels nourished and healthy.",
       author: "James T.",
       location: "London, UK"
+    },
+    {
+      id: 4,
+      quote: "I love how luxurious these products feel. The packaging alone makes me feel pampered every day.",
+      author: "Elena M.",
+      location: "Paris, France"
+    },
+    {
+      id: 5,
+      quote: "Finally, skincare that delivers on its promises. My friends keep asking what I'm using!",
+      author: "David R.",
+      location: "Sydney, Australia"
+    },
+    {
+      id: 6,
+      quote: "The natural ingredients combined with scientific innovation make this brand truly special.",
+      author: "Maria S.",
+      location: "Barcelona, Spain"
     }
   ];
 
@@ -295,7 +313,7 @@ const HomePage: React.FC = () => {
           </motion.div>
 
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -307,27 +325,70 @@ const HomePage: React.FC = () => {
                 variants={fadeInUp}
                 className="bg-white p-8 rounded-3xl shadow-soft relative overflow-hidden group"
                 whileHover={{ 
-                  y: -5,
-                  boxShadow: "0 25px 50px rgba(0, 0, 0, 0.08)",
+                  y: -8,
+                  boxShadow: "0 25px 50px rgba(0, 0, 0, 0.12)",
                   transition: { duration: 0.3 }
                 }}
+                animate={{
+                  y: [0, -2, 0],
+                  transition: {
+                    duration: 3,
+                    repeat: Infinity,
+                    delay: index * 0.5,
+                    ease: "easeInOut"
+                  }
+                }}
               >
-                {/* Hover decoration */}
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gold-medium to-gold-dark transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                {/* Animated gradient border */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-gold-medium via-gold-light to-gold-dark opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute inset-[2px] bg-white rounded-3xl"></div>
+                </div>
                 
-                <motion.div 
-                  className="mb-6"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <span key={star} className="text-gold text-lg">★</span>
-                  ))}
-                </motion.div>
-                <p className="italic mb-6 text-muted-foreground leading-relaxed">"{testimonial.quote}"</p>
-                <div>
-                  <p className="font-medium text-foreground">{testimonial.author}</p>
-                  <p className="text-sm text-muted-foreground">{testimonial.location}</p>
+                {/* Content with higher z-index */}
+                <div className="relative z-10">
+                  <motion.div 
+                    className="mb-6 flex space-x-1"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: index * 0.2 }}
+                  >
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <motion.span 
+                        key={star} 
+                        className="text-gold text-lg"
+                        animate={{
+                          scale: [1, 1.2, 1],
+                          rotate: [0, 10, 0]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: star * 0.1 + index * 0.3,
+                          ease: "easeInOut"
+                        }}
+                      >
+                        ★
+                      </motion.span>
+                    ))}
+                  </motion.div>
+                  
+                  <motion.p 
+                    className="italic mb-6 text-muted-foreground leading-relaxed"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.15 + 0.3 }}
+                  >
+                    "{testimonial.quote}"
+                  </motion.p>
+                  
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.15 + 0.5 }}
+                  >
+                    <p className="font-medium text-foreground">{testimonial.author}</p>
+                    <p className="text-sm text-muted-foreground">{testimonial.location}</p>
+                  </motion.div>
                 </div>
               </motion.div>
             ))}
