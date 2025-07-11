@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ShoppingBag, User, ChevronDown } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Badge } from '@/components/ui/badge';
-import { useCart } from '@/contexts/CartContext';
-import CountrySelector from './CountrySelector';
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X, ShoppingBag, User, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
+import { useCart } from "@/contexts/CartContext";
+import CountrySelector from "./CountrySelector";
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,20 +17,20 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Show/hide navbar based on scroll direction
       if (currentScrollY < lastScrollY || currentScrollY < 100) {
         setIsVisible(true);
       } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsVisible(false);
       }
-      
+
       setIsScrolled(currentScrollY > 20);
       setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
   useEffect(() => {
@@ -39,48 +39,48 @@ const Navbar: React.FC = () => {
 
   // Navbar animation variants
   const navbarVariants = {
-    hidden: { 
-      y: -100, 
+    hidden: {
+      y: -100,
       opacity: 0,
-      transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
+      transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
     },
-    visible: { 
-      y: 0, 
+    visible: {
+      y: 0,
       opacity: 1,
-      transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
-    }
+      transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
+    },
   };
 
   const logoVariants = {
     hidden: { scale: 0, rotate: -180 },
-    visible: { 
-      scale: 1, 
+    visible: {
+      scale: 1,
       rotate: 0,
-      transition: { 
+      transition: {
         type: "spring",
         stiffness: 200,
         damping: 20,
-        delay: 0.2
-      }
-    }
+        delay: 0.2,
+      },
+    },
   };
 
   const menuItemVariants = {
     hidden: { opacity: 0, y: -20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { duration: 0.3 }
-    }
+      transition: { duration: 0.3 },
+    },
   };
 
   const staggerContainer = {
     visible: {
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.3
-      }
-    }
+        delayChildren: 0.3,
+      },
+    },
   };
 
   return (
@@ -88,17 +88,19 @@ const Navbar: React.FC = () => {
       variants={navbarVariants}
       animate={isVisible ? "visible" : "hidden"}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-white/95 backdrop-blur-md border-b border-gold-medium/10' 
-          : 'bg-transparent'
+        isScrolled
+          ? "bg-white/95 backdrop-blur-md border-b border-gold-medium/10"
+          : "bg-transparent"
       }`}
     >
+      {/* Decorative top border - moved outside container for full width */}
+      <div
+        className={`fixed top-0 left-0 right-0 h-1 w-full bg-gradient-to-r from-gold-medium via-gold-dark to-gold-medium transition-opacity duration-500 ${
+          isScrolled ? "opacity-100" : "opacity-0"
+        }`}
+        style={{ zIndex: 60 }}
+      />
       <div className="container mx-auto px-4 relative">
-        {/* Decorative top border */}
-        <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gold-medium via-gold-dark to-gold-medium transition-opacity duration-500 ${
-          isScrolled ? 'opacity-100' : 'opacity-0'
-        }`} />
-        
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center group relative z-10">
@@ -106,16 +108,16 @@ const Navbar: React.FC = () => {
               variants={logoVariants}
               initial="hidden"
               animate="visible"
-              whileHover={{ 
-                scale: 1.05, 
+              whileHover={{
+                scale: 1.05,
                 rotate: 5,
-                transition: { duration: 0.2 }
+                transition: { duration: 0.2 },
               }}
               className="relative"
             >
-              <img 
-                src="/omotanwami logoblack.png" 
-                alt="Omotanwa MI Logo" 
+              <img
+                src="/omotanwami logoblack.png"
+                alt="Omotanwa MI Logo"
                 className="h-12 w-12 object-contain"
               />
               <div className="absolute inset-0 bg-gold-medium/20 rounded-full blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -136,7 +138,7 @@ const Navbar: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <motion.nav 
+          <motion.nav
             className="hidden lg:flex items-center space-x-8"
             variants={staggerContainer}
             initial="hidden"
@@ -151,7 +153,7 @@ const Navbar: React.FC = () => {
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-gold-medium to-gold-dark group-hover:w-full transition-all duration-300" />
               </Link>
             </motion.div>
-            
+
             <motion.div variants={menuItemVariants}>
               <Link
                 to="/shop"
@@ -161,16 +163,19 @@ const Navbar: React.FC = () => {
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-gold-medium to-gold-dark group-hover:w-full transition-all duration-300" />
               </Link>
             </motion.div>
-            
+
             <motion.div variants={menuItemVariants} className="relative group">
               <button className="flex items-center text-sm font-medium hover:text-gold-dark transition-colors py-2">
-                About 
-                <ChevronDown size={16} className="ml-1 transition-transform group-hover:rotate-180" />
+                About
+                <ChevronDown
+                  size={16}
+                  className="ml-1 transition-transform group-hover:rotate-180"
+                />
               </button>
               <div className="absolute top-full left-0 mt-2 hidden group-hover:block">
                 <div className="bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl p-6 min-w-[200px] border border-gold-medium/20">
-                  <Link 
-                    to="/about" 
+                  <Link
+                    to="/about"
                     className="block py-3 px-4 text-sm hover:text-gold-dark hover:bg-gold-light/30 rounded-xl transition-all"
                   >
                     Our Story
@@ -178,7 +183,7 @@ const Navbar: React.FC = () => {
                 </div>
               </div>
             </motion.div>
-            
+
             <motion.div variants={menuItemVariants}>
               <Link
                 to="/contact"
@@ -191,7 +196,7 @@ const Navbar: React.FC = () => {
           </motion.nav>
 
           {/* Action buttons */}
-          <motion.div 
+          <motion.div
             className="flex items-center space-x-4"
             initial="hidden"
             animate="visible"
@@ -200,25 +205,25 @@ const Navbar: React.FC = () => {
             <motion.div variants={menuItemVariants}>
               <CountrySelector />
             </motion.div>
-            
+
             <motion.div variants={menuItemVariants}>
-              <Link 
-                to="/account" 
+              <Link
+                to="/account"
                 className="p-2 hover:text-gold-dark transition-colors hover:bg-gold-light/30 rounded-xl"
               >
                 <User size={20} />
               </Link>
             </motion.div>
-            
+
             <motion.div variants={menuItemVariants}>
-              <Link 
-                to="/cart" 
+              <Link
+                to="/cart"
                 className="p-2 hover:text-gold-dark transition-colors relative hover:bg-gold-light/30 rounded-xl group"
               >
                 <ShoppingBag size={20} />
                 {itemCount > 0 && (
-                  <Badge 
-                    className="absolute -top-1 -right-1 bg-gold-dark text-white text-xs animate-pulse group-hover:animate-bounce" 
+                  <Badge
+                    className="absolute -top-1 -right-1 bg-gold-dark text-white text-xs animate-pulse group-hover:animate-bounce"
                     variant="outline"
                   >
                     {itemCount}
@@ -249,12 +254,12 @@ const Navbar: React.FC = () => {
           {mobileMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0, y: -20 }}
-              animate={{ opacity: 1, height: 'auto', y: 0 }}
+              animate={{ opacity: 1, height: "auto", y: 0 }}
               exit={{ opacity: 0, height: 0, y: -20 }}
               transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
               className="lg:hidden overflow-hidden"
             >
-              <div className="bg-white/95 backdrop-blur-xl rounded-3xl mx-4 mb-4 p-6 shadow-2xl border border-gold-medium/20">
+              <div className=" backdrop-blur-xl rounded-3xl mx-4 mb-4 p-6 shadow-2xl border border-gold-medium/20">
                 <div className="flex flex-col space-y-4">
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
@@ -268,7 +273,7 @@ const Navbar: React.FC = () => {
                       Home
                     </Link>
                   </motion.div>
-                  
+
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -281,7 +286,7 @@ const Navbar: React.FC = () => {
                       Shop
                     </Link>
                   </motion.div>
-                  
+
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -294,7 +299,7 @@ const Navbar: React.FC = () => {
                       Our Story
                     </Link>
                   </motion.div>
-                  
+
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
