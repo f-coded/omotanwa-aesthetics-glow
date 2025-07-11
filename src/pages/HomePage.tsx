@@ -283,13 +283,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="section bg-gradient-to-br from-gold-medium-light/30 via-white to-gold-light/50 relative overflow-hidden">
-        {/* Floating background elements */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-1/4 left-1/6 w-64 h-64 bg-gold-medium rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/6 w-48 h-48 bg-gold-dark rounded-full blur-2xl animate-pulse" style={{ animationDelay: '3s' }}></div>
-        </div>
-        
+      <section className="section bg-gradient-to-br from-gold-light/20 via-white to-gold-light/30 relative overflow-hidden">
         <div className="container relative z-10">
           <motion.div 
             className="text-center mb-16"
@@ -312,87 +306,42 @@ const HomePage: React.FC = () => {
             </motion.p>
           </motion.div>
 
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            {testimonials.map((testimonial, index) => (
+          {/* Infinite scrolling testimonials */}
+          <div className="relative">
+            <div className="flex overflow-hidden">
               <motion.div 
-                key={testimonial.id}
-                variants={fadeInUp}
-                className="bg-white p-8 rounded-3xl shadow-soft relative overflow-hidden group"
-                whileHover={{ 
-                  y: -8,
-                  boxShadow: "0 25px 50px rgba(0, 0, 0, 0.12)",
-                  transition: { duration: 0.3 }
-                }}
-                animate={{
-                  y: [0, -2, 0],
-                  transition: {
-                    duration: 3,
-                    repeat: Infinity,
-                    delay: index * 0.5,
-                    ease: "easeInOut"
-                  }
+                className="flex gap-6 min-w-full"
+                animate={{ x: [0, -100 * testimonials.length] }}
+                transition={{
+                  duration: 20,
+                  repeat: Infinity,
+                  ease: "linear"
                 }}
               >
-                {/* Animated gradient border */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-gold-medium via-gold-light to-gold-dark opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute inset-[2px] bg-white rounded-3xl"></div>
-                </div>
-                
-                {/* Content with higher z-index */}
-                <div className="relative z-10">
-                  <motion.div 
-                    className="mb-6 flex space-x-1"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: index * 0.2 }}
+                {[...testimonials, ...testimonials].map((testimonial, index) => (
+                  <div 
+                    key={`${testimonial.id}-${index}`}
+                    className="bg-white p-6 rounded-2xl min-w-[320px] border border-gold-light/20 group hover:border-gold-medium/40 transition-all duration-300"
                   >
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <motion.span 
-                        key={star} 
-                        className="text-gold text-lg"
-                        animate={{
-                          scale: [1, 1.2, 1],
-                          rotate: [0, 10, 0]
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          delay: star * 0.1 + index * 0.3,
-                          ease: "easeInOut"
-                        }}
-                      >
-                        ★
-                      </motion.span>
-                    ))}
-                  </motion.div>
-                  
-                  <motion.p 
-                    className="italic mb-6 text-muted-foreground leading-relaxed"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.15 + 0.3 }}
-                  >
-                    "{testimonial.quote}"
-                  </motion.p>
-                  
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.15 + 0.5 }}
-                  >
-                    <p className="font-medium text-foreground">{testimonial.author}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.location}</p>
-                  </motion.div>
-                </div>
+                    <div className="mb-4 flex gap-1">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <span key={star} className="text-gold-medium text-sm">★</span>
+                      ))}
+                    </div>
+                    
+                    <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
+                      "{testimonial.quote}"
+                    </p>
+                    
+                    <div>
+                      <p className="font-medium text-foreground text-sm">{testimonial.author}</p>
+                      <p className="text-xs text-muted-foreground">{testimonial.location}</p>
+                    </div>
+                  </div>
+                ))}
               </motion.div>
-            ))}
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
