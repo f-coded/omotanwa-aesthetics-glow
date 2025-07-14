@@ -91,9 +91,7 @@ const CollageSection: React.FC = () => {
                   scale: 1.02,
                   transition: { duration: 0.3 }
                 }}
-                className={`${card.bgColor} rounded-2xl p-6 ${
-                  card.size === 'large' ? 'h-80' : 'h-64'
-                } flex flex-col justify-between relative overflow-hidden group cursor-pointer`}
+                className={`${card.bgColor} rounded-2xl p-6 h-80 flex flex-col justify-between relative overflow-hidden group cursor-pointer`}
               >
               {/* Content */}
               <div className="z-10 relative">

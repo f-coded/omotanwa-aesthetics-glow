@@ -253,13 +253,13 @@ const Navbar: React.FC = () => {
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0, y: -20 }}
-              animate={{ opacity: 1, height: "auto", y: 0 }}
-              exit={{ opacity: 0, height: 0, y: -20 }}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-              className="lg:hidden overflow-hidden"
+              className="lg:hidden absolute top-full left-0 right-0 z-40"
             >
-              <div className=" backdrop-blur-xl rounded-3xl mx-4 mb-4 p-6 shadow-2xl border border-gold-medium/20">
+              <div className="bg-white/95 backdrop-blur-xl rounded-3xl mx-4 mt-2 p-6 border border-gold-medium/20">
                 <div className="flex flex-col space-y-4">
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}

@@ -9,6 +9,7 @@ import HeroCarousel from '@/components/HeroCarousel';
 import CollageSection from '@/components/CollageSection';
 import CouponPopup from '@/components/CouponPopup';
 import TrustSection from '@/components/TrustSection';
+import WhatsAppWidget from '@/components/WhatsAppWidget';
 
 const HomePage: React.FC = () => {
   const testimonials = [
@@ -139,10 +140,24 @@ const HomePage: React.FC = () => {
       />
 
       {/* Trust Section - Now comes first */}
-      <TrustSection />
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeInUp}
+      >
+        <TrustSection />
+      </motion.div>
 
       {/* Collage Section */}
-      <CollageSection />
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeInUp}
+      >
+        <CollageSection />
+      </motion.div>
 
       {/* Featured Products Section */}
       <section className="section bg-gradient-to-br from-gold-light via-white to-gold-light/50 relative overflow-hidden">
@@ -397,6 +412,9 @@ const HomePage: React.FC = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* WhatsApp Widget */}
+      <WhatsAppWidget />
     </motion.div>
   );
 };
