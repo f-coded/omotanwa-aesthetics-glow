@@ -116,7 +116,7 @@ const Navbar: React.FC = () => {
               className="relative"
             >
               <img
-                src="/omotanwami logoblack.png"
+                src="/omotanwami%20logoblack.png"
                 alt="Omotanwa MI Logo"
                 className="h-12 w-12 object-contain"
               />

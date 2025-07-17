@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import JourneySection from '@/components/JourneySection';
 
 const AboutPage: React.FC = () => {
   const fadeInUp = {
@@ -132,103 +133,8 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
       
-      {/* Timeline */}
-      <section className="section">
-        <div className="container">
-          <motion.div 
-            className="text-center mb-16"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-          >
-            <h2 className="section-title">Our Journey</h2>
-            <p className="section-subtitle mx-auto">
-              The milestones that have shaped Omotanwa MI Aesthetics
-            </p>
-          </motion.div>
-          
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-gold-medium"></div>
-            
-            {/* Timeline items */}
-            <div className="space-y-12">
-              <div className="relative">
-                <motion.div 
-                  className="md:w-1/2 md:pr-12 md:text-right"
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={fadeInUp}
-                >
-                  <div className="bg-white p-6 rounded-2xl shadow-soft">
-                    <h3 className="font-quincy text-xl mb-2">2018</h3>
-                    <p className="text-muted-foreground">
-                      Initial research and development of first formulations in our founder's kitchen
-                    </p>
-                  </div>
-                </motion.div>
-                <div className="absolute left-0 md:left-1/2 top-6 transform -translate-x-1/2 w-4 h-4 rounded-full bg-gold-dark"></div>
-              </div>
-              
-              <div className="relative">
-                <motion.div 
-                  className="md:w-1/2 md:pl-12 md:ml-auto"
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={fadeInUp}
-                >
-                  <div className="bg-white p-6 rounded-2xl shadow-soft">
-                    <h3 className="font-quincy text-xl mb-2">2020</h3>
-                    <p className="text-muted-foreground">
-                      Official launch of Omotanwa MI Aesthetics with our first three signature products
-                    </p>
-                  </div>
-                </motion.div>
-                <div className="absolute left-0 md:left-1/2 top-6 transform -translate-x-1/2 w-4 h-4 rounded-full bg-gold-dark"></div>
-              </div>
-              
-              <div className="relative">
-                <motion.div 
-                  className="md:w-1/2 md:pr-12 md:text-right"
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={fadeInUp}
-                >
-                  <div className="bg-white p-6 rounded-2xl shadow-soft">
-                    <h3 className="font-quincy text-xl mb-2">2022</h3>
-                    <p className="text-muted-foreground">
-                      Expanded product line and opened our first flagship store in Lagos
-                    </p>
-                  </div>
-                </motion.div>
-                <div className="absolute left-0 md:left-1/2 top-6 transform -translate-x-1/2 w-4 h-4 rounded-full bg-gold-dark"></div>
-              </div>
-              
-              <div className="relative">
-                <motion.div 
-                  className="md:w-1/2 md:pl-12 md:ml-auto"
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={fadeInUp}
-                >
-                  <div className="bg-white p-6 rounded-2xl shadow-soft">
-                    <h3 className="font-quincy text-xl mb-2">2024</h3>
-                    <p className="text-muted-foreground">
-                      Launched international shipping and our premium ritual collections
-                    </p>
-                  </div>
-                </motion.div>
-                <div className="absolute left-0 md:left-1/2 top-6 transform -translate-x-1/2 w-4 h-4 rounded-full bg-gold-dark"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Journey Section */}
+      <JourneySection />
     </div>
   );
 };
