@@ -6,9 +6,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "./contexts/CartContext";
 import { CountryProvider } from "./contexts/CountryContext";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Layout from "./components/Layout";
+import LoadingScreen from "./components/LoadingScreen";
 import HomePage from "./pages/HomePage";
 import ShopPage from "./pages/ShopPage";
 import ProductPage from "./pages/ProductPage";
@@ -27,6 +28,17 @@ const App = () => {
   // Create a new QueryClient instance inside the component
   const queryClient = new QueryClient();
   
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Show loading screen for initial load
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 100); // Small delay to ensure loading screen shows
+
+    return () => clearTimeout(timer);
+  }, []);
+  
   return (
     <QueryClientProvider client={queryClient}>
       <CountryProvider>
@@ -34,6 +46,10 @@ const App = () => {
           <TooltipProvider>
             <Toaster />
             <Sonner />
+            <LoadingScreen 
+              isVisible={isLoading} 
+              onComplete={() => setIsLoading(false)} 
+            />
             <BrowserRouter>
               <Routes>
                 <Route element={<Layout />}>
