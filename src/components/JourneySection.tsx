@@ -11,7 +11,8 @@ const JourneySection: React.FC = () => {
       description: "Launched our brand presence with an exclusive skincare exhibition, showcasing our premium product line to beauty enthusiasts across Oyo State.",
       image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&h=400&fit=crop",
       icon: "📍",
-      year: "2022"
+      year: "2022",
+      position: { x: 0, y: 0 }
     },
     {
       id: 2,
@@ -19,7 +20,8 @@ const JourneySection: React.FC = () => {
       description: "Collaborated with renowned influencer Kie Kie for an exclusive meet and greet, expanding our reach and connecting with beauty lovers nationwide.",
       image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=400&fit=crop",
       icon: "🤝",
-      year: "2023"
+      year: "2023",
+      position: { x: 100, y: 50 }
     },
     {
       id: 3,
@@ -27,7 +29,8 @@ const JourneySection: React.FC = () => {
       description: "Achieved international expansion by securing official distributors across five countries, bringing Nigerian beauty excellence to the global market.",
       image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop",
       icon: "🌍",
-      year: "2023"
+      year: "2023",
+      position: { x: -80, y: 100 }
     },
     {
       id: 4,
@@ -35,150 +38,252 @@ const JourneySection: React.FC = () => {
       description: "Officially registered our company with CAC Nigeria, establishing legal legitimacy and commitment to professional business standards.",
       image: "https://images.unsplash.com/photo-1551038247-3d9af20df552?w=600&h=400&fit=crop",
       icon: "📝",
-      year: "2024"
+      year: "2024",
+      position: { x: 120, y: 150 }
     }
   ];
 
+  // SVG Arrow Component
+  const StoryArrow = ({ from, to, delay = 0 }) => (
+    <motion.svg
+      className="absolute inset-0 w-full h-full pointer-events-none z-10"
+      initial={{ pathLength: 0, opacity: 0 }}
+      whileInView={{ pathLength: 1, opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 2, delay, ease: "easeInOut" }}
+    >
+      <motion.path
+        d={`M ${from.x} ${from.y} Q ${(from.x + to.x) / 2 + 100} ${(from.y + to.y) / 2 - 50} ${to.x} ${to.y}`}
+        stroke="url(#arrowGradient)"
+        strokeWidth="3"
+        fill="none"
+        strokeDasharray="8,4"
+        markerEnd="url(#arrowhead)"
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{ duration: 2, delay, ease: "easeInOut" }}
+      />
+      <defs>
+        <linearGradient id="arrowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="hsl(var(--gold-medium))" stopOpacity="0.8" />
+          <stop offset="100%" stopColor="hsl(var(--gold-dark))" stopOpacity="1" />
+        </linearGradient>
+        <marker
+          id="arrowhead"
+          markerWidth="10"
+          markerHeight="7"
+          refX="9"
+          refY="3.5"
+          orient="auto"
+          markerUnits="strokeWidth"
+        >
+          <polygon
+            points="0 0, 10 3.5, 0 7"
+            fill="hsl(var(--gold-dark))"
+          />
+        </marker>
+      </defs>
+    </motion.svg>
+  );
+
   return (
-    <section className="section bg-gradient-to-br from-background via-gold-light/5 to-background overflow-hidden relative">
-      <div className="container relative z-10">
+    <section className="section bg-gradient-to-br from-background via-gold-light/5 to-background overflow-hidden relative min-h-screen">
+      <div className="container relative z-10 py-20">
         {/* Header */}
         <motion.div
-          className="text-center mb-24"
+          className="text-center mb-32"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <motion.h2 
-            className="text-5xl md:text-6xl lg:text-7xl font-clash font-black bg-gradient-to-r from-gold-dark via-gold-medium to-gold-dark bg-clip-text text-transparent mb-8"
-            initial={{ opacity: 0, scale: 0.5, rotateY: 45 }}
-            whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+          <motion.div
+            className="inline-flex items-center gap-4 mb-8"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, delay: 0.3 }}
           >
-            Legacy in Motion
+            <motion.div
+              className="w-16 h-0.5 bg-gradient-to-r from-transparent to-gold-medium"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.5 }}
+            />
+            <span className="text-gold-medium font-medium tracking-wider uppercase text-sm">Our Story</span>
+            <motion.div
+              className="w-16 h-0.5 bg-gradient-to-l from-transparent to-gold-medium"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.5 }}
+            />
+          </motion.div>
+          
+          <motion.h2 
+            className="text-5xl md:text-6xl lg:text-7xl font-clash font-black mb-8"
+            initial={{ opacity: 0, rotateY: 45 }}
+            whileInView={{ opacity: 1, rotateY: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, delay: 0.6 }}
+          >
+            <span className="bg-gradient-to-r from-gold-dark via-gold-medium to-gold-dark bg-clip-text text-transparent">
+              The Journey
+            </span>
+            <br />
+            <span className="text-foreground">Unfolds</span>
           </motion.h2>
+          
           <motion.p 
             className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.6 }}
+            transition={{ duration: 1, delay: 0.8 }}
           >
-            Journey through the defining moments that transformed our vision into a global beauty phenomenon
+            Follow the narrative of transformation, growth, and global impact through pivotal moments that shaped our legacy
           </motion.p>
         </motion.div>
 
-        {/* Hexagonal Grid Layout */}
-        <div className="relative">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-5">
-            {[...Array(20)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-16 h-16 border border-gold-medium/20"
-                style={{
-                  clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
-                  top: `${Math.random() * 100}%`,
-                  left: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  rotate: [0, 360],
-                  scale: [0.8, 1.2, 0.8],
-                }}
-                transition={{
-                  duration: 10 + Math.random() * 10,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              />
-            ))}
-          </div>
+        {/* Story Flow Layout */}
+        <div className="relative max-w-7xl mx-auto">
+          {/* Flowing Path Background */}
+          <motion.svg
+            className="absolute inset-0 w-full h-full pointer-events-none opacity-20"
+            viewBox="0 0 1000 800"
+            preserveAspectRatio="xMidYMid meet"
+          >
+            <motion.path
+              d="M 100 100 Q 300 50 500 150 Q 700 250 900 200 Q 800 350 600 400 Q 400 450 200 350 Q 300 550 500 600 Q 700 650 900 550"
+              stroke="url(#pathGradient)"
+              strokeWidth="2"
+              fill="none"
+              strokeDasharray="6,3"
+              initial={{ pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 4, ease: "easeInOut" }}
+            />
+            <defs>
+              <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="hsl(var(--gold-light))" />
+                <stop offset="50%" stopColor="hsl(var(--gold-medium))" />
+                <stop offset="100%" stopColor="hsl(var(--gold-dark))" />
+              </linearGradient>
+            </defs>
+          </motion.svg>
 
-          {/* Journey Cards in Morphing Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          {/* Story Cards */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 relative">
             {journeyMilestones.map((milestone, index) => (
               <motion.div
                 key={milestone.id}
-                className="relative group"
-                initial={{ opacity: 0, y: 100, rotateX: 45 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
+                className={`relative ${index % 2 === 1 ? 'lg:mt-32' : ''}`}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100, y: 50 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
                 transition={{ 
-                  duration: 0.8, 
-                  delay: index * 0.2,
+                  duration: 1.2, 
+                  delay: index * 0.3,
                   type: "spring",
-                  stiffness: 100
+                  stiffness: 100,
+                  damping: 25
                 }}
                 onHoverStart={() => setActiveCard(milestone.id)}
                 onHoverEnd={() => setActiveCard(null)}
               >
-                {/* Card Container */}
+                {/* Movement Vector */}
                 <motion.div
-                  className="relative h-[500px] rounded-3xl overflow-hidden cursor-pointer"
+                  className="absolute -top-8 -left-8 w-16 h-16 pointer-events-none"
                   animate={{
-                    scale: activeCard === milestone.id ? 1.05 : 1,
-                    rotateY: activeCard === milestone.id ? 5 : 0,
+                    rotate: [0, 360],
+                    scale: activeCard === milestone.id ? [1, 1.3, 1] : 1,
                   }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  transition={{
+                    rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+                    scale: { duration: 0.6, repeat: activeCard === milestone.id ? Infinity : 0 }
+                  }}
                 >
-                  {/* Background Image with Morphing Effect */}
+                  <svg viewBox="0 0 64 64" className="w-full h-full">
+                    <motion.path
+                      d="M32 8 L48 24 L40 24 L40 40 L56 40 L40 56 L24 40 L32 40 L32 24 L16 24 L32 8 Z"
+                      fill="url(#vectorGradient)"
+                      opacity="0.6"
+                      initial={{ pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{ duration: 2, delay: index * 0.2 }}
+                    />
+                    <defs>
+                      <linearGradient id="vectorGradient">
+                        <stop offset="0%" stopColor="hsl(var(--gold-light))" />
+                        <stop offset="100%" stopColor="hsl(var(--gold-dark))" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </motion.div>
+
+                {/* Story Card */}
+                <motion.div
+                  className="relative bg-card/80 backdrop-blur-sm rounded-3xl overflow-hidden border border-border/50 group cursor-pointer"
+                  animate={{
+                    scale: activeCard === milestone.id ? 1.02 : 1,
+                    rotateY: activeCard === milestone.id ? (index % 2 === 0 ? 2 : -2) : 0,
+                  }}
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  whileHover={{ y: -5 }}
+                >
+                  {/* Timeline Year Badge */}
                   <motion.div
-                    className="absolute inset-0"
+                    className="absolute top-6 right-6 z-20"
                     animate={{
                       scale: activeCard === milestone.id ? 1.1 : 1,
+                      rotate: activeCard === milestone.id ? [0, 10, -10, 0] : 0,
+                    }}
+                    transition={{ duration: 0.8 }}
+                  >
+                    <div className="bg-gradient-to-r from-gold-dark to-gold-medium text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
+                      {milestone.year}
+                    </div>
+                  </motion.div>
+
+                  {/* Story Image */}
+                  <motion.div
+                    className="relative h-64 overflow-hidden"
+                    animate={{
+                      scale: activeCard === milestone.id ? 1.05 : 1,
                     }}
                     transition={{ duration: 0.6 }}
                   >
                     <img
                       src={milestone.image}
                       alt={milestone.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-                  </motion.div>
-
-                  {/* Floating Year Bubble */}
-                  <motion.div
-                    className="absolute top-6 right-6 w-16 h-16 bg-gold-dark rounded-full flex items-center justify-center z-10"
-                    animate={{
-                      rotate: activeCard === milestone.id ? 360 : 0,
-                      scale: activeCard === milestone.id ? 1.2 : 1,
-                    }}
-                    transition={{ duration: 0.8 }}
-                  >
-                    <span className="text-white font-bold text-sm">{milestone.year}</span>
-                  </motion.div>
-
-                  {/* Emoji Icon with Morphing */}
-                  <motion.div
-                    className="absolute top-6 left-6 text-4xl filter drop-shadow-lg"
-                    animate={{
-                      scale: activeCard === milestone.id ? [1, 1.3, 1] : 1,
-                      rotate: activeCard === milestone.id ? [0, 15, -15, 0] : 0,
-                    }}
-                    transition={{ 
-                      duration: 0.6,
-                      repeat: activeCard === milestone.id ? Infinity : 0,
-                      repeatType: "reverse"
-                    }}
-                  >
-                    {milestone.icon}
-                  </motion.div>
-
-                  {/* Content */}
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 p-8"
-                    initial={{ y: 20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.2 + 0.4 }}
-                  >
-                    <motion.h3
-                      className="text-2xl lg:text-3xl font-clash font-bold text-white mb-4 leading-tight"
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
+                    
+                    {/* Floating Icon */}
+                    <motion.div
+                      className="absolute top-6 left-6 text-4xl filter drop-shadow-lg"
                       animate={{
-                        y: activeCard === milestone.id ? -10 : 0,
+                        y: activeCard === milestone.id ? [-5, 5, -5] : 0,
+                        rotate: activeCard === milestone.id ? [0, 5, -5, 0] : 0,
+                      }}
+                      transition={{ 
+                        duration: 2,
+                        repeat: activeCard === milestone.id ? Infinity : 0,
+                      }}
+                    >
+                      {milestone.icon}
+                    </motion.div>
+                  </motion.div>
+
+                  {/* Story Content */}
+                  <div className="p-8">
+                    <motion.h3
+                      className="text-2xl lg:text-3xl font-clash font-bold mb-4 leading-tight"
+                      animate={{
+                        color: activeCard === milestone.id ? "hsl(var(--gold-dark))" : "hsl(var(--foreground))",
                       }}
                       transition={{ duration: 0.3 }}
                     >
@@ -186,96 +291,144 @@ const JourneySection: React.FC = () => {
                     </motion.h3>
                     
                     <motion.p
-                      className="text-white/80 leading-relaxed text-lg"
+                      className="text-muted-foreground leading-relaxed text-lg"
                       animate={{
-                        opacity: activeCard === milestone.id ? 1 : 0.7,
-                        y: activeCard === milestone.id ? -5 : 0,
+                        opacity: activeCard === milestone.id ? 1 : 0.8,
                       }}
                       transition={{ duration: 0.3 }}
                     >
                       {milestone.description}
                     </motion.p>
-                  </motion.div>
 
-                  {/* Morphing Border Effect */}
-                  <motion.div
-                    className="absolute inset-0 rounded-3xl border-2 border-gold-medium/40"
-                    animate={{
-                      borderColor: activeCard === milestone.id ? "hsl(var(--gold-medium))" : "hsl(var(--gold-medium) / 0.4)",
-                      boxShadow: activeCard === milestone.id ? "0 0 40px hsl(var(--gold-medium) / 0.3)" : "none",
-                    }}
-                    transition={{ duration: 0.3 }}
-                  />
+                    {/* Read More Indicator */}
+                    <motion.div
+                      className="mt-6 flex items-center gap-2 text-gold-medium font-medium"
+                      animate={{
+                        x: activeCard === milestone.id ? 10 : 0,
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <span>Explore Chapter</span>
+                      <motion.svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        animate={{
+                          x: activeCard === milestone.id ? [0, 5, 0] : 0,
+                        }}
+                        transition={{
+                          duration: 1,
+                          repeat: activeCard === milestone.id ? Infinity : 0,
+                        }}
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </motion.svg>
+                    </motion.div>
+                  </div>
 
-                  {/* Particle Effects on Hover */}
-                  {activeCard === milestone.id && (
-                    <motion.div className="absolute inset-0 pointer-events-none">
-                      {[...Array(6)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          className="absolute w-2 h-2 bg-gold-medium rounded-full"
-                          style={{
-                            top: `${20 + i * 15}%`,
-                            left: `${10 + (i % 2) * 80}%`,
-                          }}
-                          animate={{
-                            y: [-20, -60, -20],
-                            opacity: [0, 1, 0],
-                            scale: [0, 1, 0],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            delay: i * 0.2,
-                          }}
-                        />
-                      ))}
+                  {/* Connecting Line to Next */}
+                  {index < journeyMilestones.length - 1 && (
+                    <motion.div
+                      className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 hidden lg:block"
+                      initial={{ scaleY: 0 }}
+                      whileInView={{ scaleY: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.3 + 1, duration: 0.8 }}
+                    >
+                      <div className="w-px h-16 bg-gradient-to-b from-gold-medium to-transparent" />
+                      <motion.div
+                        className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gold-medium rounded-full"
+                        animate={{
+                          scale: [1, 1.5, 1],
+                          opacity: [0.5, 1, 0.5],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: index * 0.5,
+                        }}
+                      />
                     </motion.div>
                   )}
                 </motion.div>
 
-                {/* Interactive Connection Lines */}
+                {/* Dynamic Connecting Arrows for Desktop */}
                 {index < journeyMilestones.length - 1 && (
-                  <motion.div
-                    className="hidden lg:block absolute -bottom-8 left-1/2 w-px h-16 bg-gradient-to-b from-gold-medium to-transparent"
-                    initial={{ scaleY: 0 }}
-                    whileInView={{ scaleY: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.2 + 0.8, duration: 0.8 }}
-                  />
+                  <div className="hidden lg:block absolute inset-0 pointer-events-none">
+                    <StoryArrow
+                      from={{ x: index % 2 === 0 ? 400 : 50, y: 200 }}
+                      to={{ x: index % 2 === 0 ? 450 : 100, y: 350 }}
+                      delay={index * 0.5 + 1.5}
+                    />
+                  </div>
                 )}
               </motion.div>
             ))}
           </div>
+
+          {/* Story Conclusion */}
+          <motion.div
+            className="text-center mt-32"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 1 }}
+          >
+            <motion.div
+              className="inline-flex items-center gap-4 text-gold-medium font-medium"
+              animate={{
+                scale: [1, 1.05, 1],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+              }}
+            >
+              <motion.div
+                className="w-8 h-0.5 bg-gold-medium"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 1.2 }}
+              />
+              <span>The Story Continues...</span>
+              <motion.div
+                className="w-8 h-0.5 bg-gold-medium"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 1.2 }}
+              />
+            </motion.div>
+          </motion.div>
         </div>
 
-        {/* Floating Elements */}
-        <motion.div
-          className="absolute top-20 left-10 w-24 h-24 bg-gold-medium/10 rounded-full blur-xl"
-          animate={{
-            x: [0, 30, 0],
-            y: [0, -20, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-10 w-32 h-32 bg-gold-dark/10 rounded-full blur-xl"
-          animate={{
-            x: [0, -40, 0],
-            y: [0, 30, 0],
-            scale: [1.2, 1, 1.2],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
+        {/* Ambient Particles */}
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-gold-medium/30 rounded-full"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [-20, -80, -20],
+                opacity: [0, 1, 0],
+                scale: [0, 1, 0],
+              }}
+              transition={{
+                duration: 4 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
