@@ -34,7 +34,7 @@ const App = () => {
     // Show loading screen for initial load
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 100); // Small delay to ensure loading screen shows
+    }, 2000); // 2 second delay for loading screen
 
     return () => clearTimeout(timer);
   }, []);
