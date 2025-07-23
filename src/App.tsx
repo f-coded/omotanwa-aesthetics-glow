@@ -78,27 +78,30 @@ const AppContent: React.FC<{ isLoading: boolean; setIsLoading: (loading: boolean
 
   return (
     <>
-      <LoadingScreen 
-        isVisible={isLoading} 
-        onComplete={() => setIsLoading(false)} 
-      />
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/shop" element={<ShopPage />} />
-          <Route path="/product/:id" element={<ProductPage />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/order-success" element={<OrderSuccessPage />} />
-          <Route path="/account" element={<AccountPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-        </Route>
-        <Route path="/admin/*" element={<AdminDashboard />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      {isLoading ? (
+        <LoadingScreen 
+          isVisible={isLoading} 
+          onComplete={() => setIsLoading(false)} 
+        />
+      ) : (
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/shop" element={<ShopPage />} />
+            <Route path="/product/:id" element={<ProductPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/order-success" element={<OrderSuccessPage />} />
+            <Route path="/account" element={<AccountPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+          </Route>
+          <Route path="/admin/*" element={<AdminDashboard />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      )}
     </>
   );
 };
