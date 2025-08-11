@@ -1,8 +1,9 @@
-
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import hero1 from "../assets/images/hero_images/hero 31.jpg";
+import hero2 from "../assets/images/hero_images/hero 3.jpg";
+import hero3 from "../assets/images/hero_images/hero 1.png";
 interface HeroSlide {
   id: number;
   title: string;
@@ -18,80 +19,89 @@ const slides: HeroSlide[] = [
   {
     id: 1,
     title: "An Experience, a Lifestyle",
-    subtitle: "Premium skincare crafted with love, science, and a deep understanding of what your skin truly needs.",
-    image: "/lovable-uploads/558f8583-bf2d-4fb1-8f88-8318a64dff98.png",
+    subtitle:
+      "Premium skincare crafted with love, science, and a deep understanding of what your skin truly needs.",
+    image: hero1,
     ctaText: "Shop Now",
     ctaLink: "/shop",
     secondaryCtaText: "Our Story",
-    secondaryCtaLink: "/about"
+    secondaryCtaLink: "/about",
   },
   {
     id: 2,
     title: "Embrace Natural Beauty",
-    subtitle: "Ethically sourced ingredients that nourish your skin and respect the earth.",
-    image: "/lovable-uploads/73eadfa4-5f8e-4ed4-9ec4-6f948291103e.png",
+    subtitle:
+      "Ethically sourced ingredients that nourish your skin and respect the earth.",
+    image: hero2,
     ctaText: "Explore Products",
-    ctaLink: "/shop"
+    ctaLink: "/shop",
   },
   {
     id: 3,
     title: "Elevate Your Routine",
-    subtitle: "Transform your daily skincare into a luxurious ritual of self-care.",
-    image: "/images/hero3.jpg",
+    subtitle:
+      "Transform your daily skincare into a luxurious ritual of self-care.",
+    image: hero3,
     ctaText: "View Collection",
-    ctaLink: "/shop"
-  }
+    ctaLink: "/shop",
+  },
 ];
 
 const HeroCarousel: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       if (!isAnimating) {
         setCurrentSlide((prev) => (prev + 1) % slides.length);
       }
     }, 8000);
-    
+
     return () => clearInterval(interval);
   }, [isAnimating]);
-  
+
   const goToSlide = (index: number) => {
     if (!isAnimating && index !== currentSlide) {
       setIsAnimating(true);
       setCurrentSlide(index);
     }
   };
-  
+
   const slideVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
-      transition: { duration: 0.8 }
+      transition: { duration: 0.8 },
     },
-    exit: { 
+    exit: {
       opacity: 0,
-      transition: { duration: 0.8 }
-    }
+      transition: { duration: 0.8 },
+    },
   };
-  
+
   const contentVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.8,
-        delay: 0.3
-      }
-    }
+        delay: 0.3,
+      },
+    },
   };
-  
+
   return (
     <div className="relative h-[90vh] min-h-[600px] overflow-hidden">
-      <AnimatePresence initial={false} mode="wait" onExitComplete={() => setIsAnimating(false)}>
-        <motion.div 
+      {/* Top gradient overlay */}
+      <div className="absolute top-0 left-0 w-full h-64 z-20 pointer-events-none bg-gradient-to-b from-white/60 via-transparent to-transparent" />
+      <AnimatePresence
+        initial={false}
+        mode="wait"
+        onExitComplete={() => setIsAnimating(false)}
+      >
+        <motion.div
           key={slides[currentSlide].id}
           variants={slideVariants}
           initial="hidden"
@@ -99,16 +109,16 @@ const HeroCarousel: React.FC = () => {
           exit="exit"
           className="absolute inset-0"
         >
-          <div 
-            className="absolute inset-0 bg-cover bg-center" 
+          <div
+            className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${slides[currentSlide].image})` }}
           >
             <div className="absolute inset-0 bg-black opacity-30"></div>
           </div>
-          
+
           <div className="container mx-auto px-4 h-full flex items-center relative z-10">
-            <motion.div 
-              variants={contentVariants} 
+            <motion.div
+              variants={contentVariants}
               initial="hidden"
               animate="visible"
               className="max-w-2xl"
@@ -120,15 +130,15 @@ const HeroCarousel: React.FC = () => {
                 {slides[currentSlide].subtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link 
-                  to={slides[currentSlide].ctaLink} 
+                <Link
+                  to={slides[currentSlide].ctaLink}
                   className="btn-primary bg-gold-medium text-black hover:bg-gold-dark"
                 >
                   {slides[currentSlide].ctaText}
                 </Link>
                 {slides[currentSlide].secondaryCtaText && (
-                  <Link 
-                    to={slides[currentSlide].secondaryCtaLink || "#"} 
+                  <Link
+                    to={slides[currentSlide].secondaryCtaLink || "#"}
                     className="btn-secondary bg-transparent border-white text-white hover:bg-white/10"
                   >
                     {slides[currentSlide].secondaryCtaText}
@@ -139,7 +149,7 @@ const HeroCarousel: React.FC = () => {
           </div>
         </motion.div>
       </AnimatePresence>
-      
+
       {/* Pagination */}
       <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-3 z-20">
         {slides.map((_, index) => (
@@ -147,7 +157,9 @@ const HeroCarousel: React.FC = () => {
             key={index}
             onClick={() => goToSlide(index)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              currentSlide === index ? 'bg-gold-medium w-6' : 'bg-white/60 hover:bg-white'
+              currentSlide === index
+                ? "bg-gold-medium w-6"
+                : "bg-white/60 hover:bg-white"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

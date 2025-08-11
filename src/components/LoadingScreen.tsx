@@ -1,12 +1,15 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 interface LoadingScreenProps {
   isVisible: boolean;
   onComplete?: () => void;
 }
 
-const LoadingScreen: React.FC<LoadingScreenProps> = ({ isVisible, onComplete }) => {
+const LoadingScreen: React.FC<LoadingScreenProps> = ({
+  isVisible,
+  onComplete,
+}) => {
   if (!isVisible) return null;
 
   return (
@@ -32,7 +35,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isVisible, onComplete }) 
             ease: "easeOut",
             type: "spring",
             stiffness: 100,
-            damping: 15
+            damping: 15,
           }}
         >
           {/* Logo Container with Glow Effect */}
@@ -42,13 +45,13 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isVisible, onComplete }) 
               boxShadow: [
                 "0 0 20px hsl(var(--gold-medium) / 0.3)",
                 "0 0 40px hsl(var(--gold-medium) / 0.6)",
-                "0 0 20px hsl(var(--gold-medium) / 0.3)"
+                "0 0 20px hsl(var(--gold-medium) / 0.3)",
               ],
             }}
             transition={{
               duration: 2,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
           >
             <div className="w-full h-full rounded-xl bg-background flex items-center justify-center">
@@ -67,7 +70,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isVisible, onComplete }) 
             transition={{
               duration: 4,
               repeat: Infinity,
-              ease: "linear"
+              ease: "linear",
             }}
           />
 
@@ -91,7 +94,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isVisible, onComplete }) 
                   duration: 3,
                   repeat: Infinity,
                   delay: i * 0.2,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
                 initial={{
                   transform: `rotate(${i * 45}deg) translateY(-60px)`,
@@ -124,13 +127,13 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isVisible, onComplete }) 
           transition={{ delay: 0.8, duration: 0.5 }}
         >
           <motion.div
-            className="h-full bg-gradient-to-r from-gold-light via-gold-medium to-gold-dark"
+            className="h-full bg-gradient-to-r from-gold-dark via-gold-medium to-gold-dark"
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{
               delay: 1,
               duration: 2.5,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
             onAnimationComplete={() => {
               setTimeout(() => {
@@ -138,7 +141,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isVisible, onComplete }) 
               }, 500);
             }}
           />
-          
+
           {/* Shimmer Effect */}
           <motion.div
             className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
@@ -149,7 +152,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isVisible, onComplete }) 
               delay: 1.2,
               duration: 1.5,
               repeat: 2,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
           />
         </motion.div>
@@ -167,7 +170,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isVisible, onComplete }) 
             transition={{
               duration: 1.5,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
           >
             Preparing your beauty experience...
@@ -193,7 +196,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isVisible, onComplete }) 
                 duration: 3 + Math.random() * 2,
                 repeat: Infinity,
                 delay: Math.random() * 2,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             />
           ))}

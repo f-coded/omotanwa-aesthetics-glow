@@ -1,0 +1,31 @@
+.top-banner {
+  width: 100vw;
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+  white-space: nowrap;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.top-banner__text {
+  display: inline-block;
+  padding-left: 100vw;
+  font-size: 1rem;
+  font-weight: 500;
+  animation: scroll-left 18s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

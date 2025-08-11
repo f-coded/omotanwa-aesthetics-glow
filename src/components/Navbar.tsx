@@ -87,9 +87,9 @@ const Navbar: React.FC = () => {
     <motion.header
       variants={navbarVariants}
       animate={isVisible ? "visible" : "hidden"}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-[40px] left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-gold-medium/10"
+          ? "bg-white/85 backdrop-blur-md border-b border-gold-medium/10"
           : "bg-transparent"
       }`}
     >
@@ -209,7 +209,7 @@ const Navbar: React.FC = () => {
             <motion.div variants={menuItemVariants}>
               <Link
                 to="/account"
-                className="p-2 hover:text-gold-dark transition-colors hover:bg-gold-light/30 rounded-xl"
+                className="p-2 hover:text-gold-dark transition-colors rounded-xl"
               >
                 <User size={20} />
               </Link>
@@ -218,7 +218,7 @@ const Navbar: React.FC = () => {
             <motion.div variants={menuItemVariants}>
               <Link
                 to="/cart"
-                className="p-2 hover:text-gold-dark transition-colors relative hover:bg-gold-light/30 rounded-xl group"
+                className="p-2 hover:text-gold-dark transition-colors relative rounded-xl group"
               >
                 <ShoppingBag size={20} />
                 {itemCount > 0 && (
@@ -259,7 +259,7 @@ const Navbar: React.FC = () => {
               transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
               className="lg:hidden absolute top-full left-0 right-0 z-40"
             >
-              <div className="bg-white/95 backdrop-blur-xl rounded-3xl mx-4 mt-2 p-6 border border-gold-medium/20">
+              <div className="bg-white/85 backdrop-blur-xl rounded-3xl mx-4 mt-2 p-6 border border-gold-medium/20">
                 <div className="flex flex-col space-y-4">
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
