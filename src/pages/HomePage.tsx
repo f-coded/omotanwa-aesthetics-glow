@@ -1,4 +1,5 @@
 import React from "react";
+import brandStoryImg from "../assets/images/brand_story_images/IMG_0287.jpg";
 import TopBanner from "@/components/TopBanner";
 import "@/components/TopBanner.css";
 import { Link } from "react-router-dom";
@@ -253,7 +254,7 @@ const HomePage: React.FC = () => {
                 }}
               >
                 <motion.img
-                  src="/images/brand-story.jpg"
+                  src={brandStoryImg}
                   alt="Omotanwa MI Founder"
                   className="w-full h-full object-cover"
                   initial={{ scale: 1.1 }}
