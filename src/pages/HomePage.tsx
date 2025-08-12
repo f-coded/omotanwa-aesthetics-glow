@@ -4,6 +4,7 @@ import TopBanner from "@/components/TopBanner";
 import "@/components/TopBanner.css";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import newsletterBg from "../assets/images/brand_story_images/IMG_0290.jpg";
 import { motion } from "framer-motion";
 import { featuredProducts } from "../data/products";
 import ProductCard from "@/components/ProductCard";
@@ -133,40 +134,65 @@ const HomePage: React.FC = () => {
   return (
     <>
       <TopBanner />
-      <motion.div variants={pageVariants} initial="hidden" animate="visible">
+      <motion.div
+        variants={pageVariants}
+        initial="hidden"
+        animate="visible"
+        className="overflow-x-hidden"
+      >
         {/* Hero Carousel */}
-        <HeroCarousel />
+        <motion.section
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
+          viewport={{ once: false, amount: 0.2 }}
+        >
+          <HeroCarousel />
+        </motion.section>
 
         {/* Coupon Popup */}
-        <CouponPopup
-          discount="15"
-          code="WELCOME15"
-          expiry="May 31, 2025"
-          delay={3000}
-        />
+        <motion.section
+          initial={{ opacity: 0, x: -60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
+          viewport={{ once: false, amount: 0.2 }}
+        >
+          <CouponPopup
+            discount="15"
+            code="WELCOME15"
+            expiry="May 31, 2025"
+            delay={3000}
+          />
+        </motion.section>
 
         {/* Trust Section - Now comes first */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={fadeInUp}
+        <motion.section
+          initial={{ opacity: 0, x: 60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
+          viewport={{ once: false, amount: 0.2 }}
         >
           <TrustSection />
-        </motion.div>
+        </motion.section>
 
         {/* Collage Section */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={fadeInUp}
+        <motion.section
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
+          viewport={{ once: false, amount: 0.2 }}
         >
           <CollageSection />
-        </motion.div>
+        </motion.section>
 
         {/* Featured Products Section */}
-        <section className="section bg-gradient-to-br from-gold-light via-white to-gold-light/50 relative overflow-hidden">
+        <motion.section
+          className="section bg-gradient-to-br from-gold-light via-white to-gold-light/50 relative overflow-hidden"
+          initial={{ opacity: 0, x: -60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
+          viewport={{ once: false, amount: 0.2 }}
+        >
           {/* Background decorations */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-20 left-1/4 w-40 h-40 bg-gold-medium rounded-full blur-3xl animate-pulse"></div>
@@ -236,10 +262,16 @@ const HomePage: React.FC = () => {
               </Link>
             </motion.div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Brand Story Section */}
-        <section className="section relative overflow-hidden">
+        <motion.section
+          className="section relative overflow-hidden"
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
+          viewport={{ once: false, amount: 0.2 }}
+        >
           <div className="container">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <motion.div
@@ -308,10 +340,16 @@ const HomePage: React.FC = () => {
               </motion.div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Testimonials Section */}
-        <section className="section bg-gradient-to-br from-gold-light/20 via-white to-gold-light/30 relative overflow-hidden">
+        <motion.section
+          className="section bg-gradient-to-br from-gold-light/20 via-white to-gold-light/30 relative overflow-hidden"
+          initial={{ opacity: 0, x: 60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
+          viewport={{ once: false, amount: 0.2 }}
+        >
           <div className="container relative z-10">
             <motion.div
               className="text-center mb-16"
@@ -379,33 +417,44 @@ const HomePage: React.FC = () => {
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Newsletter Section */}
-        <section className="section relative overflow-hidden">
+        <motion.section
+          className="section relative overflow-hidden"
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
+          viewport={{ once: false, amount: 0.2 }}
+        >
           <div className="container">
             <motion.div
-              className="bg-gradient-to-br from-gold-medium-light to-gold-light rounded-3xl p-8 md:p-12 relative overflow-hidden"
+              className="rounded-3xl p-8 md:p-12 relative overflow-hidden"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={scaleIn}
             >
-              {/* Background decoration */}
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-4 right-4 w-32 h-32 bg-gold-dark rounded-full blur-2xl"></div>
-                <div className="absolute bottom-4 left-4 w-24 h-24 bg-gold-medium rounded-full blur-xl"></div>
+              {/* Image and gradient overlay */}
+              <div className="absolute inset-0 rounded-3xl overflow-hidden">
+                <img
+                  src={newsletterBg}
+                  alt="Newsletter Backdrop"
+                  className="w-full h-full object-cover object-center"
+                  aria-hidden="true"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-gold-medium/40 opacity-100" />
               </div>
 
               <div className="max-w-2xl mx-auto text-center relative z-10">
-                <motion.h2
-                  className="text-2xl md:text-3xl font-quincy mb-4"
+                <motion.h1
+                  className="text-2xl text-white md:text-6xl font-bold mb-4"
                   variants={fadeInUp}
                 >
                   Join Our Community
-                </motion.h2>
+                </motion.h1>
                 <motion.p
-                  className="text-muted-foreground mb-8 leading-relaxed"
+                  className="text-white mb-8 leading-relaxed"
                   variants={fadeInUp}
                 >
                   Sign up for our newsletter to receive exclusive offers,
@@ -436,7 +485,7 @@ const HomePage: React.FC = () => {
               </div>
             </motion.div>
           </div>
-        </section>
+        </motion.section>
 
         {/* WhatsApp Widget */}
         <WhatsAppWidget />

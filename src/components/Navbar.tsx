@@ -223,7 +223,7 @@ const Navbar: React.FC = () => {
                 <ShoppingBag size={20} />
                 {itemCount > 0 && (
                   <Badge
-                    className="absolute -top-1 -right-1 bg-gold-dark text-white text-xs animate-pulse group-hover:animate-bounce"
+                    className="absolute top-[22px] right-[-2px] bg-gold-dark text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full p-0 border-2 border-white shadow-md z-10"
                     variant="outline"
                   >
                     {itemCount}
