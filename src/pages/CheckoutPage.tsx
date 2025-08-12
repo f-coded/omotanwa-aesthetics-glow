@@ -1,22 +1,21 @@
-
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { 
-  Form, 
-  FormControl, 
-  FormField, 
-  FormItem, 
-  FormLabel, 
-  FormMessage 
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from '@/components/ui/button';
-import { useCart } from '@/contexts/CartContext';
-import { useCountry } from '@/contexts/CountryContext';
+import { Button } from "@/components/ui/button";
+import { useCart } from "@/contexts/CartContext";
+import { useCountry } from "@/contexts/CountryContext";
 import { toast } from "sonner";
 
 // Form validation schema
@@ -40,14 +39,14 @@ const CheckoutPage: React.FC = () => {
   const { cartItems, subtotal, clearCart } = useCart();
   const { country, formatPrice } = useCountry();
   const navigate = useNavigate();
-  
+
   const [isProcessing, setIsProcessing] = useState(false);
-  
+
   // Shipping calculation (simplified)
   const shipping = subtotal > 0 ? 10 : 0;
   const tax = subtotal * 0.05; // 5% tax rate
   const total = subtotal + shipping + tax;
-  
+
   // React Hook Form
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -65,38 +64,38 @@ const CheckoutPage: React.FC = () => {
       cvv: "",
     },
   });
-  
+
   const onSubmit = async (data: FormValues) => {
     // Simulate payment processing
     setIsProcessing(true);
-    
+
     try {
       // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
       // In a real application, you would integrate with Flutterwave here
       // and handle the payment process
-      
+
       clearCart();
-      navigate('/order-success');
+      navigate("/order-success");
     } catch (error) {
       toast.error("Payment processing failed. Please try again.");
       setIsProcessing(false);
     }
   };
-  
+
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { duration: 0.5 }
-    }
+      transition: { duration: 0.5 },
+    },
   };
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <motion.div 
+      <motion.div
         className="text-center mb-12"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -110,7 +109,7 @@ const CheckoutPage: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
         {/* Checkout Form */}
-        <motion.div 
+        <motion.div
           className="lg:col-span-2"
           initial="hidden"
           animate="visible"
@@ -120,8 +119,10 @@ const CheckoutPage: React.FC = () => {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               {/* Shipping Information */}
               <div className="bg-white rounded-2xl shadow-soft p-6">
-                <h2 className="font-medium border-b border-border pb-4 mb-6">Shipping Information</h2>
-                
+                <h2 className="font-medium border-b border-border pb-4 mb-6">
+                  Shipping Information
+                </h2>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField
                     control={form.control}
@@ -136,7 +137,7 @@ const CheckoutPage: React.FC = () => {
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="email"
@@ -144,13 +145,17 @@ const CheckoutPage: React.FC = () => {
                       <FormItem>
                         <FormLabel>Email Address</FormLabel>
                         <FormControl>
-                          <Input type="email" placeholder="your@email.com" {...field} />
+                          <Input
+                            type="email"
+                            placeholder="your@email.com"
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="phone"
@@ -164,7 +169,7 @@ const CheckoutPage: React.FC = () => {
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="address"
@@ -178,7 +183,7 @@ const CheckoutPage: React.FC = () => {
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="city"
@@ -192,7 +197,7 @@ const CheckoutPage: React.FC = () => {
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="state"
@@ -206,7 +211,7 @@ const CheckoutPage: React.FC = () => {
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="zipCode"
@@ -222,11 +227,13 @@ const CheckoutPage: React.FC = () => {
                   />
                 </div>
               </div>
-              
+
               {/* Payment Information */}
               <div className="bg-white rounded-2xl shadow-soft p-6">
-                <h2 className="font-medium border-b border-border pb-4 mb-6">Payment Information</h2>
-                
+                <h2 className="font-medium border-b border-border pb-4 mb-6">
+                  Payment Information
+                </h2>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField
                     control={form.control}
@@ -235,13 +242,16 @@ const CheckoutPage: React.FC = () => {
                       <FormItem className="md:col-span-2">
                         <FormLabel>Name on Card</FormLabel>
                         <FormControl>
-                          <Input placeholder="Name as it appears on the card" {...field} />
+                          <Input
+                            placeholder="Name as it appears on the card"
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="cardNumber"
@@ -255,7 +265,7 @@ const CheckoutPage: React.FC = () => {
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="expiryDate"
@@ -269,7 +279,7 @@ const CheckoutPage: React.FC = () => {
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="cvv"
@@ -285,33 +295,37 @@ const CheckoutPage: React.FC = () => {
                   />
                 </div>
               </div>
-              
-              <Button 
-                type="submit" 
-                className="btn-primary w-full" 
+
+              <Button
+                type="submit"
+                className="btn-primary w-full"
                 disabled={isProcessing}
               >
-                {isProcessing ? 'Processing...' : `Pay ${formatPrice(total)}`}
+                {isProcessing ? "Processing..." : `Pay ${formatPrice(total)}`}
               </Button>
             </form>
           </Form>
         </motion.div>
-        
+
         {/* Order Summary */}
         <motion.div
+          className="container mx-auto px-4 pt-32 pb-12"
           initial="hidden"
           animate="visible"
           variants={fadeIn}
         >
           <div className="bg-white rounded-2xl shadow-soft p-6">
-            <h2 className="font-medium border-b border-border pb-4 mb-6">Order Summary</h2>
-            
+            <h2 className="font-medium border-b border-border pb-4 mb-6">
+              Order Summary
+            </h2>
             <div className="space-y-4 mb-6">
               {cartItems.map((item) => (
                 <div key={item.product.id} className="flex justify-between">
                   <div>
                     <div className="font-medium">{item.product.name}</div>
-                    <div className="text-sm text-muted-foreground">Qty: {item.quantity}</div>
+                    <div className="text-sm text-muted-foreground">
+                      Qty: {item.quantity}
+                    </div>
                   </div>
                   <div className="font-medium">
                     {formatPrice(item.product.price * item.quantity)}
@@ -319,7 +333,6 @@ const CheckoutPage: React.FC = () => {
                 </div>
               ))}
             </div>
-            
             <div className="space-y-4 pt-4 border-t border-border">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Subtotal</span>

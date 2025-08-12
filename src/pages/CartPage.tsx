@@ -1,49 +1,53 @@
-
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { X, ShoppingBag, Plus, Minus, ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useCart } from '@/contexts/CartContext';
-import { useCountry } from '@/contexts/CountryContext';
+import React from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { X, ShoppingBag, Plus, Minus, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useCart } from "@/contexts/CartContext";
+import { useCountry } from "@/contexts/CountryContext";
 
 const CartPage: React.FC = () => {
-  const { cartItems, removeFromCart, updateQuantity, subtotal, clearCart } = useCart();
+  const { cartItems, removeFromCart, updateQuantity, subtotal, clearCart } =
+    useCart();
   const { formatPrice } = useCountry();
-  
-  const handleQuantityChange = (productId: string, currentQty: number, change: number) => {
+
+  const handleQuantityChange = (
+    productId: string,
+    currentQty: number,
+    change: number
+  ) => {
     const newQty = currentQty + change;
     if (newQty >= 1) {
       updateQuantity(productId, newQty);
     }
   };
-  
+
   // Shipping calculation (could be more complex in real implementation)
   const shipping = subtotal > 0 ? 10 : 0;
   const total = subtotal + shipping;
-  
+
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { duration: 0.5 }
-    }
+      transition: { duration: 0.5 },
+    },
   };
-  
+
   const staggerItems = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <motion.div 
+    <div className="container mx-auto px-4 pt-32 pb-12">
+      <motion.div
         className="text-center mb-12"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -52,13 +56,14 @@ const CartPage: React.FC = () => {
         <h1 className="text-3xl md:text-4xl font-goudy mb-4">Your Cart</h1>
         {cartItems.length > 0 && (
           <p className="text-muted-foreground">
-            You have {cartItems.length} {cartItems.length === 1 ? 'item' : 'items'} in your cart
+            You have {cartItems.length}{" "}
+            {cartItems.length === 1 ? "item" : "items"} in your cart
           </p>
         )}
       </motion.div>
 
       {cartItems.length === 0 ? (
-        <motion.div 
+        <motion.div
           className="text-center py-12"
           initial="hidden"
           animate="visible"
@@ -78,7 +83,7 @@ const CartPage: React.FC = () => {
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-12">
           {/* Cart Items */}
-          <motion.div 
+          <motion.div
             className="lg:col-span-2"
             variants={staggerItems}
             initial="hidden"
@@ -87,63 +92,77 @@ const CartPage: React.FC = () => {
             <div className="bg-white rounded-2xl shadow-soft p-4 md:p-6">
               <div className="flex justify-between items-center pb-6 border-b border-border mb-6">
                 <h2 className="font-medium">Cart Items</h2>
-                <button 
+                <button
                   onClick={clearCart}
                   className="text-sm text-muted-foreground hover:text-destructive transition-colors"
                 >
                   Clear Cart
                 </button>
               </div>
-              
+
               <div className="space-y-6">
                 {cartItems.map((item) => (
-                  <motion.div 
+                  <motion.div
                     key={item.product.id}
                     variants={fadeIn}
                     className="flex flex-col sm:flex-row sm:items-center gap-4 pb-4 border-b border-gray-100 last:border-0 last:pb-0"
                   >
                     <div className="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
-                      <img 
-                        src={item.product.images[0]} 
-                        alt={item.product.name} 
+                      <img
+                        src={item.product.images[0]}
+                        alt={item.product.name}
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    
+
                     <div className="flex-grow">
-                      <Link 
+                      <Link
                         to={`/product/${item.product.id}`}
                         className="font-medium hover:text-gold-dark transition-colors"
                       >
                         {item.product.name}
                       </Link>
-                      <div className="text-sm text-muted-foreground">{formatPrice(item.product.price)}</div>
+                      <div className="text-sm text-muted-foreground">
+                        {formatPrice(item.product.price)}
+                      </div>
                     </div>
-                    
+
                     <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-4">
                       <div className="flex items-center border border-border rounded-lg">
-                        <button 
-                          onClick={() => handleQuantityChange(item.product.id, item.quantity, -1)}
+                        <button
+                          onClick={() =>
+                            handleQuantityChange(
+                              item.product.id,
+                              item.quantity,
+                              -1
+                            )
+                          }
                           className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground"
                           aria-label="Decrease quantity"
                         >
                           <Minus size={14} />
                         </button>
                         <span className="w-8 text-center">{item.quantity}</span>
-                        <button 
-                          onClick={() => handleQuantityChange(item.product.id, item.quantity, 1)}
+                        <button
+                          onClick={() =>
+                            handleQuantityChange(
+                              item.product.id,
+                              item.quantity,
+                              1
+                            )
+                          }
                           className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground"
                           aria-label="Increase quantity"
                         >
                           <Plus size={14} />
                         </button>
                       </div>
-                      
+
                       <div className="font-medium whitespace-nowrap">
                         {formatPrice(item.product.price * item.quantity)}
                       </div>
-                      
-                      <button 
+
+                      <button
                         onClick={() => removeFromCart(item.product.id)}
                         className="text-muted-foreground hover:text-destructive ml-2"
                         aria-label={`Remove ${item.product.name} from cart`}
@@ -156,16 +175,14 @@ const CartPage: React.FC = () => {
               </div>
             </div>
           </motion.div>
-          
+
           {/* Order Summary */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-          >
+          <motion.div initial="hidden" animate="visible" variants={fadeIn}>
             <div className="bg-white rounded-2xl shadow-soft p-6 sticky top-24">
-              <h2 className="font-medium border-b border-border pb-4 mb-6">Order Summary</h2>
-              
+              <h2 className="font-medium border-b border-border pb-4 mb-6">
+                Order Summary
+              </h2>
+
               <div className="space-y-4">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Subtotal</span>
@@ -180,13 +197,16 @@ const CartPage: React.FC = () => {
                   <span>{formatPrice(total)}</span>
                 </div>
               </div>
-              
-              <Link to="/checkout" className="btn-primary w-full mt-8 flex items-center justify-center">
+
+              <Link
+                to="/checkout"
+                className="btn-primary w-full mt-8 flex items-center justify-center"
+              >
                 Proceed to Checkout <ArrowRight size={16} className="ml-2" />
               </Link>
-              
-              <Link 
-                to="/shop" 
+
+              <Link
+                to="/shop"
                 className="text-sm text-center block mt-4 text-muted-foreground hover:text-foreground"
               >
                 Continue Shopping
