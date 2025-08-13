@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import card1 from "../assets/images/about_images/journey-1.jpg";
-import card2 from "../assets/images/about_images/journey-1.jpg";
-import card3 from "../assets/images/about_images/journey-1.jpg";
-import card4 from "../assets/images/about_images/journey-1.jpg";
+import card2 from "../assets/images/about_images/meet&greeet.jpg";
+import card3 from "../assets/images/about_images/journey-3.jpg";
+import card4 from "../assets/images/about_images/cac.jpeg";
 
 const JourneySection: React.FC = () => {
   const [activeCard, setActiveCard] = useState<number | null>(null);
@@ -24,8 +24,7 @@ const JourneySection: React.FC = () => {
       title: "Meet & Greet With Kie Kie",
       description:
         "Collaborated with renowned influencer Kie Kie for an exclusive meet and greet, expanding our reach and connecting with beauty lovers nationwide.",
-      image:
-        "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=400&fit=crop",
+      image: card2,
       icon: "🤝",
       year: "2023",
       position: { x: 100, y: 50 },
@@ -35,8 +34,7 @@ const JourneySection: React.FC = () => {
       title: "Signed Distributors in the UK, US, Canada, Belgium & Liberia",
       description:
         "Achieved international expansion by securing official distributors across five countries, bringing Nigerian beauty excellence to the global market.",
-      image:
-        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop",
+      image: card3,
       icon: "🌍",
       year: "2023",
       position: { x: -80, y: 100 },
@@ -47,8 +45,7 @@ const JourneySection: React.FC = () => {
         "Fully Registered with the Corporate Affairs Commission (CAC), Nigeria",
       description:
         "Officially registered our company with CAC Nigeria, establishing legal legitimacy and commitment to professional business standards.",
-      image:
-        "https://images.unsplash.com/photo-1551038247-3d9af20df552?w=600&h=400&fit=crop",
+      image: card4,
       icon: "📝",
       year: "2024",
       position: { x: 120, y: 150 },
@@ -124,8 +121,7 @@ const JourneySection: React.FC = () => {
             through pivotal moments that shaped our legacy
           </motion.p>
         </motion.div>
-        className="relative bg-white rounded-2xl overflow-hidden border-[4px]
-        border-gold-dark group cursor-pointer z-10"
+
         <div className="relative max-w-7xl mx-auto">
           {/* Flowing Path Background */}
           <motion.svg
@@ -180,7 +176,7 @@ const JourneySection: React.FC = () => {
               >
                 {/* Card */}
                 <motion.div
-                  className="relative bg-white rounded-2xl overflow-hidden border-[3px] border-gold-dark group cursor-pointer z-10"
+                  className="relative bg-white rounded-2xl overflow-hidden border-[4px] border-gold-dark group cursor-pointer z-10"
                   animate={{
                     scale: activeCard === milestone.id ? 1.03 : 1,
                     rotateY:
@@ -193,7 +189,7 @@ const JourneySection: React.FC = () => {
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   whileHover={{ y: -6 }}
                   style={{
-                    boxShadow: "0 0 0 4px #000, 0 8px 0 0 #000",
+                    boxShadow: "0 0 0 8px #000, 11px 11px 0 0 #000",
                   }}
                 >
                   {/* Timeline Year Badge */}

@@ -70,11 +70,17 @@ const AboutPage: React.FC = () => {
                 were transformative, not only for her skin but for her sense of
                 connection to her heritage.
               </p>
-              <p className="font-medium text-lg">
+              <p className="font-medium text-lg text-italic">
                 "Beauty rituals should be moments of connection—to ourselves, to
                 our ancestors, and to the earth that provides these incredible
                 ingredients."
               </p>
+
+              <img
+                className="mt-8 w-80 h-auto"
+                src="src/assets/images/about_images/signature.jpg"
+                alt="signature"
+              />
             </motion.div>
 
             <motion.div
@@ -98,64 +104,54 @@ const AboutPage: React.FC = () => {
       <section className="section bg-gold-light">
         <div className="container">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-12"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <h2 className="section-title">Our Core Values</h2>
-            <p className="section-subtitle mx-auto">
-              The principles that guide everything we create and do
-            </p>
+            <h2 className="section-title text-4xl font-bold text-gold-dark mb-2">Our Core Values</h2>
+            <p className="section-subtitle mx-auto text-lg text-muted-foreground">What drives us every day</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <motion.div
-              className="bg-white p-8 rounded-2xl"
+              className="bg-white border-2 border-gold-medium shadow-lg p-6 rounded-2xl flex flex-col items-center text-center hover:-translate-y-2 transition-transform duration-300"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeInUp}
               custom={0}
             >
-              <h3 className="text-xl font-quincy mb-4">
-                Heritage & Innovation
-              </h3>
-              <p className="text-muted-foreground">
-                We honor traditional ingredients and practices while embracing
-                scientific advancements for optimal efficacy.
-              </p>
+              <div className="mb-4 text-5xl text-gold-dark">🌿</div>
+              <h3 className="text-xl font-bold mb-2">Heritage & Innovation</h3>
+              <p className="text-muted-foreground text-base">Blending tradition with science for truly effective skincare.</p>
             </motion.div>
 
             <motion.div
-              className="bg-white p-8 rounded-2xl"
+              className="bg-white border-2 border-gold-medium shadow-lg p-6 rounded-2xl flex flex-col items-center text-center hover:-translate-y-2 transition-transform duration-300"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeInUp}
               custom={1}
             >
-              <h3 className="text-xl font-quincy mb-4">Ethical Sourcing</h3>
-              <p className="text-muted-foreground">
-                We partner with suppliers who share our commitment to fair trade
-                practices and sustainable harvesting.
-              </p>
+              <div className="mb-4 text-5xl text-gold-dark">🤝</div>
+              <h3 className="text-xl font-bold mb-2">Ethical Sourcing</h3>
+              <p className="text-muted-foreground text-base">Sustainably sourced, fairly traded, always responsible.</p>
             </motion.div>
 
             <motion.div
-              className="bg-white p-8 rounded-2xl"
+              className="bg-white border-2 border-gold-medium shadow-lg p-6 rounded-2xl flex flex-col items-center text-center hover:-translate-y-2 transition-transform duration-300"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeInUp}
               custom={2}
             >
-              <h3 className="text-xl font-quincy mb-4">Inclusive Beauty</h3>
-              <p className="text-muted-foreground">
-                We develop products that cater to diverse skin types, tones, and
-                concerns, celebrating beauty in all its forms.
-              </p>
+              <div className="mb-4 text-5xl text-gold-dark">🌈</div>
+              <h3 className="text-xl font-bold mb-2">Inclusive Beauty</h3>
+              <p className="text-muted-foreground text-base">Celebrating every skin type, tone, and story.</p>
             </motion.div>
           </div>
         </div>
