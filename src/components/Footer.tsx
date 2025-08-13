@@ -23,11 +23,11 @@ const Footer: React.FC = () => {
             <img
               src="/omotanwami logoblack.png"
               alt="Omotanwa MI Logo"
-              className="h-12 w-auto mx-auto"
+              className="h-16 w-auto mx-auto"
             />
           </Link>
 
-          <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto">
+          <p className="text-lg text-muted-foreground mb-8 mx-auto">
             Crafting premium skincare experiences with love and science.
           </p>
 
@@ -76,28 +76,32 @@ const Footer: React.FC = () => {
               <div className="flex items-center gap-2 text-xs text-muted-foreground">
                 <span>We accept:</span>
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-5 bg-blue-600 rounded text-white text-[8px] font-bold flex items-center justify-center">
-                    VISA
-                  </div>
-                  <div className="w-8 h-5 bg-red-500 rounded text-white text-[8px] font-bold flex items-center justify-center">
-                    MC
-                  </div>
-                  <div className="w-8 h-5 bg-purple-600 rounded text-white text-[8px] font-bold flex items-center justify-center">
-                    <svg
-                      width="12"
-                      height="12"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z" />
-                    </svg>
-                  </div>
+                  <img
+                    src="https://www.citypng.com/public/uploads/preview/download-visa-card-logo-icon-png-735811696866915avdywnhoab.png"
+                    alt="Visa"
+                    className="h-5 w-auto"
+                  />
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/1280px-MasterCard_Logo.svg.png"
+                    alt="MasterCard"
+                    className="h-5 w-auto"
+                  />
+                  <img
+                    src="https://directory.insaka.co.za/wp-content/uploads/2022/03/Paystack-CeruleanBlue-StackBlue-VL-265x130.png"
+                    alt="Paystack"
+                    className="h-5 w-auto"
+                  />
+                  <img
+                    src="https://e7.pngegg.com/pngimages/382/83/png-clipart-bank-transfer-logo-wire-transfer-electronic-funds-transfer-bank-payment-computer-icons-bank-text-rectangle-thumbnail.png"
+                    alt="Bank Transfer"
+                    className="h-5 w-auto"
+                  />
                 </div>
               </div>
             </div>
             <p className="text-xs text-muted-foreground flex items-center justify-center gap-1">
-              <Heart size={12} className="text-red-400" /> Omotanwa MI
-              Aesthetics &copy; {new Date().getFullYear()}
+              <Heart size={12} className="text-gold" /> Omotanwa MI Aesthetics
+              &copy; {new Date().getFullYear()}
             </p>
           </div>
         </motion.div>

@@ -266,7 +266,7 @@ const HomePage: React.FC = () => {
 
         {/* Brand Story Section */}
         <motion.section
-          className="section relative overflow-hidden"
+          className="section relative overflow-hidden bg-primary/80"
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
@@ -275,7 +275,7 @@ const HomePage: React.FC = () => {
           <div className="container">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <motion.div
-                className="rounded-3xl overflow-hidden aspect-square relative"
+                className="rounded-3xl overflow-hidden aspect-square relative mx-auto w-full max-w-xs md:max-w-md lg:max-w-lg"
                 variants={slideInLeft}
                 initial="hidden"
                 whileInView="visible"

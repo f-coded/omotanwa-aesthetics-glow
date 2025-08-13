@@ -164,24 +164,14 @@ const Navbar: React.FC = () => {
               </Link>
             </motion.div>
 
-            <motion.div variants={menuItemVariants} className="relative group">
-              <button className="flex items-center text-sm font-medium hover:text-gold-dark transition-colors py-2">
+            <motion.div variants={menuItemVariants}>
+              <Link
+                to="/about"
+                className="relative text-sm font-medium hover:text-gold-dark transition-colors group py-2"
+              >
                 About
-                <ChevronDown
-                  size={16}
-                  className="ml-1 transition-transform group-hover:rotate-180"
-                />
-              </button>
-              <div className="absolute top-full left-0 mt-2 hidden group-hover:block">
-                <div className="bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl p-6 min-w-[200px] border border-gold-medium/20">
-                  <Link
-                    to="/about"
-                    className="block py-3 px-4 text-sm hover:text-gold-dark hover:bg-gold-light/30 rounded-xl transition-all"
-                  >
-                    Our Story
-                  </Link>
-                </div>
-              </div>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-gold-medium to-gold-dark group-hover:w-full transition-all duration-300" />
+              </Link>
             </motion.div>
 
             <motion.div variants={menuItemVariants}>
