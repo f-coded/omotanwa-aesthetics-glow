@@ -1,90 +1,61 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import card1 from "../assets/images/about_images/journey-1.jpg";
+import card2 from "../assets/images/about_images/journey-1.jpg";
+import card3 from "../assets/images/about_images/journey-1.jpg";
+import card4 from "../assets/images/about_images/journey-1.jpg";
 
 const JourneySection: React.FC = () => {
   const [activeCard, setActiveCard] = useState<number | null>(null);
-  
+
   const journeyMilestones = [
     {
       id: 1,
       title: "Hosted Our First Skincare Exhibition in Oyo State",
-      description: "Launched our brand presence with an exclusive skincare exhibition, showcasing our premium product line to beauty enthusiasts across Oyo State.",
-      image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&h=400&fit=crop",
+      description:
+        "Launched our brand presence with an exclusive skincare exhibition, showcasing our premium product line to beauty enthusiasts across Oyo State.",
+      image: card1,
       icon: "📍",
       year: "2022",
-      position: { x: 0, y: 0 }
+      position: { x: 0, y: 0 },
     },
     {
       id: 2,
       title: "Meet & Greet With Kie Kie",
-      description: "Collaborated with renowned influencer Kie Kie for an exclusive meet and greet, expanding our reach and connecting with beauty lovers nationwide.",
-      image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=400&fit=crop",
+      description:
+        "Collaborated with renowned influencer Kie Kie for an exclusive meet and greet, expanding our reach and connecting with beauty lovers nationwide.",
+      image:
+        "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=400&fit=crop",
       icon: "🤝",
       year: "2023",
-      position: { x: 100, y: 50 }
+      position: { x: 100, y: 50 },
     },
     {
       id: 3,
       title: "Signed Distributors in the UK, US, Canada, Belgium & Liberia",
-      description: "Achieved international expansion by securing official distributors across five countries, bringing Nigerian beauty excellence to the global market.",
-      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop",
+      description:
+        "Achieved international expansion by securing official distributors across five countries, bringing Nigerian beauty excellence to the global market.",
+      image:
+        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop",
       icon: "🌍",
       year: "2023",
-      position: { x: -80, y: 100 }
+      position: { x: -80, y: 100 },
     },
     {
       id: 4,
-      title: "Fully Registered with the Corporate Affairs Commission (CAC), Nigeria",
-      description: "Officially registered our company with CAC Nigeria, establishing legal legitimacy and commitment to professional business standards.",
-      image: "https://images.unsplash.com/photo-1551038247-3d9af20df552?w=600&h=400&fit=crop",
+      title:
+        "Fully Registered with the Corporate Affairs Commission (CAC), Nigeria",
+      description:
+        "Officially registered our company with CAC Nigeria, establishing legal legitimacy and commitment to professional business standards.",
+      image:
+        "https://images.unsplash.com/photo-1551038247-3d9af20df552?w=600&h=400&fit=crop",
       icon: "📝",
       year: "2024",
-      position: { x: 120, y: 150 }
-    }
+      position: { x: 120, y: 150 },
+    },
   ];
 
   // SVG Arrow Component
-  const StoryArrow = ({ from, to, delay = 0 }) => (
-    <motion.svg
-      className="absolute inset-0 w-full h-full pointer-events-none z-10"
-      initial={{ pathLength: 0, opacity: 0 }}
-      whileInView={{ pathLength: 1, opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 2, delay, ease: "easeInOut" }}
-    >
-      <motion.path
-        d={`M ${from.x} ${from.y} Q ${(from.x + to.x) / 2 + 100} ${(from.y + to.y) / 2 - 50} ${to.x} ${to.y}`}
-        stroke="url(#arrowGradient)"
-        strokeWidth="3"
-        fill="none"
-        strokeDasharray="8,4"
-        markerEnd="url(#arrowhead)"
-        initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
-        transition={{ duration: 2, delay, ease: "easeInOut" }}
-      />
-      <defs>
-        <linearGradient id="arrowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="hsl(var(--gold-medium))" stopOpacity="0.8" />
-          <stop offset="100%" stopColor="hsl(var(--gold-dark))" stopOpacity="1" />
-        </linearGradient>
-        <marker
-          id="arrowhead"
-          markerWidth="10"
-          markerHeight="7"
-          refX="9"
-          refY="3.5"
-          orient="auto"
-          markerUnits="strokeWidth"
-        >
-          <polygon
-            points="0 0, 10 3.5, 0 7"
-            fill="hsl(var(--gold-dark))"
-          />
-        </marker>
-      </defs>
-    </motion.svg>
-  );
 
   return (
     <section className="section bg-gradient-to-br from-background via-gold-light/5 to-background overflow-hidden relative min-h-screen">
@@ -111,7 +82,9 @@ const JourneySection: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.5 }}
             />
-            <span className="text-gold-medium font-medium tracking-wider uppercase text-sm">Our Story</span>
+            <span className="text-gold-medium font-medium tracking-wider uppercase text-sm">
+              Our Story
+            </span>
             <motion.div
               className="w-16 h-0.5 bg-gradient-to-l from-transparent to-gold-medium"
               initial={{ scaleX: 0 }}
@@ -120,8 +93,8 @@ const JourneySection: React.FC = () => {
               transition={{ duration: 1, delay: 0.5 }}
             />
           </motion.div>
-          
-          <motion.h2 
+
+          <motion.h2
             className="text-5xl md:text-6xl lg:text-7xl font-clash font-black mb-8"
             initial={{ opacity: 0, rotateY: 45 }}
             whileInView={{ opacity: 1, rotateY: 0 }}
@@ -134,19 +107,20 @@ const JourneySection: React.FC = () => {
             <br />
             <span className="text-foreground">Unfolds</span>
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.8 }}
           >
-            Follow the narrative of transformation, growth, and global impact through pivotal moments that shaped our legacy
+            Follow the narrative of transformation, growth, and global impact
+            through pivotal moments that shaped our legacy
           </motion.p>
         </motion.div>
-
-        {/* Story Flow Layout */}
+        className="relative bg-white rounded-2xl overflow-hidden border-[4px]
+        border-gold-dark group cursor-pointer z-10"
         <div className="relative max-w-7xl mx-auto">
           {/* Flowing Path Background */}
           <motion.svg
@@ -166,7 +140,13 @@ const JourneySection: React.FC = () => {
               transition={{ duration: 4, ease: "easeInOut" }}
             />
             <defs>
-              <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <linearGradient
+                id="pathGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
                 <stop offset="0%" stopColor="hsl(var(--gold-light))" />
                 <stop offset="50%" stopColor="hsl(var(--gold-medium))" />
                 <stop offset="100%" stopColor="hsl(var(--gold-dark))" />
@@ -179,59 +159,37 @@ const JourneySection: React.FC = () => {
             {journeyMilestones.map((milestone, index) => (
               <motion.div
                 key={milestone.id}
-                className={`relative ${index % 2 === 1 ? 'lg:mt-32' : ''}`}
+                className={`relative ${index % 2 === 1 ? "lg:mt-32" : ""}`}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100, y: 50 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ 
-                  duration: 1.2, 
+                viewport={{ once: false, margin: "-100px" }}
+                transition={{
+                  duration: 1.2,
                   delay: index * 0.3,
                   type: "spring",
                   stiffness: 100,
-                  damping: 25
+                  damping: 25,
                 }}
                 onHoverStart={() => setActiveCard(milestone.id)}
                 onHoverEnd={() => setActiveCard(null)}
               >
-                {/* Movement Vector */}
+                {/* Card */}
                 <motion.div
-                  className="absolute -top-8 -left-8 w-16 h-16 pointer-events-none"
+                  className="relative bg-white rounded-2xl overflow-hidden border-[3px] border-gold-dark group cursor-pointer z-10"
                   animate={{
-                    rotate: [0, 360],
-                    scale: activeCard === milestone.id ? [1, 1.3, 1] : 1,
-                  }}
-                  transition={{
-                    rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-                    scale: { duration: 0.6, repeat: activeCard === milestone.id ? Infinity : 0 }
-                  }}
-                >
-                  <svg viewBox="0 0 64 64" className="w-full h-full">
-                    <motion.path
-                      d="M32 8 L48 24 L40 24 L40 40 L56 40 L40 56 L24 40 L32 40 L32 24 L16 24 L32 8 Z"
-                      fill="url(#vectorGradient)"
-                      opacity="0.6"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 2, delay: index * 0.2 }}
-                    />
-                    <defs>
-                      <linearGradient id="vectorGradient">
-                        <stop offset="0%" stopColor="hsl(var(--gold-light))" />
-                        <stop offset="100%" stopColor="hsl(var(--gold-dark))" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </motion.div>
-
-                {/* Story Card */}
-                <motion.div
-                  className="relative bg-card/80 backdrop-blur-sm rounded-3xl overflow-hidden border border-border/50 group cursor-pointer"
-                  animate={{
-                    scale: activeCard === milestone.id ? 1.02 : 1,
-                    rotateY: activeCard === milestone.id ? (index % 2 === 0 ? 2 : -2) : 0,
+                    scale: activeCard === milestone.id ? 1.03 : 1,
+                    rotateY:
+                      activeCard === milestone.id
+                        ? index % 2 === 0
+                          ? 2
+                          : -2
+                        : 0,
                   }}
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  whileHover={{ y: -5 }}
+                  whileHover={{ y: -6 }}
+                  style={{
+                    boxShadow: "0 0 0 4px #000, 0 8px 0 0 #000",
+                  }}
                 >
                   {/* Timeline Year Badge */}
                   <motion.div
@@ -242,7 +200,7 @@ const JourneySection: React.FC = () => {
                     }}
                     transition={{ duration: 0.8 }}
                   >
-                    <div className="bg-gradient-to-r from-gold-dark to-gold-medium text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
+                    <div className="bg-gold-dark text-white px-4 py-2 rounded-full font-bold text-sm border-2 border-black">
                       {milestone.year}
                     </div>
                   </motion.div>
@@ -260,16 +218,16 @@ const JourneySection: React.FC = () => {
                       alt={milestone.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
-                    
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+
                     {/* Floating Icon */}
                     <motion.div
-                      className="absolute top-6 left-6 text-4xl filter drop-shadow-lg"
+                      className="absolute top-6 left-6 text-4xl"
                       animate={{
                         y: activeCard === milestone.id ? [-5, 5, -5] : 0,
                         rotate: activeCard === milestone.id ? [0, 5, -5, 0] : 0,
                       }}
-                      transition={{ 
+                      transition={{
                         duration: 2,
                         repeat: activeCard === milestone.id ? Infinity : 0,
                       }}
@@ -283,13 +241,16 @@ const JourneySection: React.FC = () => {
                     <motion.h3
                       className="text-2xl lg:text-3xl font-clash font-bold mb-4 leading-tight"
                       animate={{
-                        color: activeCard === milestone.id ? "hsl(var(--gold-dark))" : "hsl(var(--foreground))",
+                        color:
+                          activeCard === milestone.id
+                            ? "hsl(var(--gold-dark))"
+                            : "hsl(var(--foreground))",
                       }}
                       transition={{ duration: 0.3 }}
                     >
                       {milestone.title}
                     </motion.h3>
-                    
+
                     <motion.p
                       className="text-muted-foreground leading-relaxed text-lg"
                       animate={{
@@ -302,7 +263,7 @@ const JourneySection: React.FC = () => {
 
                     {/* Read More Indicator */}
                     <motion.div
-                      className="mt-6 flex items-center gap-2 text-gold-medium font-medium"
+                      className="mt-6 flex items-center gap-2 text-gold-medium font-bold"
                       animate={{
                         x: activeCard === milestone.id ? 10 : 0,
                       }}
@@ -356,15 +317,6 @@ const JourneySection: React.FC = () => {
                 </motion.div>
 
                 {/* Dynamic Connecting Arrows for Desktop */}
-                {index < journeyMilestones.length - 1 && (
-                  <div className="hidden lg:block absolute inset-0 pointer-events-none">
-                    <StoryArrow
-                      from={{ x: index % 2 === 0 ? 400 : 50, y: 200 }}
-                      to={{ x: index % 2 === 0 ? 450 : 100, y: 350 }}
-                      delay={index * 0.5 + 1.5}
-                    />
-                  </div>
-                )}
               </motion.div>
             ))}
           </div>
@@ -405,7 +357,6 @@ const JourneySection: React.FC = () => {
             </motion.div>
           </motion.div>
         </div>
-
         {/* Ambient Particles */}
         <div className="absolute inset-0 pointer-events-none">
           {[...Array(12)].map((_, i) => (
