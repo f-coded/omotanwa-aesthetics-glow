@@ -96,12 +96,12 @@ const CheckoutPage: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-12">
       <motion.div
-        className="text-center mb-12"
+        className="text-center  mb-12"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-3xl md:text-4xl font-serif mb-4">Checkout</h1>
+        <h1 className="text-3xl md:text-4xl font-serif mt-20 mb-4">Checkout</h1>
         <p className="text-muted-foreground">
           Complete your order by providing your shipping and payment details
         </p>
