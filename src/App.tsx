@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { CartProvider } from "./contexts/CartContext";
 import { CountryProvider } from "./contexts/CountryContext";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 import Layout from "./components/Layout";
 import LoadingScreen from "./components/LoadingScreen";
@@ -27,7 +26,7 @@ import ContactPage from "./pages/ContactPage";
 const App = () => {
   // Create a new QueryClient instance inside the component
   const queryClient = new QueryClient();
-  
+
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -38,7 +37,7 @@ const App = () => {
 
     return () => clearTimeout(timer);
   }, []);
-  
+
   return (
     <QueryClientProvider client={queryClient}>
       <CountryProvider>
@@ -46,15 +45,12 @@ const App = () => {
           <TooltipProvider>
             <Toaster />
             <Sonner />
-            <LoadingScreen 
-              isVisible={isLoading} 
-              onComplete={() => setIsLoading(false)} 
+            <LoadingScreen
+              isVisible={isLoading}
+              onComplete={() => setIsLoading(false)}
             />
             <BrowserRouter>
-              <AppContent 
-                isLoading={isLoading}
-                setIsLoading={setIsLoading}
-              />
+              <AppContent isLoading={isLoading} setIsLoading={setIsLoading} />
             </BrowserRouter>
           </TooltipProvider>
         </CartProvider>
@@ -63,7 +59,10 @@ const App = () => {
   );
 };
 
-const AppContent: React.FC<{ isLoading: boolean; setIsLoading: (loading: boolean) => void }> = ({ isLoading, setIsLoading }) => {
+const AppContent: React.FC<{
+  isLoading: boolean;
+  setIsLoading: (loading: boolean) => void;
+}> = ({ isLoading, setIsLoading }) => {
   const location = useLocation();
 
   useEffect(() => {
@@ -76,12 +75,15 @@ const AppContent: React.FC<{ isLoading: boolean; setIsLoading: (loading: boolean
     return () => clearTimeout(timer);
   }, [location.pathname, setIsLoading]);
 
+  const showLoading =
+    ["/", "/shop", "/about", "/contact"].includes(location.pathname) ||
+    location.pathname.startsWith("/admin");
   return (
     <>
-      {isLoading ? (
-        <LoadingScreen 
-          isVisible={isLoading} 
-          onComplete={() => setIsLoading(false)} 
+      {isLoading && showLoading ? (
+        <LoadingScreen
+          isVisible={isLoading}
+          onComplete={() => setIsLoading(false)}
         />
       ) : (
         <Routes>

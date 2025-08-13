@@ -121,10 +121,10 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({
 
         {/* Loading Progress Bar */}
         <motion.div
-          className="w-80 h-1 bg-muted rounded-full overflow-hidden"
+          className="w-60 h-1 bg-muted rounded-full overflow-hidden"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
+          transition={{ delay: 0.5, duration: 0.3 }}
         >
           <motion.div
             className="h-full bg-gradient-to-r from-gold-dark via-gold-medium to-gold-dark"
@@ -132,7 +132,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({
             animate={{ width: "100%" }}
             transition={{
               delay: 1,
-              duration: 2.5,
+              duration: 1.5,
               ease: "easeInOut",
             }}
             onAnimationComplete={() => {

@@ -59,10 +59,10 @@ const JourneySection: React.FC = () => {
 
   return (
     <section className="section bg-gradient-to-br from-background via-gold-light/5 to-background overflow-hidden relative min-h-screen">
-      <div className="container relative z-10 py-20">
+      <div className="container relative z-10 py-8">
         {/* Header */}
         <motion.div
-          className="text-center mb-32"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -96,14 +96,19 @@ const JourneySection: React.FC = () => {
 
           <motion.h2
             className="text-5xl md:text-6xl lg:text-7xl font-clash font-black mb-8"
-            initial={{ opacity: 0, rotateY: 45 }}
-            whileInView={{ opacity: 1, rotateY: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 60 }}
             transition={{ duration: 1.2, delay: 0.6 }}
           >
-            <span className="bg-gradient-to-r from-gold-dark via-gold-medium to-gold-dark bg-clip-text text-transparent">
+            <motion.span
+              className="bg-gradient-to-r from-gold-dark via-gold-medium to-gold-dark bg-clip-text text-transparent"
+              initial={{ y: 0 }}
+              animate={{ y: [0, -20, 20, 0] }}
+              transition={{ duration: 1.2, delay: 0.6 }}
+            >
               The Journey
-            </span>
+            </motion.span>
             <br />
             <span className="text-foreground">Unfolds</span>
           </motion.h2>
