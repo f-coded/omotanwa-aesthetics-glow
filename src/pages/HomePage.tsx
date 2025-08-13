@@ -385,7 +385,7 @@ const HomePage: React.FC = () => {
                     (testimonial, index) => (
                       <div
                         key={`${testimonial.id}-${index}`}
-                        className="bg-white p-6 rounded-2xl min-w-[320px] border border-gold-light/20 group hover:border-gold-medium/40 transition-all duration-300"
+                        className="bg-white p-6 rounded-2xl min-w-[320px] border border-gold-dark group hover:border-gold-medium/40 transition-all duration-300"
                       >
                         <div className="mb-4 flex gap-1">
                           {[1, 2, 3, 4, 5].map((star) => (

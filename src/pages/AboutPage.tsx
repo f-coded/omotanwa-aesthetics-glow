@@ -110,8 +110,12 @@ const AboutPage: React.FC = () => {
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <h2 className="section-title text-4xl font-bold text-gold-dark mb-2">Our Core Values</h2>
-            <p className="section-subtitle mx-auto text-lg text-muted-foreground">What drives us every day</p>
+            <h2 className="section-title text-4xl font-bold text-gold-dark mb-2">
+              Our Core Values
+            </h2>
+            <p className="section-subtitle mx-auto text-lg text-muted-foreground">
+              What drives us every day
+            </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -125,7 +129,9 @@ const AboutPage: React.FC = () => {
             >
               <div className="mb-4 text-5xl text-gold-dark">🌿</div>
               <h3 className="text-xl font-bold mb-2">Heritage & Innovation</h3>
-              <p className="text-muted-foreground text-base">Blending tradition with science for truly effective skincare.</p>
+              <p className="text-muted-foreground text-base">
+                Blending tradition with science for truly effective skincare.
+              </p>
             </motion.div>
 
             <motion.div
@@ -138,7 +144,9 @@ const AboutPage: React.FC = () => {
             >
               <div className="mb-4 text-5xl text-gold-dark">🤝</div>
               <h3 className="text-xl font-bold mb-2">Ethical Sourcing</h3>
-              <p className="text-muted-foreground text-base">Sustainably sourced, fairly traded, always responsible.</p>
+              <p className="text-muted-foreground text-base">
+                Sustainably sourced, fairly traded, always responsible.
+              </p>
             </motion.div>
 
             <motion.div
@@ -151,7 +159,9 @@ const AboutPage: React.FC = () => {
             >
               <div className="mb-4 text-5xl text-gold-dark">🌈</div>
               <h3 className="text-xl font-bold mb-2">Inclusive Beauty</h3>
-              <p className="text-muted-foreground text-base">Celebrating every skin type, tone, and story.</p>
+              <p className="text-muted-foreground text-base">
+                Celebrating every skin type, tone, and story.
+              </p>
             </motion.div>
           </div>
         </div>

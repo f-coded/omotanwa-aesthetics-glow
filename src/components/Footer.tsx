@@ -72,7 +72,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="border-t border-gold-medium/20 pt-6">
-            <div className="flex justify-center items-center gap-4 mb-4">
+            <div className="flex justify-center items-center gap-9 mb-8">
               <div className="flex items-center gap-2 text-xs text-muted-foreground">
                 <span>We accept:</span>
                 <div className="flex items-center gap-2">
@@ -100,8 +100,8 @@ const Footer: React.FC = () => {
               </div>
             </div>
             <p className="text-xs text-muted-foreground flex items-center justify-center gap-1">
-              <Heart size={12} className="text-gold" /> Omotanwa MI Aesthetics
-              &copy; {new Date().getFullYear()}
+              <Heart size={12} className="text-gold" /> Omotanwa Mi Inc &copy;{" "}
+              {new Date().getFullYear()}
             </p>
           </div>
         </motion.div>
