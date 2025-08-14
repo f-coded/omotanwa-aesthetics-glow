@@ -1,12 +1,11 @@
-
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Product } from '../types';
-import { useCountry } from '@/contexts/CountryContext';
-import { useCart } from '@/contexts/CartContext';
-import { Button } from '@/components/ui/button';
-import { StarIcon, Heart, ShoppingCart } from 'lucide-react';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Product } from "../types";
+import { useCountry } from "@/contexts/CountryContext";
+import { useCart } from "@/contexts/CartContext";
+import { Button } from "@/components/ui/button";
+import { StarIcon, Heart, ShoppingCart } from "lucide-react";
 
 interface ProductCardProps {
   product: Product;
@@ -16,7 +15,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { formatPrice } = useCountry();
   const { addToCart } = useCart();
   const [isWishlisted, setIsWishlisted] = useState(false);
-  
+
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -28,10 +27,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     e.stopPropagation();
     setIsWishlisted(!isWishlisted);
   };
-  
+
   return (
     <Link to={`/product/${product.id}`}>
-      <motion.div 
+      <motion.div
         className="bg-white rounded-3xl overflow-hidden border border-gold-light/20 hover:border-gold-medium/40 transition-all duration-300 group"
         whileHover={{ scale: 1.03 }}
         transition={{ duration: 0.3 }}
@@ -40,14 +39,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         viewport={{ once: true }}
       >
         <div className="aspect-square overflow-hidden relative">
-          <motion.img 
-            src={product.images[0]} 
+          <motion.img
+            src={product.images[0]}
             alt={product.name}
             className="w-full h-full object-cover"
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.5 }}
           />
-          
+
           {/* Labels */}
           <div className="absolute top-4 left-4 flex flex-col gap-2">
             {product.newArrival && (
@@ -61,14 +60,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <motion.button
             onClick={handleWishlist}
             className={`absolute top-4 right-4 p-2 rounded-full backdrop-blur-sm transition-all duration-300 ${
-              isWishlisted 
-                ? 'bg-red-500 text-white' 
-                : 'bg-white/80 text-gray-600 hover:bg-red-500 hover:text-white'
+              isWishlisted
+                ? "bg-red-500 text-white"
+                : "bg-white/80 text-gray-600 hover:bg-red-500 hover:text-white"
             }`}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            <Heart size={16} className={isWishlisted ? 'fill-current' : ''} />
+            <Heart size={16} className={isWishlisted ? "fill-current" : ""} />
           </motion.button>
 
           {/* Quick add button - shows on hover */}
@@ -81,7 +80,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <ShoppingCart size={16} />
           </motion.button>
         </div>
-        
+
         <div className="p-6">
           {/* Rating and reviews */}
           <div className="flex items-center gap-2 mb-3">
@@ -110,8 +109,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <span className="text-xl font-bold text-gold-dark">
               {formatPrice(product.price)}
             </span>
-            <Button 
-              size="sm" 
+            <Button
+              size="sm"
               onClick={handleAddToCart}
               className="bg-gold-medium hover:bg-gold-dark text-black border-0 px-6 py-2 rounded-full font-medium transition-all duration-300"
             >

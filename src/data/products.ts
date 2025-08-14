@@ -1,16 +1,15 @@
-
 import { Product } from '../types';
 
 export const products: Product[] = [
   {
     id: '1',
-    name: 'Hydrating Facial Cleanser',
-    description: 'A gentle, hydrating cleanser that removes makeup and impurities while maintaining skin\'s natural moisture balance.',
+    name: 'Liquid Tribe',
+    description: 'Whitening and eradicates Blemishes',
     price: 28,
     images: [
-      '/images/products/cleanser-1.jpg',
-      '/images/products/cleanser-2.jpg',
-      '/images/products/cleanser-3.jpg',
+      "/assets/images/products/liquid-tribe-1.jpg",
+      "/assets/images/products/liquid-tribe-2.jpg",
+      "/assets/images/products/liquid-tribe-3.jpg",
     ],
     category: 'cleansers',
     tags: ['hydrating', 'gentle', 'daily use'],
@@ -40,15 +39,18 @@ export const products: Product[] = [
     howToUse: 'Apply to damp skin, massage in gentle circular motions, then rinse thoroughly with warm water. Use morning and night.',
     benefits: 'Removes makeup and impurities, maintains pH balance, hydrates while cleansing, soothes sensitive skin.',
   },
+
+
   {
     id: '2',
-    name: 'Vitamin C Brightening Serum',
-    description: 'Powerful antioxidant serum that brightens skin tone, reduces hyperpigmentation, and protects against environmental damage.',
+    name: 'BLACK PRIDE SOAP',
+    description: 'Evens skin tone, Smooths Irritation, Prevents sun damage, Exfoliate skins',
     price: 45,
     images: [
-      '/images/products/serum-1.jpg',
-      '/images/products/serum-2.jpg',
-      '/images/products/serum-3.jpg',
+      '/assets/images/products/blackpride-1.jpg',
+      '/assets/images/products/blackpride-2.jpg',
+      '/assets/images/products/blackpride-3.jpg',
+
     ],
     category: 'serums',
     tags: ['brightening', 'antioxidant', 'hyperpigmentation'],
@@ -70,18 +72,22 @@ export const products: Product[] = [
     howToUse: 'Apply 3-4 drops to clean, dry skin in the morning. Follow with moisturizer and sunscreen.',
     benefits: 'Brightens skin tone, reduces dark spots, boosts collagen production, provides antioxidant protection.',
   },
+
+
   {
     id: '3',
-    name: 'Nourishing Night Cream',
-    description: 'Rich, restorative night cream that repairs and rejuvenates skin while you sleep.',
+    name: 'ACNE VANISH TONER',
+    description: 'Control & Treat',
     price: 52,
     images: [
-      '/images/products/cream-1.jpg',
-      '/images/products/cream-2.jpg',
-      '/images/products/cream-3.jpg',
+      '/assets/images/products/acne-vanish-1.jpg',
+      '/assets/images/products/acne-vanish-2.jpg',
+      '/assets/images/products/acne-vanish-3.jpg',
+      '/assets/images/products/acne-vanish-4.jpg',
+
     ],
     category: 'moisturizers',
-    tags: ['anti-aging', 'hydrating', 'night care'],
+    tags: ['toner', 'hydrating', 'night care'],
     stock: 40,
     rating: 4.7,
     reviews: [
@@ -102,7 +108,7 @@ export const products: Product[] = [
         date: new Date('2024-03-05'),
       },
     ],
-    featured: false,
+    featured: true,
     newArrival: false,
     ingredients: 'Aqua, Squalane, Shea Butter, Ceramides, Peptides, Niacinamide, Evening Primrose Oil',
     howToUse: 'Apply to clean skin as the final step in your evening routine. Use upward, circular motions.',
