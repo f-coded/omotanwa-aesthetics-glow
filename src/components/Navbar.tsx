@@ -128,10 +128,10 @@ const Navbar: React.FC = () => {
               transition={{ delay: 0.4, duration: 0.5 }}
               className="ml-4 hidden sm:block"
             >
-              <h1 className="text-xl md:text-2xl font-clash font-medium bg-gradient-to-r from-gold-dark via-foreground to-gold-dark bg-clip-text text-transparent">
+              <h1 className="text-xl md:text-2xl font-clash font-bold bg-gradient-to-r from-foreground via-foreground to-foreground bg-clip-text text-transparent">
                 Omotanwa MI
               </h1>
-              <p className="text-xs text-muted-foreground font-light tracking-wider">
+              <p className="text-xs text-foreground font-medium tracking-wider">
                 CERTIFIED AESTHETICIAN
               </p>
             </motion.div>

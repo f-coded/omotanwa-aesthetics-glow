@@ -95,7 +95,7 @@ const HeroCarousel: React.FC = () => {
   return (
     <div className="relative h-[90vh] min-h-[600px] overflow-hidden">
       {/* Top gradient overlay */}
-      <div className="absolute top-0 left-0 w-full h-64 z-20 pointer-events-none bg-gradient-to-b from-white/60 via-transparent to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-64 z-20 pointer-events-none bg-gradient-to-b from-white/80 via-transparent to-transparent" />
       <AnimatePresence
         initial={false}
         mode="wait"

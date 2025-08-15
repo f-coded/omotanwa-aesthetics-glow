@@ -18,6 +18,9 @@ import { useCountry } from "@/contexts/CountryContext";
 import ProductCard from "@/components/ProductCard";
 
 const ProductPage: React.FC = () => {
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   const { id } = useParams<{ id: string }>();
   const product = products.find((p) => p.id === id);
   const { addToCart } = useCart();

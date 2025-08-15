@@ -101,7 +101,7 @@ const HomePage: React.FC = () => {
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 0.6,
+        duration: 0.3,
         ease: "backOut",
       },
     },
@@ -125,8 +125,8 @@ const HomePage: React.FC = () => {
       opacity: 1,
       x: 0,
       transition: {
-        duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.99],
+        duration: 0.2,
+        ease: [0.4, -0.05, 0.01, 0.99],
       },
     },
   };
@@ -134,17 +134,18 @@ const HomePage: React.FC = () => {
   return (
     <>
       <TopBanner />
+      {/* Enable smooth scrolling for the page */}
       <motion.div
         variants={pageVariants}
         initial="hidden"
         animate="visible"
-        className="overflow-x-hidden"
+        className="overflow-x-hidden scroll-smooth"
       >
         {/* Hero Carousel */}
         <motion.section
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
+          transition={{ duration: 0.4, ease: [0.6, -0.05, 0.01, 0.99] }}
           viewport={{ once: false, amount: 0.2 }}
         >
           <HeroCarousel />
@@ -154,7 +155,7 @@ const HomePage: React.FC = () => {
         <motion.section
           initial={{ opacity: 0, x: -60 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
+          transition={{ duration: 0.4, ease: [0.6, -0.05, 0.01, 0.99] }}
           viewport={{ once: false, amount: 0.2 }}
         >
           <CouponPopup
@@ -167,20 +168,14 @@ const HomePage: React.FC = () => {
 
         {/* Trust Section - Now comes first */}
         <motion.section
-          initial={{ opacity: 0, x: 60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
-          viewport={{ once: false, amount: 0.2 }}
+        // Removed slide-in animation for Trust Section
         >
           <TrustSection />
         </motion.section>
 
         {/* Collage Section */}
         <motion.section
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
-          viewport={{ once: false, amount: 0.2 }}
+        // Removed slide-in animation for Collage Section
         >
           <CollageSection />
         </motion.section>
@@ -188,10 +183,7 @@ const HomePage: React.FC = () => {
         {/* Featured Products Section */}
         <motion.section
           className="section bg-gradient-to-br from-gold-light via-white to-gold-light/50 relative overflow-hidden"
-          initial={{ opacity: 0, x: -60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
-          viewport={{ once: false, amount: 0.2 }}
+          // Removed slide-in animation for Featured Products Section
         >
           {/* Background decorations */}
           <div className="absolute inset-0 opacity-10">
@@ -205,17 +197,14 @@ const HomePage: React.FC = () => {
           <div className="container relative z-10">
             <motion.div
               className="text-center mb-16"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={fadeInUp}
+              // Removed fade-in animation for Featured Products title
             >
               <motion.h2 className="section-title" variants={scaleIn}>
                 Featured Products
               </motion.h2>
               <motion.p
                 className="section-subtitle mx-auto"
-                variants={fadeInUp}
+                // Removed fade-in animation for subtitle
               >
                 Discover our bestselling formulations, lovingly crafted for your
                 skin's optimal health.
@@ -224,19 +213,12 @@ const HomePage: React.FC = () => {
 
             <motion.div
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
+              // Removed stagger/fade-in animation for product grid
             >
               {featuredProducts.map((product, index) => (
                 <motion.div
                   key={product.id}
-                  variants={fadeInUp}
-                  whileHover={{
-                    y: -8,
-                    transition: { duration: 0.3 },
-                  }}
+                  // Removed fade-in and slide-up on hover for product card
                 >
                   <ProductCard product={product} />
                 </motion.div>
@@ -245,10 +227,7 @@ const HomePage: React.FC = () => {
 
             <motion.div
               className="mt-12 text-center"
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              // Removed fade-in animation for View All Products link
             >
               <Link
                 to="/shop"
