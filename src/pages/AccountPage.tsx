@@ -89,7 +89,7 @@ const AccountPage: React.FC = () => {
   // If not logged in, show login prompt
   if (!isLoggedIn) {
     return (
-      <div className="container mx-auto px-4 pt-32 pb-12">
+      <div className="container mx-auto px-4 pt-36 pb-12">
         <motion.div
           className="max-w-md mx-auto text-center"
           initial="hidden"

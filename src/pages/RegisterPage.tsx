@@ -76,7 +76,7 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 pt-32 pb-12">
+    <div className="container mx-auto px-4 pt-36 pb-12">
       <motion.div
         className="max-w-md mx-auto"
         initial="hidden"
@@ -84,7 +84,7 @@ const RegisterPage: React.FC = () => {
         variants={fadeIn}
       >
         <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-serif mb-4">
+          <h1 className="text-3xl md:text-4xl font-clash mb-4">
             Create Account
           </h1>
           <p className="text-muted-foreground">

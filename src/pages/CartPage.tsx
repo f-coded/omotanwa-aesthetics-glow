@@ -89,7 +89,7 @@ const CartPage: React.FC = () => {
             initial="hidden"
             animate="visible"
           >
-            <div className="bg-white rounded-2xl shadow-soft p-4 md:p-6">
+            <div className="bg-white rounded-[20px] border border-[#DADADA] p-4 md:p-6">
               <div className="flex justify-between items-center pb-6 border-b border-border mb-6">
                 <h2 className="font-medium">Cart Items</h2>
                 <button
@@ -178,7 +178,7 @@ const CartPage: React.FC = () => {
 
           {/* Order Summary */}
           <motion.div initial="hidden" animate="visible" variants={fadeIn}>
-            <div className="bg-white rounded-2xl shadow-soft p-6 sticky top-24">
+            <div className="bg-white rounded-[20px] border border-[#DADADA] p-6 sticky top-24">
               <h2 className="font-medium border-b border-border pb-4 mb-6">
                 Order Summary
               </h2>

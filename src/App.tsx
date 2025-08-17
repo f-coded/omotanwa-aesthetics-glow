@@ -66,21 +66,21 @@ const AppContent: React.FC<{
   const location = useLocation();
 
   useEffect(() => {
-    // Show loading screen on route change
-    setIsLoading(true);
-    const timer = setTimeout(() => {
+    // Only show loading screen when navigating to home page
+    if (location.pathname === "/") {
+      setIsLoading(true);
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 4000);
+      return () => clearTimeout(timer);
+    } else {
       setIsLoading(false);
-    }, 4000);
-
-    return () => clearTimeout(timer);
+    }
   }, [location.pathname, setIsLoading]);
 
-  const showLoading =
-    ["/", "/shop", "/about", "/contact"].includes(location.pathname) ||
-    location.pathname.startsWith("/admin");
   return (
     <>
-      {isLoading && showLoading ? (
+      {isLoading && location.pathname === "/" ? (
         <LoadingScreen
           isVisible={isLoading}
           onComplete={() => setIsLoading(false)}
