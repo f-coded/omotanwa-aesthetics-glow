@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { ChevronDown, CreditCard, Building } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -40,6 +41,8 @@ const CheckoutPage: React.FC = () => {
   const { country, formatPrice } = useCountry();
   const navigate = useNavigate();
   const [isProcessing, setIsProcessing] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState("card");
+  const [shippingMethod, setShippingMethod] = useState("standard");
 
   // Shipping calculation (simplified)
   const shipping = subtotal > 0 ? 10 : 0;
@@ -77,44 +80,33 @@ const CheckoutPage: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 pt-32 pb-12 flex-col">
-      <motion.div
-        className="text-center  mb-12"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h1 className="text-3xl md:text-4xl font-clash mt-2 mb-2">Checkout</h1>
-        <p className="text-muted-foreground">
-          Complete your order by providing your shipping and payment details
-        </p>
-      </motion.div>
-      {/* <div className="border-b border-border py-2 px-4 text-xs text-gray-500 bg-white w-full">
-        Cart &nbsp; &gt; &nbsp;
-        <span className="font-medium font-clash text-black">Checkout</span>
-        &nbsp; &gt; &nbsp; Payment
-      </div> */}
-      <main className="flex-1 flex flex-col items-center justify-center">
-        <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 py-12 px-2 md:px-6">
-          {/* Form Section */}
-          <section className="lg:col-span-2">
-            <div className="border border-border rounded-xl bg-white p-8 mb-8">
-              {/* Contact Section */}
-              <h2 className="text-lg font-bold mb-4">Contact</h2>
-              <Form {...form}>
-                <form
-                  onSubmit={form.handleSubmit(onSubmit)}
-                  className="space-y-6"
-                >
+    <div className="min-h-screen bg-gray-50 pt-24 pb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-clash font-bold text-foreground mb-2">Checkout</h1>
+          <p className="text-muted-foreground">
+            Complete your order by providing your shipping and payment details
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* Left Column - Form */}
+          <div className="lg:col-span-7">
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                {/* Contact Information */}
+                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                  <h2 className="text-lg font-semibold mb-4 text-foreground">Contact</h2>
                   <FormField
                     control={form.control}
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email</FormLabel>
                         <FormControl>
                           <Input
-                            placeholder="Enter your email address"
+                            placeholder="Email or mobile phone number"
+                            className="w-full"
                             {...field}
                           />
                         </FormControl>
@@ -122,204 +114,228 @@ const CheckoutPage: React.FC = () => {
                       </FormItem>
                     )}
                   />
-                  <label className="flex items-center gap-2 mb-4">
-                    <input type="checkbox" />
-                    <span className="text-sm">Email Me With News & Offers</span>
-                  </label>
-                  {/* Delivery Section */}
-                  <h2 className="text-lg font-bold mb-4">Delivery</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <div className="col-span-2">
-                      <FormLabel>Country</FormLabel>
-                      <select className="w-full border border-border rounded-lg px-3 py-2 bg-background text-foreground">
-                        <option value="">Select Country</option>
-                        {/* Add country options here */}
+                  <div className="flex items-center gap-2 mt-3">
+                    <input type="checkbox" id="offers" className="rounded" />
+                    <label htmlFor="offers" className="text-sm text-muted-foreground">
+                      Email me with news and offers
+                    </label>
+                  </div>
+                </div>
+
+                {/* Delivery Information */}
+                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                  <h2 className="text-lg font-semibold mb-4 text-foreground">Delivery</h2>
+                  <div className="space-y-4">
+                    <div className="relative">
+                      <select className="w-full p-3 border border-gray-300 rounded-lg bg-white appearance-none pr-10">
+                        <option>Nigeria</option>
+                        <option>Ghana</option>
+                        <option>Kenya</option>
                       </select>
+                      <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                     </div>
-                    <FormField
-                      control={form.control}
-                      name="fullName"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>First Name</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Enter First Name" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="address"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Last Name</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Enter Last Name" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <FormField
+                        control={form.control}
+                        name="fullName"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <Input placeholder="First name" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <Input placeholder="Last name" />
+                    </div>
+
+                    <Input placeholder="Address" />
+                    <Input placeholder="Apartment, suite, etc. (optional)" />
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <Input placeholder="City" />
+                      <div className="relative">
+                        <select className="w-full p-3 border border-gray-300 rounded-lg bg-white appearance-none pr-10">
+                          <option>State</option>
+                          <option>Lagos</option>
+                          <option>Abuja</option>
+                        </select>
+                        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                      </div>
+                      <Input placeholder="Postal code" />
+                    </div>
+
                     <FormField
                       control={form.control}
                       name="phone"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Phone Number</FormLabel>
                           <FormControl>
-                            <Input
-                              placeholder="Enter Phone Number"
-                              {...field}
-                            />
+                            <Input placeholder="Phone" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
-                    <FormField
-                      control={form.control}
-                      name="city"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Additional Phone Number</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="Additional Phone Number"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <div className="col-span-2">
-                      <FormLabel>Address</FormLabel>
-                      <Input placeholder="Enter Delivery Address" />
-                    </div>
-                    <div>
-                      <FormLabel>State</FormLabel>
-                      <select className="w-full border border-border rounded-lg px-3 py-2 bg-background text-foreground">
-                        <option value="">Select State</option>
-                        {/* Add state options here */}
-                      </select>
-                    </div>
-                    <div>
-                      <FormLabel>City</FormLabel>
-                      <select className="w-full border border-border rounded-lg px-3 py-2 bg-background text-foreground">
-                        <option value="">Select City</option>
-                        {/* Add city options here */}
-                      </select>
-                    </div>
                   </div>
-                  {/* Shipping Method Section */}
-                  <h2 className="text-lg font-bold mb-4">Shipping Method</h2>
-                  <div className="flex flex-col gap-3 mb-4">
-                    <label className="flex items-center gap-2 border border-border rounded-lg px-4 py-3">
-                      <input type="radio" name="shipping" defaultChecked />
-                      <span>Standard</span>
-                      <span className="ml-auto font-medium">$–</span>
-                    </label>
-                    <label className="flex items-center gap-2 border border-border rounded-lg px-4 py-3">
-                      <input type="radio" name="shipping" />
-                      <span>Express</span>
-                      <span className="ml-auto font-medium">$–</span>
-                    </label>
-                  </div>
-                  {/* Payment Section */}
-                  <h2 className="text-lg font-bold mb-4">Payment</h2>
-                  <div className="flex flex-col gap-3 mb-4">
-                    <label className="flex items-center gap-2 border border-border rounded-lg px-4 py-3">
-                      <input type="radio" name="payment" defaultChecked />
-                      <span>Paystack</span>
-                    </label>
-                    <div className="border border-border rounded-lg px-4 py-6 text-center text-muted-foreground text-sm">
-                      <div className="mb-2">
-                        After clicking "Pay Now", you will be instructed to
-                        Paystack to complete your purchase securely.
+                </div>
+
+                {/* Shipping Method */}
+                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                  <h2 className="text-lg font-semibold mb-4 text-foreground">Shipping method</h2>
+                  <div className="space-y-3">
+                    <label className="flex items-center justify-between p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                      <div className="flex items-center gap-3">
+                        <input 
+                          type="radio" 
+                          name="shipping" 
+                          value="standard"
+                          checked={shippingMethod === "standard"}
+                          onChange={(e) => setShippingMethod(e.target.value)}
+                          className="text-primary"
+                        />
+                        <span className="font-medium">Standard</span>
                       </div>
-                      <label className="flex items-center gap-2 mt-2">
-                        <input type="checkbox" />
-                        <span>Save Card Information For Recurring Payment</span>
+                      <span className="font-medium">Free</span>
+                    </label>
+                    <label className="flex items-center justify-between p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                      <div className="flex items-center gap-3">
+                        <input 
+                          type="radio" 
+                          name="shipping" 
+                          value="express"
+                          checked={shippingMethod === "express"}
+                          onChange={(e) => setShippingMethod(e.target.value)}
+                          className="text-primary"
+                        />
+                        <span className="font-medium">Express</span>
+                      </div>
+                      <span className="font-medium">₦2,500</span>
+                    </label>
+                  </div>
+                </div>
+
+                {/* Payment */}
+                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                  <h2 className="text-lg font-semibold mb-4 text-foreground">Payment</h2>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    All transactions are secure and encrypted.
+                  </p>
+                  
+                  <div className="space-y-3">
+                    {/* Pay with Card Option */}
+                    <div className="border border-gray-200 rounded-lg">
+                      <label className="flex items-center justify-between p-4 cursor-pointer">
+                        <div className="flex items-center gap-3">
+                          <input 
+                            type="radio" 
+                            name="payment" 
+                            value="card"
+                            checked={paymentMethod === "card"}
+                            onChange={(e) => setPaymentMethod(e.target.value)}
+                            className="text-primary"
+                          />
+                          <CreditCard className="w-5 h-5 text-gray-600" />
+                          <span className="font-medium">Pay with Card</span>
+                        </div>
+                        <div className="flex gap-2">
+                          <div className="w-8 h-5 bg-blue-600 rounded text-white text-xs flex items-center justify-center font-bold">VISA</div>
+                          <div className="w-8 h-5 bg-red-600 rounded text-white text-xs flex items-center justify-center font-bold">MC</div>
+                          <div className="w-8 h-5 bg-blue-700 rounded text-white text-xs flex items-center justify-center font-bold">AE</div>
+                        </div>
+                      </label>
+                      
+                      {paymentMethod === "card" && (
+                        <div className="px-4 pb-4 space-y-4 border-t border-gray-200">
+                          <div className="grid grid-cols-1 gap-4 mt-4">
+                            <Input placeholder="Card number" />
+                            <div className="grid grid-cols-2 gap-4">
+                              <Input placeholder="Expiration date (MM/YY)" />
+                              <Input placeholder="Security code" />
+                            </div>
+                            <Input placeholder="Name on card" />
+                          </div>
+                          <div className="flex items-center gap-2 mt-3">
+                            <input type="checkbox" id="save-card" className="rounded" />
+                            <label htmlFor="save-card" className="text-sm text-muted-foreground">
+                              Save my information for a faster checkout
+                            </label>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Bank Transfer Option */}
+                    <div className="border border-gray-200 rounded-lg">
+                      <label className="flex items-center justify-between p-4 cursor-pointer">
+                        <div className="flex items-center gap-3">
+                          <input 
+                            type="radio" 
+                            name="payment" 
+                            value="transfer"
+                            checked={paymentMethod === "transfer"}
+                            onChange={(e) => setPaymentMethod(e.target.value)}
+                            className="text-primary"
+                          />
+                          <Building className="w-5 h-5 text-gray-600" />
+                          <span className="font-medium">Bank Transfer</span>
+                        </div>
+                        <div className="text-sm text-primary font-medium">Flutterwave</div>
+                      </label>
+                      
+                      {paymentMethod === "transfer" && (
+                        <div className="px-4 pb-4 border-t border-gray-200">
+                          <p className="text-sm text-muted-foreground mt-4">
+                            You will be redirected to Flutterwave to complete your bank transfer securely.
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Billing Address */}
+                  <div className="mt-6 pt-6 border-t border-gray-200">
+                    <h3 className="font-medium mb-3">Billing address</h3>
+                    <div className="space-y-2">
+                      <label className="flex items-center gap-2">
+                        <input type="radio" name="billing" defaultChecked className="text-primary" />
+                        <span className="text-sm">Same as shipping address</span>
+                      </label>
+                      <label className="flex items-center gap-2">
+                        <input type="radio" name="billing" className="text-primary" />
+                        <span className="text-sm">Use a different billing address</span>
                       </label>
                     </div>
-                    <label className="flex items-center gap-2 border border-border rounded-lg px-4 py-3 mt-4">
-                      <input type="radio" name="payment" />
-                      <span>Card</span>
-                    </label>
                   </div>
-                  {/* Card Details Section */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <div className="col-span-2">
-                      <FormLabel>Card Number</FormLabel>
-                      <Input placeholder="Card Number" />
-                    </div>
-                    <div>
-                      <FormLabel>Expiration Date</FormLabel>
-                      <Input placeholder="Expiration Date" />
-                    </div>
-                    <div>
-                      <FormLabel>Security Code</FormLabel>
-                      <Input placeholder="Security Code" />
-                    </div>
-                    <div className="col-span-2">
-                      <FormLabel>Name on Card</FormLabel>
-                      <Input placeholder="Name on Card" />
-                    </div>
-                  </div>
-                  <label className="flex items-center gap-2 mb-4">
-                    <input type="checkbox" />
-                    <span>Use Shipping Address as Billing Address</span>
-                  </label>
-                  {/* Billing Address Section */}
-                  <h2 className="text-lg font-bold mb-4">Billing Address</h2>
-                  <div className="flex flex-col gap-2 mb-4">
-                    <label className="flex items-center gap-2">
-                      <input
-                        type="radio"
-                        name="billingAddress"
-                        defaultChecked
-                      />
-                      <span>Same As Shipping Address</span>
-                    </label>
-                    <label className="flex items-center gap-2">
-                      <input type="radio" name="billingAddress" />
-                      <span>Use A Different Billing Address</span>
-                    </label>
-                  </div>
-                  {/* Remember Me Section */}
-                  <h2 className="text-lg font-bold mb-4">Remember Me</h2>
-                  <label className="flex items-center gap-2 mb-4">
-                    <input type="checkbox" />
-                    <span>Email Me With News & Offers</span>
-                  </label>
-                  <Button
-                    type="submit"
-                    className="w-full mt-8 bg-[#B6FFB0] text-black font-bold text-lg"
-                    disabled={isProcessing}
-                  >
-                    {isProcessing ? "Processing..." : "Pay"}
-                  </Button>
-                </form>
-              </Form>
-            </div>
-          </section>
-          {/* Order Summary Section */}
-          <aside className="lg:col-span-1">
-            <div className="border border-border rounded-xl bg-white p-8">
-              <h2 className="font-medium mb-6">Your Order</h2>
+                </div>
+
+                {/* Submit Button */}
+                <Button
+                  type="submit"
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-6 text-lg rounded-lg"
+                  disabled={isProcessing}
+                >
+                  {isProcessing ? "Processing..." : "Complete order"}
+                </Button>
+              </form>
+            </Form>
+          </div>
+
+          {/* Right Column - Order Summary */}
+          <div className="lg:col-span-5">
+            <div className="bg-white rounded-lg border border-gray-200 p-6 sticky top-8">
+              <h2 className="text-lg font-semibold mb-6 text-foreground">Order Summary</h2>
+              
+              {/* Cart Items */}
               <div className="space-y-4 mb-6">
                 {cartItems.map((item) => (
-                  <div
-                    key={item.product.id}
-                    className="flex justify-between items-center"
-                  >
-                    <div>
-                      <div className="font-medium">{item.product.name}</div>
-                      <div className="text-xs text-muted-foreground">
-                        Qty: {item.quantity}
-                      </div>
+                  <div key={item.product.id} className="flex items-center gap-4">
+                    <div className="w-16 h-16 bg-gray-100 rounded-lg flex-shrink-0"></div>
+                    <div className="flex-1">
+                      <h3 className="font-medium text-sm">{item.product.name}</h3>
+                      <p className="text-sm text-muted-foreground">Qty: {item.quantity}</p>
                     </div>
                     <div className="font-medium">
                       {formatPrice(item.product.price * item.quantity)}
@@ -328,57 +344,38 @@ const CheckoutPage: React.FC = () => {
                 ))}
               </div>
 
-              {/* Discount code */}
-              <div className="mb-6">
-                <label className="block text-sm font-medium mb-2">
-                  Discount Code
-                </label>
+              {/* Discount Code */}
+              <div className="border-t border-gray-200 pt-4 mb-4">
                 <div className="flex gap-2">
-                  <input
-                    type="text"
-                    className="border border-border rounded-lg px-3 py-2 w-full"
-                    placeholder="Add discount code"
-                  />
-                  <Button type="button" className="px-4">
-                    Apply
-                  </Button>
+                  <Input placeholder="Discount code" className="flex-1" />
+                  <Button variant="outline" className="px-6">Apply</Button>
                 </div>
               </div>
-              <div className="space-y-2 mb-6">
+
+              {/* Order Totals */}
+              <div className="space-y-3 mb-6">
                 <div className="flex justify-between text-sm">
-                  <span>Total</span>
+                  <span>Subtotal</span>
                   <span>{formatPrice(subtotal)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span>Discount</span>
-                  <span>-$0</span>
+                  <span>Shipping</span>
+                  <span>{shippingMethod === "standard" ? "Free" : "₦2,500"}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span>Shipment cost</span>
-                  <span>{formatPrice(shipping)}</span>
+                  <span>Tax</span>
+                  <span>{formatPrice(tax)}</span>
                 </div>
               </div>
-              <div className="border-t border-border pt-4 flex justify-between font-bold text-lg">
-                <span>Grand total</span>
+
+              <div className="border-t border-gray-200 pt-4 flex justify-between font-semibold text-lg">
+                <span>Total</span>
                 <span>{formatPrice(total)}</span>
               </div>
-              <Button
-                type="submit"
-                className="w-full mt-8"
-                disabled={isProcessing}
-              >
-                Continue to payment
-              </Button>
             </div>
-            <div className="mt-8 text-xs text-muted-foreground text-center">
-              <span>
-                Specializes in providing high-quality, stylish products for your
-                wardrobe
-              </span>
-            </div>
-          </aside>
+          </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 };
