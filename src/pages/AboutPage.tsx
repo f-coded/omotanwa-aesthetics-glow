@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Leaf, HandHeart, Users } from "lucide-react";
 import JourneySection from "@/components/JourneySection";
 
 const AboutPage: React.FC = () => {
@@ -101,7 +102,7 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Values */}
-      <section className="section bg-gradient-to-br from-gold-light/30 via-white to-gold-medium-light/20">
+      <section className="section bg-gradient-to-br from-gold-light/50 via-white to-gold-medium-light/30">
         <div className="container">
           <motion.div
             className="text-center mb-16"
@@ -120,66 +121,63 @@ const AboutPage: React.FC = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
             <motion.div
-              className="group relative"
+              className="group relative overflow-hidden"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeInUp}
               custom={0}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-gold-medium/20 to-gold-dark/10 rounded-3xl transform rotate-3 group-hover:rotate-6 transition-transform duration-300"></div>
-              <div className="relative bg-white p-8 md:p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gold-medium/20">
-                <div className="w-16 h-16 bg-gradient-to-br from-gold-medium to-gold-dark rounded-2xl flex items-center justify-center mb-6 mx-auto">
-                  <span className="text-2xl text-white">🌿</span>
+              <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-8 md:p-10 rounded-3xl border-2 border-green-200 hover:border-green-300 transition-all duration-300 transform hover:-translate-y-2">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
+                  <Leaf size={28} className="text-white" />
                 </div>
-                <h3 className="text-xl md:text-2xl font-clash font-bold text-center mb-4 text-gold-dark">
+                <h3 className="text-xl md:text-2xl font-clash font-bold text-center mb-4 text-green-800">
                   Heritage & Innovation
                 </h3>
-                <p className="text-muted-foreground text-center leading-relaxed">
+                <p className="text-green-700 text-center leading-relaxed">
                   We honor ancestral wisdom while embracing modern science, creating formulations that bridge tradition and innovation for truly transformative results.
                 </p>
               </div>
             </motion.div>
 
             <motion.div
-              className="group relative"
+              className="group relative overflow-hidden"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeInUp}
               custom={1}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-gold-medium/20 to-gold-dark/10 rounded-3xl transform -rotate-2 group-hover:-rotate-4 transition-transform duration-300"></div>
-              <div className="relative bg-white p-8 md:p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gold-medium/20">
-                <div className="w-16 h-16 bg-gradient-to-br from-gold-medium to-gold-dark rounded-2xl flex items-center justify-center mb-6 mx-auto">
-                  <span className="text-2xl text-white">🤝</span>
+              <div className="bg-gradient-to-br from-orange-50 to-amber-100 p-8 md:p-10 rounded-3xl border-2 border-orange-200 hover:border-orange-300 transition-all duration-300 transform hover:-translate-y-2">
+                <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-600 rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
+                  <HandHeart size={28} className="text-white" />
                 </div>
-                <h3 className="text-xl md:text-2xl font-clash font-bold text-center mb-4 text-gold-dark">
+                <h3 className="text-xl md:text-2xl font-clash font-bold text-center mb-4 text-orange-800">
                   Ethical Sourcing
                 </h3>
-                <p className="text-muted-foreground text-center leading-relaxed">
+                <p className="text-orange-700 text-center leading-relaxed">
                   Every ingredient is sustainably sourced and fairly traded, supporting communities while ensuring the highest quality for our formulations.
                 </p>
               </div>
             </motion.div>
 
             <motion.div
-              className="group relative"
+              className="group relative overflow-hidden"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeInUp}
               custom={2}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-gold-medium/20 to-gold-dark/10 rounded-3xl transform rotate-1 group-hover:rotate-3 transition-transform duration-300"></div>
-              <div className="relative bg-white p-8 md:p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gold-medium/20">
-                <div className="w-16 h-16 bg-gradient-to-br from-gold-medium to-gold-dark rounded-2xl flex items-center justify-center mb-6 mx-auto">
-                  <span className="text-2xl text-white">🌈</span>
+              <div className="bg-gradient-to-br from-purple-50 to-violet-100 p-8 md:p-10 rounded-3xl border-2 border-purple-200 hover:border-purple-300 transition-all duration-300 transform hover:-translate-y-2">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-violet-600 rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
+                  <Users size={28} className="text-white" />
                 </div>
-                <h3 className="text-xl md:text-2xl font-clash font-bold text-center mb-4 text-gold-dark">
+                <h3 className="text-xl md:text-2xl font-clash font-bold text-center mb-4 text-purple-800">
                   Inclusive Beauty
                 </h3>
-                <p className="text-muted-foreground text-center leading-relaxed">
+                <p className="text-purple-700 text-center leading-relaxed">
                   Beauty has no boundaries. We celebrate every skin type, tone, and story, creating products that honor the diversity of human beauty.
                 </p>
               </div>
