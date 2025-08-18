@@ -53,7 +53,7 @@ const CartPage: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-3xl md:text-4xl font-goudy mb-4">Your Cart</h1>
+        <h1 className="text-3xl md:text-4xl font-clash mb-4">Your Cart</h1>
         {cartItems.length > 0 && (
           <p className="text-muted-foreground">
             You have {cartItems.length}{" "}

@@ -91,333 +91,367 @@ const CheckoutPage: React.FC = () => {
     }
   };
 
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 },
+    },
+  };
+
+  const staggerItems = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
   return (
-    <div className="min-h-screen pt-32 pb-12" style={{ backgroundColor: '#F8F8F8' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="container mx-auto px-4 pt-32 pb-12">
+
         {/* Header */}
-        <div className="text-center mb-8">
+      <motion.div
+        className="text-center mb-12"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
           <h1 className="text-3xl font-clash font-bold text-foreground mb-2">Checkout</h1>
           <p className="text-muted-foreground">
             Complete your order by providing your shipping and payment details
           </p>
-        </div>
+      </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-12">
           {/* Left Column - Form */}
-          <div className="lg:col-span-7">
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                {/* Contact Information */}
-                <div className="bg-white rounded-xl p-6 border-0">
-                  <h2 className="text-lg font-semibold mb-4 text-foreground">Contact</h2>
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <Input
-                            placeholder="Email or mobile phone number"
-                            className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <div className="flex items-center gap-2 mt-3">
-                    <input type="checkbox" id="offers" className="rounded accent-primary" />
-                    <label htmlFor="offers" className="text-sm text-muted-foreground">
-                      Email me with news and offers
-                    </label>
-                  </div>
-                </div>
-
-                {/* Delivery Information */}
-                <div className="bg-white rounded-xl p-6 border-0">
-                  <h2 className="text-lg font-semibold mb-4 text-foreground">Delivery</h2>
-                  <div className="space-y-4">
-                    <div className="relative">
-                      <select className="w-full p-3 border border-gray-200 rounded-lg bg-gray-50 appearance-none pr-10 focus:bg-white focus:border-primary">
-                        <option>Nigeria</option>
-                        <option>Ghana</option>
-                        <option>Kenya</option>
-                      </select>
-                      <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                    </div>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <motion.div
+            className="lg:col-span-2"
+            variants={staggerItems}
+            initial="hidden"
+            animate="visible"
+          >
+            <div className="bg-white rounded-[20px] border border-[#DADADA] p-4 md:p-6">          
+              <div className="lg:col-span-7">
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                    {/* Contact Information */}
+                    <div className="bg-white rounded-xl border-0">
+                      <h2 className="text-lg font-semibold mb-4 text-foreground">Contact</h2>
                       <FormField
                         control={form.control}
-                        name="fullName"
+                        name="email"
                         render={({ field }) => (
                           <FormItem>
                             <FormControl>
-                              <Input 
-                                placeholder="First name" 
-                                className="px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary"
-                                {...field} 
+                              <Input
+                                placeholder="Email or mobile phone number"
+                                className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary"
+                                {...field}
                               />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
                         )}
                       />
-                      <Input 
-                        placeholder="Last name" 
-                        className="px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary"
-                      />
+                      <div className="flex items-center gap-2 mt-3">
+                        <input type="checkbox" id="offers" className="rounded accent-primary" />
+                        <label htmlFor="offers" className="text-sm text-muted-foreground">
+                          Email me with news and offers
+                        </label>
+                      </div>
                     </div>
 
-                    <Input 
-                      placeholder="Address" 
-                      className="px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary"
-                    />
-                    <Input 
-                      placeholder="Apartment, suite, etc. (optional)" 
-                      className="px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary"
-                    />
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <Input 
-                        placeholder="City" 
-                        className="px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary"
-                      />
-                      <div className="relative">
-                        <select className="w-full p-3 border border-gray-200 rounded-lg bg-gray-50 appearance-none pr-10 focus:bg-white focus:border-primary">
-                          <option>State</option>
-                          <option>Lagos</option>
-                          <option>Abuja</option>
-                        </select>
-                        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                      </div>
-                      <Input 
-                        placeholder="Postal code" 
-                        className="px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary"
-                      />
-                    </div>
-
-                    <FormField
-                      control={form.control}
-                      name="phone"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <Input 
-                              placeholder="Phone" 
-                              className="px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary"
-                              {...field} 
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-                </div>
-
-                {/* Shipping Method */}
-                <div className="bg-white rounded-xl p-6 border-0">
-                  <h2 className="text-lg font-semibold mb-4 text-foreground">Shipping method</h2>
-                  <div className="space-y-3">
-                    <label className="flex items-center justify-between p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
-                      <div className="flex items-center gap-3">
-                        <input 
-                          type="radio" 
-                          name="shipping" 
-                          value="standard"
-                          checked={shippingMethod === "standard"}
-                          onChange={(e) => setShippingMethod(e.target.value)}
-                          className="text-primary accent-primary"
-                        />
-                        <span className="font-medium">Standard</span>
-                      </div>
-                      <span className="font-medium">Free</span>
-                    </label>
-                    <label className="flex items-center justify-between p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
-                      <div className="flex items-center gap-3">
-                        <input 
-                          type="radio" 
-                          name="shipping" 
-                          value="express"
-                          checked={shippingMethod === "express"}
-                          onChange={(e) => setShippingMethod(e.target.value)}
-                          className="text-primary accent-primary"
-                        />
-                        <span className="font-medium">Express</span>
-                      </div>
-                      <span className="font-medium">₦2,500</span>
-                    </label>
-                  </div>
-                </div>
-
-                {/* Payment */}
-                <div className="bg-white rounded-xl p-6 border-0">
-                  <h2 className="text-lg font-semibold mb-4 text-foreground">Payment</h2>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    All transactions are secure and encrypted.
-                  </p>
-                  
-                  <div className="space-y-3">
-                    {/* Pay with Card Option */}
-                    <div className="border border-gray-200 rounded-lg">
-                      <label className="flex items-center justify-between p-4 cursor-pointer">
-                        <div className="flex items-center gap-3">
-                          <input 
-                            type="radio" 
-                            name="payment" 
-                            value="card"
-                            checked={paymentMethod === "card"}
-                            onChange={(e) => setPaymentMethod(e.target.value)}
-                            className="text-primary accent-primary"
+                    {/* Delivery Information */}
+                    <div className="bg-white rounded-xl border-0">
+                      <h2 className="text-lg font-semibold mb-4 text-foreground">Delivery</h2>
+                      <div className="space-y-4">
+                        <div className="relative">
+                          <select className="w-full p-3 border border-gray-200 rounded-lg bg-gray-50 appearance-none pr-10 focus:bg-white focus:border-primary">
+                            <option>Nigeria</option>
+                            <option>Ghana</option>
+                            <option>Kenya</option>
+                          </select>
+                          <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <FormField
+                            control={form.control}
+                            name="fullName"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormControl>
+                                  <Input 
+                                    placeholder="First name" 
+                                    className="px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary"
+                                    {...field} 
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
                           />
-                          <span className="font-medium">Card</span>
+                          <Input 
+                            placeholder="Last name" 
+                            className="px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary"
+                          />
                         </div>
-                        <div className="flex gap-2">
-                          <div className="w-10 h-6 bg-gradient-to-r from-blue-600 to-blue-700 rounded text-white text-xs flex items-center justify-center font-bold">VISA</div>
-                          <div className="w-10 h-6 bg-gradient-to-r from-red-500 to-orange-500 rounded text-white text-xs flex items-center justify-center font-bold">MC</div>
-                          <div className="w-10 h-6 bg-gradient-to-r from-blue-800 to-blue-900 rounded text-white text-xs flex items-center justify-center font-bold">AMEX</div>
-                        </div>
-                      </label>
-                      
-                      {paymentMethod === "card" && (
-                        <div className="px-4 pb-4 space-y-4 border-t border-gray-200 bg-gray-50">
-                          <div className="mt-4">
-                            <div className="flex items-center gap-2 mb-3">
-                              <input type="checkbox" id="save-card" className="rounded accent-primary" />
-                              <label htmlFor="save-card" className="text-sm text-muted-foreground">
-                                Save Card Information For Recurring Payment
-                              </label>
-                            </div>
+
+                        <Input 
+                          placeholder="Address" 
+                          className="px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary"
+                        />
+                        <Input 
+                          placeholder="Apartment, suite, etc. (optional)" 
+                          className="px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary"
+                        />
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <Input 
+                            placeholder="City" 
+                            className="px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary"
+                          />
+                          <div className="relative">
+                            <select className="w-full p-3 border border-gray-200 rounded-lg bg-gray-50 appearance-none pr-10 focus:bg-white focus:border-primary">
+                              <option>State</option>
+                              <option>Lagos</option>
+                              <option>Abuja</option>
+                            </select>
+                            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                           </div>
-                          <div className="grid grid-cols-1 gap-4">
-                            <Input 
-                              placeholder="Card Number" 
-                              className="px-4 py-3 rounded-lg border border-gray-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary"
-                            />
-                            <div className="grid grid-cols-2 gap-4">
-                              <Input 
-                                placeholder="Expiration Date" 
-                                className="px-4 py-3 rounded-lg border border-gray-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary"
-                              />
-                              <div className="relative">
+                          <Input 
+                            placeholder="Postal code" 
+                            className="px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary"
+                          />
+                        </div>
+
+                        <FormField
+                          control={form.control}
+                          name="phone"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormControl>
                                 <Input 
-                                  placeholder="Security Code" 
-                                  className="px-4 py-3 rounded-lg border border-gray-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary pr-10"
+                                  placeholder="Phone" 
+                                  className="px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary"
+                                  {...field} 
                                 />
-                                <Info className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Shipping Method */}
+                    <div className="bg-white rounded-xl border-0">
+                      <h2 className="text-lg font-semibold mb-4 text-foreground">Shipping method</h2>
+                      <div className="space-y-3">
+                        <label className="flex items-center justify-between p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                          <div className="flex items-center gap-3">
+                            <input 
+                              type="radio" 
+                              name="shipping" 
+                              value="standard"
+                              checked={shippingMethod === "standard"}
+                              onChange={(e) => setShippingMethod(e.target.value)}
+                              className="text-primary accent-primary"
+                            />
+                            <span className="font-medium">Standard</span>
+                          </div>
+                          <span className="font-medium">Free</span>
+                        </label>
+                        <label className="flex items-center justify-between p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                          <div className="flex items-center gap-3">
+                            <input 
+                              type="radio" 
+                              name="shipping" 
+                              value="express"
+                              checked={shippingMethod === "express"}
+                              onChange={(e) => setShippingMethod(e.target.value)}
+                              className="text-primary accent-primary"
+                            />
+                            <span className="font-medium">Express</span>
+                          </div>
+                          <span className="font-medium">₦2,500</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    {/* Payment */}
+                    <div className="bg-white rounded-xl border-0">
+                      <h2 className="text-lg font-semibold mb-4 text-foreground">Payment</h2>
+                      <p className="text-sm text-gold-500 mb-4">
+                        All transactions are secure and encrypted.
+                      </p>
+                      
+                      <div className="space-y-3">
+                        {/* Pay with Card Option */}
+                        <div className="border border-gray-200 rounded-lg">
+                          <label className="flex items-center justify-between p-4 cursor-pointer">
+                            <div className="flex items-center gap-3">
+                              <input 
+                                type="radio" 
+                                name="payment" 
+                                value="card"
+                                checked={paymentMethod === "card"}
+                                onChange={(e) => setPaymentMethod(e.target.value)}
+                                className="text-primary accent-primary"
+                              />
+                              <span className="font-medium">Card</span>
+                            </div>
+                            <div className="flex gap-2">
+                              <img className="w-full relative rounded-lg h-6 overflow-hidden shrink-0" alt="" src="Frame 1321314037.svg" />);
+                              <img className="w-full relative rounded-lg h-6 overflow-hidden shrink-0" alt="" src="Frame 1321314037.svg" />);
+                              <img className="w-full relative rounded-lg h-6 overflow-hidden shrink-0" alt="" src="Frame 1321314037.svg" />);
+
+                            </div>
+                          </label>
+                          
+                          {paymentMethod === "card" && (
+                            <div className="px-4 pb-4 space-y-4 border-t border-gray-200 bg-gray-50">
+                              <div className="mt-4">
+                                <div className="flex items-center gap-2 mb-3">
+                                  <input type="checkbox" id="save-card" className="rounded accent-primary" />
+                                  <label htmlFor="save-card" className="text-sm text-muted-foreground">
+                                    Save Card Information For Recurring Payment
+                                  </label>
+                                </div>
+                              </div>
+                              <div className="grid grid-cols-1 gap-4">
+                                <Input 
+                                  placeholder="Card Number" 
+                                  className="px-4 py-3 rounded-lg border border-gray-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary"
+                                />
+                                <div className="grid grid-cols-2 gap-4">
+                                  <Input 
+                                    placeholder="MM/YY" 
+                                    className="px-4 py-3 rounded-lg border border-gray-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary"
+                                  />
+                                  <div className="relative">
+                                    <Input 
+                                      placeholder="CVV" 
+                                      className="px-4 py-3 rounded-lg border border-gray-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary pr-10"
+                                    />
+                                    <Info className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                                  </div>
+                                </div>
+                                <Input 
+                                  placeholder="Name On Card" 
+                                  className="px-4 py-3 rounded-lg border border-gray-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary"
+                                />
+                              </div>
+                              
+                              <div className="flex items-center gap-2 mt-3">
+                                <input type="checkbox" id="use-shipping" className="rounded accent-primary" />
+                                <label htmlFor="use-shipping" className="text-sm text-muted-foreground">
+                                  Use Shipping Address As Billing Address
+                                </label>
+                              </div>
+
+                              <div className="mt-4">
+                                <h3 className="font-medium mb-3 text-foreground">Billing Address</h3>
+                                <div className="space-y-2">
+                                  <label className="flex items-center gap-2 cursor-pointer">
+                                    <input type="radio" name="billing" defaultChecked className="accent-primary" />
+                                    <span className="text-sm">Same As Shipping Address</span>
+                                  </label>
+                                  <label className="flex items-center gap-2 cursor-pointer">
+                                    <input type="radio" name="billing" className="accent-primary" />
+                                    <span className="text-sm">Use A Different Billing Address</span>
+                                  </label>
+                                </div>
                               </div>
                             </div>
-                            <Input 
-                              placeholder="Name On Card" 
-                              className="px-4 py-3 rounded-lg border border-gray-200 bg-white focus:border-primary focus:ring-1 focus:ring-primary"
-                            />
-                          </div>
-                          
-                          <div className="flex items-center gap-2 mt-3">
-                            <input type="checkbox" id="use-shipping" className="rounded accent-primary" />
-                            <label htmlFor="use-shipping" className="text-sm text-muted-foreground">
-                              Use Shipping Address As Billing Address
-                            </label>
-                          </div>
+                          )}
+                        </div>
 
-                          <div className="mt-4">
-                            <h3 className="font-medium mb-3 text-foreground">Billing Address</h3>
-                            <div className="space-y-2">
-                              <label className="flex items-center gap-2 cursor-pointer">
-                                <input type="radio" name="billing" defaultChecked className="accent-primary" />
-                                <span className="text-sm">Same As Shipping Address</span>
-                              </label>
-                              <label className="flex items-center gap-2 cursor-pointer">
-                                <input type="radio" name="billing" className="accent-primary" />
-                                <span className="text-sm">Use A Different Billing Address</span>
-                              </label>
+                        {/* PayPal Option */}
+                        <div className="border border-gray-200 rounded-lg">
+                          <label className="flex items-center justify-between p-4 cursor-pointer">
+                            <div className="flex items-center gap-3">
+                              <input 
+                                type="radio" 
+                                name="payment" 
+                                value="paypal"
+                                checked={paymentMethod === "paypal"}
+                                onChange={(e) => setPaymentMethod(e.target.value)}
+                                className="text-primary accent-primary"
+                              />
+                              <span className="font-medium">PayPal</span>
                             </div>
-                          </div>
+                            <div className="w-16 h-6 bg-gradient-to-r from-blue-600 to-blue-800 rounded text-white text-xs flex items-center justify-center font-bold">PayPal</div>
+                          </label>
+                          
+                          {paymentMethod === "paypal" && (
+                            <div className="px-4 pb-4 border-t border-gray-200 bg-gray-50">
+                              <p className="text-sm text-muted-foreground mt-4">
+                                You will be redirected to PayPal to complete your payment securely.
+                              </p>
+                            </div>
+                          )}
                         </div>
-                      )}
+
+                        {/* Bank Transfer Option */}
+                        <div className="border border-gray-200 rounded-lg">
+                          <label className="flex items-center justify-between p-4 cursor-pointer">
+                            <div className="flex items-center gap-3">
+                              <input 
+                                type="radio" 
+                                name="payment" 
+                                value="transfer"
+                                checked={paymentMethod === "transfer"}
+                                onChange={(e) => setPaymentMethod(e.target.value)}
+                                className="text-primary accent-primary"
+                              />
+                              <span className="font-medium">Transfer</span>
+                            </div>
+                            <div className="text-sm text-primary font-medium">Flutterwave</div>
+                          </label>
+                          
+                          {paymentMethod === "transfer" && (
+                            <div className="px-4 pb-4 border-t border-gray-200 bg-gray-50">
+                              <p className="text-sm text-muted-foreground mt-4">
+                                You will be redirected to Flutterwave to complete your bank transfer securely.
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="mt-6">
+                        <h3 className="font-medium mb-3 text-foreground">Remember Me</h3>
+                        <div className="space-y-2">
+                          <label className="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" className="rounded accent-primary" />
+                            <span className="text-sm text-muted-foreground">Email Me With News & Offers</span>
+                          </label>
+                        </div>
+                      </div>
                     </div>
 
-                    {/* PayPal Option */}
-                    <div className="border border-gray-200 rounded-lg">
-                      <label className="flex items-center justify-between p-4 cursor-pointer">
-                        <div className="flex items-center gap-3">
-                          <input 
-                            type="radio" 
-                            name="payment" 
-                            value="paypal"
-                            checked={paymentMethod === "paypal"}
-                            onChange={(e) => setPaymentMethod(e.target.value)}
-                            className="text-primary accent-primary"
-                          />
-                          <span className="font-medium">PayPal</span>
-                        </div>
-                        <div className="w-16 h-6 bg-gradient-to-r from-blue-600 to-blue-800 rounded text-white text-xs flex items-center justify-center font-bold">PayPal</div>
-                      </label>
-                      
-                      {paymentMethod === "paypal" && (
-                        <div className="px-4 pb-4 border-t border-gray-200 bg-gray-50">
-                          <p className="text-sm text-muted-foreground mt-4">
-                            You will be redirected to PayPal to complete your payment securely.
-                          </p>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Bank Transfer Option */}
-                    <div className="border border-gray-200 rounded-lg">
-                      <label className="flex items-center justify-between p-4 cursor-pointer">
-                        <div className="flex items-center gap-3">
-                          <input 
-                            type="radio" 
-                            name="payment" 
-                            value="transfer"
-                            checked={paymentMethod === "transfer"}
-                            onChange={(e) => setPaymentMethod(e.target.value)}
-                            className="text-primary accent-primary"
-                          />
-                          <span className="font-medium">Transfer</span>
-                        </div>
-                        <div className="text-sm text-primary font-medium">Flutterwave</div>
-                      </label>
-                      
-                      {paymentMethod === "transfer" && (
-                        <div className="px-4 pb-4 border-t border-gray-200 bg-gray-50">
-                          <p className="text-sm text-muted-foreground mt-4">
-                            You will be redirected to Flutterwave to complete your bank transfer securely.
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="mt-6">
-                    <h3 className="font-medium mb-3 text-foreground">Remember Me</h3>
-                    <div className="space-y-2">
-                      <label className="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" className="rounded accent-primary" />
-                        <span className="text-sm text-muted-foreground">Email Me With News & Offers</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Submit Button */}
-                <Button
-                  type="submit"
-                  className="w-full bg-primary hover:bg-gold-dark text-white font-medium py-4 text-lg rounded-xl transition-all duration-200"
-                  disabled={isProcessing}
-                >
-                  {isProcessing ? "Processing..." : "Pay"}
-                </Button>
-              </form>
-            </Form>
-          </div>
+                    {/* Submit Button */}
+                    <Button
+                      type="submit"
+                      className="w-full bg-gold-dark hover:bg-gold-medium text-white font-medium py-4 text-lg rounded-xl transition-all duration-200"
+                      disabled={isProcessing}
+                    >
+                      {isProcessing ? "Processing..." : "Pay"}
+                    </Button>
+                  </form>
+                </Form>
+              </div>
+            </div>
+          </motion.div>
 
           {/* Right Column - Order Summary */}
-          <div className="lg:col-span-5">
-            <div className="bg-white rounded-xl p-6 sticky top-8 border-0">
+          <motion.div initial="hidden" animate="visible" variants={fadeIn}>
+            <div className="bg-white rounded-[20px] border border-[#DADADA] p-6 sticky top-24">
               <h2 className="text-lg font-semibold mb-6 text-foreground">Order Summary</h2>
               
               {/* Cart Items */}
@@ -446,7 +480,7 @@ const CheckoutPage: React.FC = () => {
                     onChange={(e) => setDiscountCode(e.target.value)}
                   />
                   <Button 
-                    variant="outline" 
+                    variant="secondary" 
                     className="px-6 py-3 rounded-lg border border-gray-200 hover:bg-gray-50"
                     onClick={handleApplyDiscount}
                     type="button"
@@ -479,10 +513,16 @@ const CheckoutPage: React.FC = () => {
                 <span>Total</span>
                 <span>{formatPrice(total)}</span>
               </div>
+
+              {/* Security Notice */}
+              <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+                <p className="text-xs text-gray-600 text-center">
+                  🔒 Your payment information is secure and encrypted
+                </p>
+              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
     </div>
   );
 };
