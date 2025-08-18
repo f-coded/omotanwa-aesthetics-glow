@@ -101,67 +101,88 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Values */}
-      <section className="section bg-gold-light">
+      <section className="section bg-gradient-to-br from-gold-light/30 via-white to-gold-medium-light/20">
         <div className="container">
           <motion.div
-            className="text-center mb-12"
+            className="text-center mb-16"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <h2 className="section-title text-4xl font-bold text-gold-dark mb-2">
+            <h2 className="section-title text-4xl md:text-5xl font-clash font-bold text-gold-dark mb-4">
               Our Core Values
             </h2>
-            <p className="section-subtitle mx-auto text-lg text-muted-foreground">
-              What drives us every day
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              The principles that guide everything we do
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
             <motion.div
-              className="bg-white border-2 border-gold-medium shadow-lg p-6 rounded-2xl flex flex-col items-center text-center hover:-translate-y-2 transition-transform duration-300"
+              className="group relative"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeInUp}
               custom={0}
             >
-              <div className="mb-4 text-5xl text-gold-dark">🌿</div>
-              <h3 className="text-xl font-bold mb-2">Heritage & Innovation</h3>
-              <p className="text-muted-foreground text-base">
-                Blending tradition with science for truly effective skincare.
-              </p>
+              <div className="absolute inset-0 bg-gradient-to-br from-gold-medium/20 to-gold-dark/10 rounded-3xl transform rotate-3 group-hover:rotate-6 transition-transform duration-300"></div>
+              <div className="relative bg-white p-8 md:p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gold-medium/20">
+                <div className="w-16 h-16 bg-gradient-to-br from-gold-medium to-gold-dark rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                  <span className="text-2xl text-white">🌿</span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-clash font-bold text-center mb-4 text-gold-dark">
+                  Heritage & Innovation
+                </h3>
+                <p className="text-muted-foreground text-center leading-relaxed">
+                  We honor ancestral wisdom while embracing modern science, creating formulations that bridge tradition and innovation for truly transformative results.
+                </p>
+              </div>
             </motion.div>
 
             <motion.div
-              className="bg-white border-2 border-gold-medium shadow-lg p-6 rounded-2xl flex flex-col items-center text-center hover:-translate-y-2 transition-transform duration-300"
+              className="group relative"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeInUp}
               custom={1}
             >
-              <div className="mb-4 text-5xl text-gold-dark">🤝</div>
-              <h3 className="text-xl font-bold mb-2">Ethical Sourcing</h3>
-              <p className="text-muted-foreground text-base">
-                Sustainably sourced, fairly traded, always responsible.
-              </p>
+              <div className="absolute inset-0 bg-gradient-to-br from-gold-medium/20 to-gold-dark/10 rounded-3xl transform -rotate-2 group-hover:-rotate-4 transition-transform duration-300"></div>
+              <div className="relative bg-white p-8 md:p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gold-medium/20">
+                <div className="w-16 h-16 bg-gradient-to-br from-gold-medium to-gold-dark rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                  <span className="text-2xl text-white">🤝</span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-clash font-bold text-center mb-4 text-gold-dark">
+                  Ethical Sourcing
+                </h3>
+                <p className="text-muted-foreground text-center leading-relaxed">
+                  Every ingredient is sustainably sourced and fairly traded, supporting communities while ensuring the highest quality for our formulations.
+                </p>
+              </div>
             </motion.div>
 
             <motion.div
-              className="bg-white border-2 border-gold-medium shadow-lg p-6 rounded-2xl flex flex-col items-center text-center hover:-translate-y-2 transition-transform duration-300"
+              className="group relative"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeInUp}
               custom={2}
             >
-              <div className="mb-4 text-5xl text-gold-dark">🌈</div>
-              <h3 className="text-xl font-bold mb-2">Inclusive Beauty</h3>
-              <p className="text-muted-foreground text-base">
-                Celebrating every skin type, tone, and story.
-              </p>
+              <div className="absolute inset-0 bg-gradient-to-br from-gold-medium/20 to-gold-dark/10 rounded-3xl transform rotate-1 group-hover:rotate-3 transition-transform duration-300"></div>
+              <div className="relative bg-white p-8 md:p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gold-medium/20">
+                <div className="w-16 h-16 bg-gradient-to-br from-gold-medium to-gold-dark rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                  <span className="text-2xl text-white">🌈</span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-clash font-bold text-center mb-4 text-gold-dark">
+                  Inclusive Beauty
+                </h3>
+                <p className="text-muted-foreground text-center leading-relaxed">
+                  Beauty has no boundaries. We celebrate every skin type, tone, and story, creating products that honor the diversity of human beauty.
+                </p>
+              </div>
             </motion.div>
           </div>
         </div>
