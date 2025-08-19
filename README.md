@@ -1,4 +1,4 @@
-# OMOTANWAMI SKINXARE Website
+# OMOTANWAMI SKINCARE Website
 
 ## Project Info
 
