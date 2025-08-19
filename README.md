@@ -1,4 +1,4 @@
-# Lovable Project
+# OMOTANWAMI SKINXARE Website
 
 ## Project Info
 
