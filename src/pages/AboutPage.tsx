@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Leaf, HandHeart, Users } from "lucide-react";
 import JourneySection from "@/components/JourneySection";
 
 const AboutPage: React.FC = () => {
@@ -101,67 +102,85 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Values */}
-      <section className="section bg-gold-light">
+      <section className="section bg-gradient-to-br from-gold-light/50 via-white to-gold-medium-light/30">
         <div className="container">
           <motion.div
-            className="text-center mb-12"
+            className="text-center mb-16"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <h2 className="section-title text-4xl font-bold text-gold-dark mb-2">
+            <h2 className="section-title text-4xl md:text-5xl font-clash font-bold text-gold-dark mb-4">
               Our Core Values
             </h2>
-            <p className="section-subtitle mx-auto text-lg text-muted-foreground">
-              What drives us every day
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              The principles that guide everything we do
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
             <motion.div
-              className="bg-white border-2 border-gold-medium shadow-lg p-6 rounded-2xl flex flex-col items-center text-center hover:-translate-y-2 transition-transform duration-300"
+              className="group relative overflow-hidden"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeInUp}
               custom={0}
             >
-              <div className="mb-4 text-5xl text-gold-dark">🌿</div>
-              <h3 className="text-xl font-bold mb-2">Heritage & Innovation</h3>
-              <p className="text-muted-foreground text-base">
-                Blending tradition with science for truly effective skincare.
-              </p>
+              <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-8 md:p-10 rounded-3xl border-2 border-green-200 hover:border-green-300 transition-all duration-300 transform hover:-translate-y-2">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
+                  <Leaf size={28} className="text-white" />
+                </div>
+                <h3 className="text-xl md:text-2xl font-clash font-bold text-center mb-4 text-green-800">
+                  Heritage & Innovation
+                </h3>
+                <p className="text-green-700 text-center leading-relaxed">
+                  We honor ancestral wisdom while embracing modern science, creating formulations that bridge tradition and innovation for truly transformative results.
+                </p>
+              </div>
             </motion.div>
 
             <motion.div
-              className="bg-white border-2 border-gold-medium shadow-lg p-6 rounded-2xl flex flex-col items-center text-center hover:-translate-y-2 transition-transform duration-300"
+              className="group relative overflow-hidden"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeInUp}
               custom={1}
             >
-              <div className="mb-4 text-5xl text-gold-dark">🤝</div>
-              <h3 className="text-xl font-bold mb-2">Ethical Sourcing</h3>
-              <p className="text-muted-foreground text-base">
-                Sustainably sourced, fairly traded, always responsible.
-              </p>
+              <div className="bg-gradient-to-br from-orange-50 to-amber-100 p-8 md:p-10 rounded-3xl border-2 border-orange-200 hover:border-orange-300 transition-all duration-300 transform hover:-translate-y-2">
+                <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-600 rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
+                  <HandHeart size={28} className="text-white" />
+                </div>
+                <h3 className="text-xl md:text-2xl font-clash font-bold text-center mb-4 text-orange-800">
+                  Ethical Sourcing
+                </h3>
+                <p className="text-orange-700 text-center leading-relaxed">
+                  Every ingredient is sustainably sourced and fairly traded, supporting communities while ensuring the highest quality for our formulations.
+                </p>
+              </div>
             </motion.div>
 
             <motion.div
-              className="bg-white border-2 border-gold-medium shadow-lg p-6 rounded-2xl flex flex-col items-center text-center hover:-translate-y-2 transition-transform duration-300"
+              className="group relative overflow-hidden"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeInUp}
               custom={2}
             >
-              <div className="mb-4 text-5xl text-gold-dark">🌈</div>
-              <h3 className="text-xl font-bold mb-2">Inclusive Beauty</h3>
-              <p className="text-muted-foreground text-base">
-                Celebrating every skin type, tone, and story.
-              </p>
+              <div className="bg-gradient-to-br from-purple-50 to-violet-100 p-8 md:p-10 rounded-3xl border-2 border-purple-200 hover:border-purple-300 transition-all duration-300 transform hover:-translate-y-2">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-violet-600 rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
+                  <Users size={28} className="text-white" />
+                </div>
+                <h3 className="text-xl md:text-2xl font-clash font-bold text-center mb-4 text-purple-800">
+                  Inclusive Beauty
+                </h3>
+                <p className="text-purple-700 text-center leading-relaxed">
+                  Beauty has no boundaries. We celebrate every skin type, tone, and story, creating products that honor the diversity of human beauty.
+                </p>
+              </div>
             </motion.div>
           </div>
         </div>

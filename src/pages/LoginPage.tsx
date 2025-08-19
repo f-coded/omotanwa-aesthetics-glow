@@ -70,7 +70,7 @@ const LoginPage: React.FC = () => {
         variants={fadeIn}
       >
         <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-serif mb-4">Welcome Back</h1>
+          <h1 className="text-3xl md:text-4xl font-clash mb-4">Welcome Back</h1>
           <p className="text-muted-foreground">
             Log in to your Omotanwa MI account to access your orders, wishlist,
             and more.

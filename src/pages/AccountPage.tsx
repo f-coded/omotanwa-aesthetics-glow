@@ -99,7 +99,7 @@ const AccountPage: React.FC = () => {
           <div className="inline-flex items-center justify-center w-20 h-20 bg-brand-100 rounded-full mb-6">
             <User size={32} className="text-brand-500" />
           </div>
-          <h1 className="text-3xl md:text-4xl font-serif mb-4">Account</h1>
+          <h1 className="text-3xl md:text-4xl font-clash mb-4">Account</h1>
           <p className="text-muted-foreground mb-8">
             Please log in to access your account dashboard, orders, and
             settings.
@@ -134,30 +134,30 @@ const AccountPage: React.FC = () => {
         animate="visible"
         variants={fadeIn}
       >
-        <h1 className="text-3xl md:text-4xl font-serif mb-4">My Account</h1>
+        <h1 className="text-3xl md:text-4xl font-clash mb-4">My Account</h1>
         <p className="text-muted-foreground">
-          Welcome back, Jane! Manage your orders, addresses, and account
+          Welcome back, <span className="font-bold text-foreground">Fawaz</span>! Manage your orders, addresses, and account
           settings.
         </p>
       </motion.div>
 
       <Tabs defaultValue="orders">
-        <TabsList className="mb-8">
-          <TabsTrigger value="orders" className="flex items-center gap-2">
+        <TabsList className="mb-8 w-full flex-wrap h-auto p-1 bg-white shadow-soft rounded-2xl">
+          <TabsTrigger value="orders" className="flex-1 min-w-0 flex items-center gap-2 data-[state=active]:bg-gold-medium data-[state=active]:text-white">
             <Package size={16} />
-            <span>Orders</span>
+            <span className="hidden sm:inline">Orders</span>
           </TabsTrigger>
-          <TabsTrigger value="addresses" className="flex items-center gap-2">
+          <TabsTrigger value="addresses" className="flex-1 min-w-0 flex items-center gap-2 data-[state=active]:bg-gold-medium data-[state=active]:text-white">
             <MapPin size={16} />
-            <span>Addresses</span>
+            <span className="hidden sm:inline">Addresses</span>
           </TabsTrigger>
-          <TabsTrigger value="wishlist" className="flex items-center gap-2">
+          <TabsTrigger value="wishlist" className="flex-1 min-w-0 flex items-center gap-2 data-[state=active]:bg-gold-medium data-[state=active]:text-white">
             <Heart size={16} />
-            <span>Wishlist</span>
+            <span className="hidden sm:inline">Wishlist</span>
           </TabsTrigger>
-          <TabsTrigger value="payment" className="flex items-center gap-2">
+          <TabsTrigger value="payment" className="flex-1 min-w-0 flex items-center gap-2 data-[state=active]:bg-gold-medium data-[state=active]:text-white w-full sm:w-auto mt-1 sm:mt-0">
             <CreditCard size={16} />
-            <span>Payment Methods</span>
+            <span className="hidden sm:inline">Payment</span>
           </TabsTrigger>
         </TabsList>
 
