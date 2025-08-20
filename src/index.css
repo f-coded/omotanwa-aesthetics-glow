@@ -95,6 +95,46 @@
   .section-subtitle {
     @apply text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl;
   }
+
+  /* Modern Toast Styles */
+  .toaster {
+    @apply z-[9999];
+  }
+
+  .toaster .toast {
+    @apply font-raleway;
+    animation: slideInRight 0.3s ease-out;
+  }
+
+  .toaster .toast[data-state="closed"] {
+    animation: slideOutRight 0.3s ease-in;
+  }
+
+  .toaster .toast[data-state="open"] {
+    animation: slideInRight 0.3s ease-out;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
 
 /* Clash Display font faces */

@@ -24,14 +24,6 @@ const formSchema = z.object({
   fullName: z.string().min(2, "Full name is required"),
   email: z.string().email("Invalid email address"),
   phone: z.string().min(6, "Phone number is required"),
-  address: z.string().min(5, "Address is required"),
-  city: z.string().min(2, "City is required"),
-  state: z.string().min(2, "State is required"),
-  zipCode: z.string().min(3, "Zip code is required"),
-  cardName: z.string().min(2, "Name on card is required"),
-  cardNumber: z.string().min(13, "Card number is required"),
-  expiryDate: z.string().min(5, "Expiry date is required"),
-  cvv: z.string().min(3, "CVV is required"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -46,6 +38,15 @@ const CheckoutPage: React.FC = () => {
   const [discountCode, setDiscountCode] = useState("");
   const [discountError, setDiscountError] = useState("");
 
+  // Redirect if cart is empty
+  React.useEffect(() => {
+    console.log("Cart items:", cartItems);
+    console.log("Cart subtotal:", subtotal);
+    if (cartItems.length === 0) {
+      navigate("/shop");
+    }
+  }, [cartItems.length, navigate, cartItems, subtotal]);
+
   // Shipping calculation (simplified)
   const shipping = subtotal > 0 ? 10 : 0;
   const tax = subtotal * 0.05; // 5% tax rate
@@ -58,14 +59,6 @@ const CheckoutPage: React.FC = () => {
       fullName: "",
       email: "",
       phone: "",
-      address: "",
-      city: "",
-      state: "",
-      zipCode: "",
-      cardName: "",
-      cardNumber: "",
-      expiryDate: "",
-      cvv: "",
     },
   });
 
@@ -75,6 +68,7 @@ const CheckoutPage: React.FC = () => {
   };
 
   const onSubmit = async (data: FormValues) => {
+    console.log("Form submitted with data:", data);
     setIsProcessing(true);
     try {
       // Simulate payment processing
@@ -82,10 +76,15 @@ const CheckoutPage: React.FC = () => {
       
       // For now, just show success and clear cart
       clearCart();
-      toast.success("Order placed successfully!");
+      toast.success("🎉 Order Placed Successfully!", {
+        description: "Your order has been confirmed and is being processed. You'll receive a confirmation email shortly.",
+      });
       navigate("/order-success");
     } catch (error) {
-      toast.error("Payment processing failed. Please try again.");
+      console.error("Payment processing error:", error);
+      toast.error("❌ Payment Failed", {
+        description: "There was an issue processing your payment. Please check your details and try again.",
+      });
     } finally {
       setIsProcessing(false);
     }
@@ -137,7 +136,9 @@ const CheckoutPage: React.FC = () => {
             <div className="bg-white rounded-[20px] border border-[#DADADA] p-4 md:p-6">          
               <div className="lg:col-span-7">
                 <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                  <form onSubmit={form.handleSubmit(onSubmit, (errors) => {
+                    console.log("Form validation errors:", errors);
+                  })} className="space-y-8">
                     {/* Contact Information */}
                     <div className="bg-white rounded-xl border-0">
                       <h2 className="text-lg font-semibold mb-4 text-foreground">Contact</h2>
@@ -443,6 +444,21 @@ const CheckoutPage: React.FC = () => {
                     >
                       {isProcessing ? "Processing..." : "Pay"}
                     </Button>
+                    
+                    {/* Debug Button - Remove after testing */}
+                    <Button
+                      type="button"
+                      onClick={() => {
+                        console.log("Debug: Current processing state:", isProcessing);
+                        setIsProcessing(!isProcessing);
+                        setTimeout(() => setIsProcessing(false), 2000);
+                      }}
+                      className="w-full mt-2 bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 text-sm rounded-xl transition-all duration-200"
+                    >
+                      Debug: Toggle Processing State
+                    </Button>
+                    
+
                   </form>
                 </Form>
               </div>
