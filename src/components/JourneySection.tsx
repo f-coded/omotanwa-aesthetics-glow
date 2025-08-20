@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import card1 from "../assets/images/about_images/journey-1.jpg";
-import card2 from "../assets/images/about_images/meet&greeet.jpg";
-import card3 from "../assets/images/about_images/journey-3.jpg";
-import card4 from "../assets/images/about_images/cac.jpeg";
+import card1 from "../assets/images/about_images/journey-1_optimized.webp";
+import card2 from "../assets/images/about_images/meet&greeet_optimized.webp";
+import card3 from "../assets/images/about_images/journey-3_optimized.webp";
+import card4 from "../assets/images/about_images/cac_optimized.webp";
 
 const JourneySection: React.FC = () => {
   const [activeCard, setActiveCard] = useState<number | null>(null);

@@ -21,7 +21,7 @@ const AboutPage: React.FC = () => {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('src/assets/images/about_images/about_hero.jpg')",
+              "url('src/assets/images/about_images/about_hero_optimized.webp')",
           }}
         >
           <div className="absolute inset-0 bg-white opacity-80"></div>
@@ -79,7 +79,7 @@ const AboutPage: React.FC = () => {
 
               <img
                 className="mt-8 w-80 h-auto"
-                src="src/assets/images/about_images/signature.jpg"
+                src="src/assets/images/about_images/signature_optimized.webp"
                 alt="signature"
               />
             </motion.div>
@@ -92,7 +92,7 @@ const AboutPage: React.FC = () => {
               variants={fadeInUp}
             >
               <img
-                src="src/assets/images/about_images/omotanwa.jpg"
+                src="src/assets/images/about_images/omotanwa_optimized.webp"
                 alt="Omotanwa MI Founder"
                 className="w-full h-full object-cover"
               />

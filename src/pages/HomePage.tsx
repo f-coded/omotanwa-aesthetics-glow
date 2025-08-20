@@ -1,10 +1,10 @@
 import React from "react";
-import brandStoryImg from "../assets/images/brand_story_images/IMG_0287.jpg";
+import brandStoryImg from "../assets/images/brand_story_images/IMG_0287_optimized.webp";
 import TopBanner from "@/components/TopBanner";
 import "@/components/TopBanner.css";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import newsletterBg from "../assets/images/brand_story_images/IMG_0290.jpg";
+import newsletterBg from "../assets/images/brand_story_images/IMG_0290_optimized.webp";
 import { motion } from "framer-motion";
 import { featuredProducts } from "../data/products";
 import ProductCard from "@/components/ProductCard";

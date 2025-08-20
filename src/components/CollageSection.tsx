@@ -1,9 +1,9 @@
 import React from "react";
-import card1 from "../assets/images/collage_images/IMG_0288.jpg";
-import card2 from "../assets/images/collage_images/IMG_0296.jpg";
-import card3 from "../assets/images/collage_images/IMG_0297.jpg";
-import card4 from "../assets/images/collage_images/IMG_0298.jpg";
-import card5 from "../assets/images/collage_images/IMG_0304.jpg";
+import card1 from "../assets/images/collage_images/IMG_0288_optimized.webp";
+import card2 from "../assets/images/collage_images/IMG_0296_optimized.webp";
+import card3 from "../assets/images/collage_images/IMG_0297_optimized.webp";
+import card4 from "../assets/images/collage_images/IMG_0298_optimized.webp";
+import card5 from "../assets/images/collage_images/IMG_0304_optimized.webp";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
