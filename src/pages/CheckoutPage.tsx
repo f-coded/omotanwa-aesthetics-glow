@@ -306,11 +306,10 @@ const CheckoutPage: React.FC = () => {
                               />
                               <span className="font-medium">Card</span>
                             </div>
-                            <div className="flex gap-2">
-                              <img className="w-full relative rounded-lg h-6 overflow-hidden shrink-0" alt="" src="Frame 1321314037.svg" />);
-                              <img className="w-full relative rounded-lg h-6 overflow-hidden shrink-0" alt="" src="Frame 1321314037.svg" />);
-                              <img className="w-full relative rounded-lg h-6 overflow-hidden shrink-0" alt="" src="Frame 1321314037.svg" />);
-
+                            <div className="flex gap-2 items-center">
+                              <div className="w-8 h-5 bg-gradient-to-r from-red-500 to-orange-500 rounded text-white text-xs flex items-center justify-center font-bold">MC</div>
+                              <div className="w-8 h-5 bg-blue-600 rounded text-white text-xs flex items-center justify-center font-bold">V</div>
+                              <div className="w-8 h-5 bg-blue-800 rounded text-white text-xs flex items-center justify-center font-bold">AE</div>
                             </div>
                           </label>
                           
@@ -445,18 +444,6 @@ const CheckoutPage: React.FC = () => {
                       {isProcessing ? "Processing..." : "Pay"}
                     </Button>
                     
-                    {/* Debug Button - Remove after testing */}
-                    <Button
-                      type="button"
-                      onClick={() => {
-                        console.log("Debug: Current processing state:", isProcessing);
-                        setIsProcessing(!isProcessing);
-                        setTimeout(() => setIsProcessing(false), 2000);
-                      }}
-                      className="w-full mt-2 bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 text-sm rounded-xl transition-all duration-200"
-                    >
-                      Debug: Toggle Processing State
-                    </Button>
                     
 
                   </form>
@@ -474,7 +461,14 @@ const CheckoutPage: React.FC = () => {
               <div className="space-y-4 mb-6">
                 {cartItems.map((item) => (
                   <div key={item.product.id} className="flex items-center gap-4">
-                    <div className="w-16 h-16 bg-gray-100 rounded-lg flex-shrink-0"></div>
+                    <div className="w-16 h-16 bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden">
+                      <img 
+                        src={item.product.images?.[0] || '/placeholder.svg'} 
+                        alt={item.product.name}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
                     <div className="flex-1">
                       <h3 className="font-medium text-sm">{item.product.name}</h3>
                       <p className="text-sm text-muted-foreground">Qty: {item.quantity}</p>
