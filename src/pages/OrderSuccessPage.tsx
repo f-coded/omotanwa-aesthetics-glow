@@ -64,7 +64,7 @@ const OrderSuccessPage: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 mt-32 py-20">
+    <div className="container mx-auto px-4 mt-24 py-20">
       <motion.div
         className="max-w-2xl mx-auto text-center"
         variants={containerVariants}
